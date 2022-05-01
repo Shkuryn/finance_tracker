@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-  <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+  <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<li><%= link_to 'Sign Up', new_user_registration_path %></li>
-<li><%= link_to 'Sign In', new_user_session_path %></li>
-<%= button_to 'Exit', destroy_user_session_path, method: :delete %>
-<%= yield %>
-</body>
+  <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+  <li><%= link_to 'Sign In', new_user_session_path %></li>
+  <%= button_to 'Exit', destroy_user_session_path, method: :delete %>
+  <%= yield %>
+  </body>
 </html>
