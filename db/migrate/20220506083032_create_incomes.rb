@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
-class CreateExpences < ActiveRecord::Migration[6.1]
+class CreateIncomes < ActiveRecord::Migration[6.1]
   def change
-    create_table :expences, id: false do |t|
+    create_table :incomes, id: false do |t|
       t.integer :id
       t.string :name
       t.string :description

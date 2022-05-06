@@ -2,8 +2,6 @@
 
 class WelcomeController < ApplicationController
   def index
-    if user_signed_in?
-      @username ||= current_user.name
-    end
+    @username ||= current_user.name if user_signed_in?
   end
 end
