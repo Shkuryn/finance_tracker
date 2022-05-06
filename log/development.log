@@ -285,3 +285,64 @@ FOREIGN KEY ("user_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4978512331109723490)[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-05-06 12:30:55 +0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 374)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 1469)
+Completed 200 OK in 21ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 6194)
+
+
+Started GET "/" for 127.0.0.1 at 2022-05-06 12:30:56 +0300
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 39)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 590)
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 1248)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-05-06 12:31:07 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.3ms | Allocations: 704)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 26.2ms | Allocations: 5191)
+  Rendered layout layouts/application.html.erb (Duration: 26.9ms | Allocations: 5719)
+Completed 200 OK in 41ms (Views: 28.2ms | ActiveRecord: 5.0ms | Allocations: 14000)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-05-06 12:31:08 +0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.3ms | Allocations: 236)
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 165)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.4ms | Allocations: 2321)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 2849)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.0ms | Allocations: 4473)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-05-06 12:31:08 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 170)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1344)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 1820)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 2598)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-05-06 12:31:10 +0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 42)
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 113)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1351)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 1827)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 2463)
+
+
