@@ -1,6 +1,6 @@
 class CreateExpences < ActiveRecord::Migration[6.1]
   def change
-    create_table :expences do |t|
+    create_table :expences, :id => false do |t|
       t.integer :id
       t.string :name
       t.string :description
