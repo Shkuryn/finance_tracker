@@ -7,28 +7,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
   expencesList =  [
-    [ "Food" ],
-    [ "Transport"],
-    [ "Closes"],
-    [ "mobile phone"],
-    [ "technic"],
-    [ "presents"],
-    [ "cosmetic"],
-    [ "public services"]
+     "food" ,
+     "transport",
+     "closes",
+     "mobile phone",
+     "technic",
+     "presents",
+     "cosmetic",
+     "public services"
   ]
-
+  Expence.destroy_all
   expencesList.each do |name|
     Expence.create( name: name,
                     description: name,
                     user_id: 1,
                     predefined: true)
     end
-# Expence.create!([{
-#                  name: "Food",
-#                  description: "Meat, fruit, vegetables and so on",
-#                  user_id: 1,
-#                  predefined: true
-#                },
-#                ])
 
 p "Created #{Expence.count} items"
