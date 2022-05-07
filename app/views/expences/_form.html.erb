@@ -1,0 +1,29 @@
+<%= form_for @expence, html: { class: "form-vertical center" } do |form| %>
+  <% if expence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(expence.errors.count, "error") %> prohibited this expence from being saved:</h2>
+      <ul>
+        <% expence.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-floating mb-3 mt-3">
+    <div class="mb-3">
+      <%= form.label :name, { class: "form-label" } %>
+      <%= form.text_field :name, { class: "form-control", placeholder: "Name" } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, { class: "form-label" } %>
+      <%= form.text_field :description, { class: "form-control", placeholder: "Description"} %>
+    </div>
+    <div class="Action">
+      <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) != "new" %>
+        <%= form.button "Update ", type: "submit", :class => "btn btn-primary" %>
+      <% else %>
+        <%= form.button "Create ", type: "submit", :class => "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
