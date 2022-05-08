@@ -21,6 +21,7 @@ class OperationDetailsController < ApplicationController
 
   # POST /operation_details or /operation_details.json
   def create
+    debugger
     @operation_detail = OperationDetail.new(operation_detail_params)
 
     respond_to do |format|
