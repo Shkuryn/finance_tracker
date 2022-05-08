@@ -21,7 +21,6 @@ class OperationDetailsController < ApplicationController
 
   # POST /operation_details or /operation_details.json
   def create
-    debugger
     @operation_detail = OperationDetail.new(operation_detail_params)
 
     respond_to do |format|
@@ -66,6 +65,6 @@ class OperationDetailsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def operation_detail_params
-      params.fetch(:operation_detail, {})
+      params.require(:operation_detail).permit(:comment, :amount, :operation_id, :id, :expence_id)
     end
 end
