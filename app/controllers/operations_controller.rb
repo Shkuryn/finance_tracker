@@ -12,11 +12,13 @@ class OperationsController < ApplicationController
 
   # GET /operations/new
   def new
+    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
     @operation = Operation.new
   end
 
   # GET /operations/1/edit
   def edit
+    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
   end
 
   # POST /operations or /operations.json
@@ -65,6 +67,6 @@ class OperationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def operation_params
-      params.require(:operation).permit(:comment, :marked, :date, :datetime, :id, :user_id)
+      params.require(:operation).permit(:comment, :marked, :date, :id, :user_id)
     end
 end

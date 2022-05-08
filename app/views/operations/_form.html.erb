@@ -12,23 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_field :comment %>
-  </div>
-
-  <div class="field">
-    <%= form.label :marked %>
+    <%= form.label :date %>
+    <%= form.datetime_field :date %>
+    <%= form.label :ignore %>
     <%= form.check_box :marked %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.text_field :date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :datetime %>
-    <%= form.text_field :datetime %>
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
   </div>
 
   <div class="field">
@@ -39,6 +31,18 @@
   <div class="field">
     <%= form.label :user_id %>
     <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.collection_select :expence_id, @expences.order(:name), :id, :name %>
+
+    <%= form.label :amount %>
+<!--    <input id="amount" name="amount" min="0"  type="number" />-->
+    <%= form_with url: "/welcome", method: :get do |form| %>
+      <%= form.text_field :amount%>
+      <%= form.submit "Add" %>
+    <% end %>
   </div>
 
   <div class="actions">
