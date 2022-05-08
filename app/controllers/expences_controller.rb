@@ -18,7 +18,6 @@ class ExpencesController < ApplicationController
 
   # GET /expences/1/edit
   def edit
-
     @expence = Expence.find_by(id: params[:id])
   end
 
