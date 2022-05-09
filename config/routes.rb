@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
 
+  get 'charts/show'
   resources :operations do
     resources :operation_details
   end
