@@ -8,6 +8,7 @@ class OperationsController < ApplicationController
 
   # GET /operations/1 or /operations/1.json
   def show
+   @operation_details =  @operation.operation_details
   end
 
   # GET /operations/new
@@ -19,6 +20,7 @@ class OperationsController < ApplicationController
   # GET /operations/1/edit
   def edit
     @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
+    @operation_details =  @operation.operation_details
   end
 
   # POST /operations or /operations.json

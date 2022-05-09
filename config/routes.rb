@@ -2,8 +2,9 @@
 
 Rails.application.routes.draw do
 
-  resources :operation_details
-  resources :operations
+  resources :operations do
+    resources :operation_details
+  end
   resources :expences
   devise_for :users
   root 'welcome#index'

@@ -10,16 +10,17 @@
   </thead>
 
   <tbody>
-    <% @operation_details.each do |operation_detail| %>
+    <% @operation_details.inspect %>
+    <%# @operation_details.each do |operation_detail| %>
       <tr>
-        <td><%= link_to 'Show', operation_detail %></td>
-        <td><%= link_to 'Edit', edit_operation_detail_path(operation_detail) %></td>
-        <td><%= link_to 'Destroy', operation_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--        <td><%#= link_to 'Show', operation_detail %></td>-->
+<!--        <td><%#= link_to 'Edit', edit_operation_operation_detail(operation_detail) %></td>-->
+<!--        <td><%#= link_to 'Destroy', operation_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Operation Detail', new_operation_detail_path %>
+<%= link_to 'New Operation Detail', new_operation_operation_detail_path %>

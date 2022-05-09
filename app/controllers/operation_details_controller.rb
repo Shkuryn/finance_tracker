@@ -25,7 +25,7 @@ class OperationDetailsController < ApplicationController
 
     respond_to do |format|
       if @operation_detail.save
-        format.html { redirect_to operation_detail_url(@operation_detail), notice: "Operation detail was successfully created." }
+        format.html { redirect_to operation_operation_details_path(@operation_detail), notice: "Operation detail was successfully created." }
         format.json { render :show, status: :created, location: @operation_detail }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -60,11 +60,12 @@ class OperationDetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_operation_detail
+
       @operation_detail = OperationDetail.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def operation_detail_params
-      params.require(:operation_detail).permit(:comment, :amount, :operation_id, :id, :expence_id)
+      params.permit(:comment, :amount, :operation_id, :id, :expence_id)
     end
 end
