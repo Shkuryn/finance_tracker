@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expences</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expences.each do |expence| %>
+      <tr>
+        <td><%= expence.name %></td>
+        <td><%= link_to 'Show', expence %></td>
+        <td><%= link_to 'Edit', edit_expence_path(expence) %></td>
+        <td><%= button_to 'Destroy', expence, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expence', new_expence_path %>
