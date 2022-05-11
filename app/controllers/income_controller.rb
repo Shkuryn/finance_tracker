@@ -51,20 +51,20 @@ class IncomeController < ApplicationController
     end
   end
 
-  # DELETE /expences/1 or /expences/1.json
+  # DELETE /incomes/1 
   def destroy
-    return if @expence.predefined == true
-    @expence.destroy
+    return if @income.predefined == true
+    @income.destroy
 
     respond_to do |format|
-      format.html { redirect_to expences_url, notice: "Expence was successfully destroyed." }
+      format.html { redirect_to incomes_url, notice: "Income was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_expence
+    def set_
       @expence = Expence.find(params[:id])
     end
 
