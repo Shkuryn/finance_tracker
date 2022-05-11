@@ -2,7 +2,11 @@
 
 Rails.application.routes.draw do
 
+  root 'welcome#index'
+  resources :operations do
+    resources :operation_details
+  end
   resources :expences
   devise_for :users
-  root 'welcome#index'
+  get 'charts/show'
 end
