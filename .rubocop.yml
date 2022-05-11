@@ -1,0 +1,41 @@
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 200
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 30
+
+AllCops:
+  Exclude:
+    - config/initializers/secret_token.rb
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 40
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+
+
+
+
+
+
+
