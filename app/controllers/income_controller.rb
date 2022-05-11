@@ -64,12 +64,12 @@ class IncomeController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_
-      @expence = Expence.find(params[:id])
+    def set_income
+      @income = Income.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def expence_params
-      params.require(:expence).permit(:name, :description, :id, :user_id)
+    def income_params
+      params.require(:income).permit(:name, :description, :id, :user_id)
     end
 end
