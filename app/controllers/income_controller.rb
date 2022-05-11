@@ -41,12 +41,12 @@ class IncomeController < ApplicationController
   # PATCH/PUT /incomes/1 
   def update
     respond_to do |format|
-      if @expence.update(expence_params)
-        format.html { redirect_to expence_url(@expence), notice: "Expence was successfully updated." }
-        format.json { render :show, status: :ok, location: @expence }
+      if @income.update(income_params)
+        format.html { redirect_to expence_url(@income), notice: "Income was successfully updated." }
+        format.json { render :show, status: :ok, location: @income }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @expence.errors, status: :unprocessable_entity }
+        format.json { render json: @income.errors, status: :unprocessable_entity }
       end
     end
   end
