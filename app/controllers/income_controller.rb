@@ -21,24 +21,24 @@ class IncomeController < ApplicationController
     @income = Income.find_by(id: params[:id])
   end
 
-  # POST /expences or /expences.json
+  # POST /incomes 
   def create
-    @expence = Expence.new(expence_params)
-    @expence.user_id = current_user.id
-    @expence.predefined = false
+    @income = Income.new(income_params)
+    @income.user_id = current_user.id
+    @income.predefined = false
 
     respond_to do |format|
-      if @expence.save
-        format.html { redirect_to expence_url(@expence), notice: "Expence was successfully created." }
-        format.json { render :show, status: :created, location: @expence }
+      if @income.save
+        format.html { redirect_to expence_url(@income), notice: "Income was successfully created." }
+        format.json { render :show, status: :created, location: @income }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @expence.errors, status: :unprocessable_entity }
+        format.json { render json: @income.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /expences/1 or /expences/1.json
+  # PATCH/PUT /incomes/1 
   def update
     respond_to do |format|
       if @expence.update(expence_params)
