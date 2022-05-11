@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @operation.comment %>
+</p>
+
+<p>
+  <strong>Marked:</strong>
+  <%= @operation.marked %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @operation.date %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @operation.id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @operation.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_operation_path(@operation) %> |
+<%= link_to 'Back', operations_path %>
