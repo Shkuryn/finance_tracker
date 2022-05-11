@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AddDefaultValueToPredefinedAttribute < ActiveRecord::Migration[6.1]
   def change
-     change_column :expences, :predefined, :boolean, default: false
+    change_column :expences, :predefined, :boolean, default: false
   end
 end
