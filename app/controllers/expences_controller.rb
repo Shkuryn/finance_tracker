@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ExpencesController < ApplicationController
-  before_action :set_expence, only: %i[ show edit update destroy ]
+  before_action :set_expence, only: %i[show edit update destroy]
 
   # GET /expences or /expences.json
   def index
@@ -7,9 +9,7 @@ class ExpencesController < ApplicationController
   end
 
   # GET /expences/1 or /expences/1.json
-  def show
-
-  end
+  def show; end
 
   # GET /expences/new
   def new
@@ -29,7 +29,7 @@ class ExpencesController < ApplicationController
 
     respond_to do |format|
       if @expence.save
-        format.html { redirect_to expence_url(@expence), notice: "Expence was successfully created." }
+        format.html { redirect_to expence_url(@expence), notice: 'Expence was successfully created.' }
         format.json { render :show, status: :created, location: @expence }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class ExpencesController < ApplicationController
   def update
     respond_to do |format|
       if @expence.update(expence_params)
-        format.html { redirect_to expence_url(@expence), notice: "Expence was successfully updated." }
+        format.html { redirect_to expence_url(@expence), notice: 'Expence was successfully updated.' }
         format.json { render :show, status: :ok, location: @expence }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,22 +54,24 @@ class ExpencesController < ApplicationController
   # DELETE /expences/1 or /expences/1.json
   def destroy
     return if @expence.predefined == true
+
     @expence.destroy
 
     respond_to do |format|
-      format.html { redirect_to expences_url, notice: "Expence was successfully destroyed." }
+      format.html { redirect_to expences_url, notice: 'Expence was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_expence
-      @expence = Expence.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def expence_params
-      params.require(:expence).permit(:name, :description, :id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_expence
+    @expence = Expence.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def expence_params
+    params.require(:expence).permit(:name, :description, :id, :user_id)
+  end
 end
