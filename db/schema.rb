@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20_220_507_202_056) do
 
   add_foreign_key "expences", "users"
   add_foreign_key "incomes", "users"
+  add_foreign_key "operation_details", "expences"
   add_foreign_key "operation_details", "operations"
 
 end
