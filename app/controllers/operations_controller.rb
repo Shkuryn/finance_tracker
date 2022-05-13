@@ -15,6 +15,7 @@ class OperationsController < ApplicationController
   def new
     @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
     @operation = Operation.new
+    @operation_details =  @operation.operation_details
   end
 
   # GET /operations/1/edit
