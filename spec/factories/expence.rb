@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :expence do
+    id { '1' }
     name { 'Great name' }
     description { 'Good description' }
     created_at  { 1.years.ago }
