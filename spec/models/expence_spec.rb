@@ -15,7 +15,9 @@ RSpec.describe Expence, type: :model do
     end
 
     context 'unsuccessfully' do
-      it 'is invalid without title' do
+      it 'is invalid without name' do
+        @expence.name = nil
+        expect(@expence).not_to be_valid
       end
 
       it 'is invalid without content' do
