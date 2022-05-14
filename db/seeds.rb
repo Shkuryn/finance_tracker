@@ -27,17 +27,17 @@ end
 
 p "Created #{Expence.count} items"
 
- incomes_list = [
-   "salary",
-   "cashback",
-   "gifts",
-   "dividents"
- ]
- Income.destroy_all
+incomes_list = %w[
+  salary
+  cashback
+  gifts
+  dividents
+]
+Income.destroy_all
 incomes_list.each do |name|
-  Income.create( name: name,
-    description: name,
-    user_id: 1,
-    predefined: true)
-  end
+  Income.create(name: name,
+                description: name,
+                user_id: 1,
+                predefined: true)
+end
 p "Created #{Income.count} items"

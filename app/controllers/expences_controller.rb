@@ -5,7 +5,6 @@ class ExpencesController < ApplicationController
 
   # GET /expences or /expences.json
   def index
-
     @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
   end
 

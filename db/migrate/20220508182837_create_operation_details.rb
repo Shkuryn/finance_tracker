@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOperationDetails < ActiveRecord::Migration[6.1]
   def change
     create_table :operation_details, id: false do |t|
