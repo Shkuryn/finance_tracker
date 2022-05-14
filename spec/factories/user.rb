@@ -9,6 +9,5 @@ FactoryBot.define do
     email { 'Johndoe@example.com' }
     password { 'strong_1234' }
 
-    # sequence(:username) { |n| "user#{n}" }
   end
 end
