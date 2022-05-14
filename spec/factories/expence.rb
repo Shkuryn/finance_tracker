@@ -8,7 +8,5 @@ FactoryBot.define do
     created_at  { 1.years.ago }
     updated_at  { 1.years.ago }
     predefined { false }
-
-    # sequence(:username) { |n| "user#{n}" }
   end
 end

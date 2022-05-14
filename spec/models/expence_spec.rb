@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Expence, type: :model do
@@ -9,7 +11,7 @@ RSpec.describe Expence, type: :model do
 
   describe '#create' do
     context 'successfully' do
-      it 'is valid when all fields is filfull' do
+      it 'is valid when all fields is filled' do
         expect(@expence).to be_valid
       end
     end
