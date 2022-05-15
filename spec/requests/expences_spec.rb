@@ -18,8 +18,8 @@ RSpec.describe ExpencesController, type: :controller do
       end
     end
   end
-  describe "POST expence#create" do
-    it "should create a new expence" do
+  describe 'POST expence#create' do
+    it 'should create a new expence' do
       visit new_expence_path
       sleep(5)
       Rails.logger.debug('START!')
