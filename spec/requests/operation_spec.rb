@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe  OperationsController , type: :controller do
+RSpec.describe  OperationsController, type: :controller do
   # let(:user) { FactoryBot.create :user }
   describe 'GET index' do
     it 'returns a 200' do

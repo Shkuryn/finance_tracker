@@ -2,6 +2,6 @@
 
 class WelcomeController < ApplicationController
   def index
-    user_signed_in? ? @username = current_user.name  : @username = 'Guest'
+    @username = user_signed_in? ? current_user.name : 'Guest'
   end
 end
