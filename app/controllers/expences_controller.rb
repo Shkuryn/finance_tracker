@@ -5,7 +5,9 @@ class ExpencesController < ApplicationController
 
   # GET /expences or /expences.json
   def index
-    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
+    render :template => "welcome/index" unless user_signed_in?
+    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id)) if current_user != nil
+
   end
 
   # GET /expences/1 or /expences/1.json
