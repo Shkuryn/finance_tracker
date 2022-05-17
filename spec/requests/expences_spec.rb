@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe ExpencesController, type: :controller do
+  render_views
   before do
     @user = FactoryBot.create(:user)
     @expence = FactoryBot.create(:expence, user_id: @user.id)
+
   end
   describe 'GET index' do
     it 'returns a 200' do
@@ -17,6 +19,25 @@ RSpec.describe ExpencesController, type: :controller do
         get :show, params: { id: @expence }
       end
     end
+
+    it 'renders the index template' do
+      get :index
+      expect(response).to render_template('index')
+    end
+    it 'has a related heading when not signed in' do
+      get :index
+      expect(response.body).to match /<h3> please login/im
+    end
+
+    it 'has a related heading when  signed in' do
+      visit new_user_session_path
+      fill_in 'user_email', with: @user.email
+      fill_in 'user_password', with: @user.password
+      click_on 'commit'
+      visit expences_path
+      expect(page).to have_content('Expences')
+      expect(page).to have_content('Great name')
+    end
   end
   describe 'POST expence#create' do
     it 'should create a new expence' do
@@ -25,8 +46,7 @@ RSpec.describe ExpencesController, type: :controller do
       Rails.logger.debug('START!')
       Rails.logger.debug(page.inspect)
       expect(page).to have_content('New Expence')
-      # expect { click_button 'Save' }.to change(Expence, :count).by(1)
-    end
+     end
   end
   after do
     @user.destroy
