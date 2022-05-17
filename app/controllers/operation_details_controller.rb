@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OperationDetailsController < ApplicationController
-  before_action :set_operation_detail, only: %i[ show edit update destroy ]
+  before_action :set_operation_detail, only: %i[show edit update destroy]
 
   # GET /operation_details or /operation_details.json
   def index
@@ -7,8 +9,7 @@ class OperationDetailsController < ApplicationController
   end
 
   # GET /operation_details/1 or /operation_details/1.json
-  def show
-  end
+  def show; end
 
   # GET /operation_details/new
   def new
@@ -16,8 +17,7 @@ class OperationDetailsController < ApplicationController
   end
 
   # GET /operation_details/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /operation_details or /operation_details.json
   def create
@@ -25,7 +25,7 @@ class OperationDetailsController < ApplicationController
 
     respond_to do |format|
       if @operation_detail.save
-        format.html { redirect_to operation_operation_details_path(@operation_detail), notice: "Operation detail was successfully created." }
+        format.html { redirect_to operation_operation_details_path(@operation_detail), notice: 'Operation detail was successfully created.' }
         format.json { render :show, status: :created, location: @operation_detail }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class OperationDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @operation_detail.update(operation_detail_params)
-        format.html { redirect_to operation_detail_url(@operation_detail), notice: "Operation detail was successfully updated." }
+        format.html { redirect_to operation_detail_url(@operation_detail), notice: 'Operation detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @operation_detail }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,20 +52,20 @@ class OperationDetailsController < ApplicationController
     @operation_detail.destroy
 
     respond_to do |format|
-      format.html { redirect_to operation_details_url, notice: "Operation detail was successfully destroyed." }
+      format.html { redirect_to operation_details_url, notice: 'Operation detail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_operation_detail
 
-      @operation_detail = OperationDetail.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_operation_detail
+    @operation_detail = OperationDetail.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def operation_detail_params
-      params.permit(:comment, :amount, :operation_id, :id, :expence_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def operation_detail_params
+    params.permit(:comment, :amount, :operation_id, :id, :expence_id)
+  end
 end

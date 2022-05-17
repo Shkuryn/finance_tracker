@@ -12,9 +12,9 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 
+gem 'chartkick'
 gem 'devise'
 gem 'groupdate'
-gem 'chartkick'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -38,9 +38,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 6.0.0.rc1'
-  gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 6.0.0.rc1'
 end
 
 group :development do
@@ -64,6 +65,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'rubocop-rspec'
   gem 'webdrivers'
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
