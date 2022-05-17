@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'requests_helper'
 
-RSpec.describe 'Hello world', type: :system do
+RSpec.describe 'Welcome page', type: :system do
   describe 'index page' do
     it 'shows the right content when guest visit' do
       visit root_path
