@@ -14,6 +14,7 @@ gem 'puma', '~> 5.0'
 
 gem 'chartkick'
 gem 'devise'
+gem 'activeadmin'
 gem 'groupdate'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
