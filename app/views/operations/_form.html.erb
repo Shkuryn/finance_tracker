@@ -13,7 +13,11 @@
 
   <div class="field">
     <%= form.label :date %>
+    <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) == "new" %>
+    <%= form.datetime_field :date , :value => Time.now.strftime('%Y-%m-%dT%H:%M:%S') %>
+    <% else %>
     <%= form.datetime_field :date %>
+    <% end %>
     <%= form.label :ignore %>
     <%= form.check_box :marked %>
   </div>
