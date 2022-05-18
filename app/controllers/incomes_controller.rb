@@ -66,6 +66,10 @@ class IncomesController < ApplicationController
 
   private
 
+  def check_user_signed
+    render template: 'welcome/index' unless user_signed_in?
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_income
     @income = Income.find(params[:id])
