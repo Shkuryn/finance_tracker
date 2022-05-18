@@ -7,7 +7,6 @@ RSpec.describe ExpencesController, type: :controller do
   before do
     @user = FactoryBot.create(:user)
     @expence = FactoryBot.create(:expence, user_id: @user.id)
-
   end
   describe 'GET index' do
     it 'returns a 200' do
@@ -26,7 +25,7 @@ RSpec.describe ExpencesController, type: :controller do
     end
     it 'has a related heading when not signed in' do
       get :index
-      expect(response.body).to match /<h3> please login/im
+      expect(response.body).to match(/<h3> please login/im)
     end
 
     it 'has a related heading when  signed in' do
@@ -46,7 +45,7 @@ RSpec.describe ExpencesController, type: :controller do
       Rails.logger.debug('START!')
       Rails.logger.debug(page.inspect)
       expect(page).to have_content('New Expence')
-     end
+    end
   end
   after do
     @user.destroy

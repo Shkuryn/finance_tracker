@@ -6,7 +6,7 @@ class ExpencesController < ApplicationController
 
   # GET /expences or /expences.json
   def index
-   @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id)) unless current_user.nil?
+    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id)) unless current_user.nil?
   end
 
   # GET /expences/1 or /expences/1.json
@@ -69,6 +69,7 @@ class ExpencesController < ApplicationController
   def check_user_signed
     render template: 'welcome/index' unless user_signed_in?
   end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_expence
     @expence = Expence.find(params[:id])
