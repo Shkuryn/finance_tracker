@@ -17,8 +17,7 @@ RSpec.describe WelcomeController, type: :controller do
     end
     it 'has a related heading' do
       get :index
-      expect(response.body).to match /<h1>Welcome/im
+      expect(response.body).to match(/<h1>Welcome/im)
     end
   end
-
 end
