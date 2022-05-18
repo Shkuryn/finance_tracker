@@ -12,9 +12,15 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 
+<<<<<<< HEAD
 gem 'chartkick'
 gem 'devise'
 gem 'activeadmin'
+=======
+gem 'activeadmin'
+gem 'chartkick'
+gem 'devise'
+>>>>>>> rubocop autocorrected
 gem 'groupdate'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
