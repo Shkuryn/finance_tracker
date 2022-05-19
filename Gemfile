@@ -66,6 +66,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rubocop-rspec'
   gem 'webdrivers'
+  gem 'pry'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
