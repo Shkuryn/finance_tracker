@@ -2,7 +2,7 @@
 
 class ExpencesController < ApplicationController
   before_action :set_expence, only: %i[show edit update destroy]
-  before_action :check_user_signed, only: %i[show new edit update destroy]
+  before_action :check_user_signed, only: %i[show new edit update destroy index]
 
   # GET /expences or /expences.json
   def index

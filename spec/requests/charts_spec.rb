@@ -17,15 +17,11 @@ RSpec.describe ChartsController, type: :controller do
     end
 
     it 'has a related heading when  signed in' do
-      # visit new_user_session_path
-      # fill_in 'user_email', with: @user.email
-      # fill_in 'user_password', with: @user.password
-      # click_on 'commit'
-      # visit charts_show_path
-      # sleep(5)
-      # assert_response :success
-      # expect(page).to have_content('Expences')
-
+      user = FactoryBot.create(:user)
+      sign_in user
+      get :show
+      # expect(page).to have_content('Blabla')
+       expect(response.body).to match(/Blabla/im)
     end
   end
 

@@ -2,7 +2,7 @@
 
 class OperationsController < ApplicationController
   before_action :set_operation, only: %i[show edit update destroy]
-
+  before_action :check_user_signed, only: %i[show new edit update destroy index]
   # GET /operations or /operations.json
   def index
     @operations = Operation.all
@@ -65,6 +65,9 @@ class OperationsController < ApplicationController
   end
 
   private
+  def check_user_signed
+    render template: 'welcome/index' unless user_signed_in?
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_operation

@@ -23,7 +23,7 @@ RSpec.describe ExpencesController, type: :controller do
 
     it 'renders the index template' do
       get :index
-      expect(response).to render_template('index')
+      expect(response).to render_template('welcome/index')
     end
     it 'has a related heading when not signed in' do
       get :index
@@ -42,10 +42,12 @@ RSpec.describe ExpencesController, type: :controller do
   end
   describe 'POST expence#create' do
     it 'should create a new expence' do
+      visit new_user_session_path
+      fill_in 'user_email', with: @user.email
+      fill_in 'user_password', with: @user.password
+      click_on 'commit'
       visit new_expence_path
       sleep(5)
-      Rails.logger.debug('START!')
-      Rails.logger.debug(page.inspect)
       expect(page).to have_content('New Expence')
     end
   end
