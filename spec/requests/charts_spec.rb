@@ -5,11 +5,10 @@ require 'rails_helper'
 RSpec.describe ChartsController, type: :controller do
   render_views
   before do
-    # @user = FactoryBot.create(:user)
-    # @operaton = FactoryBot.create(:operation, user_id: @user.id)
-    # @expence = FactoryBot.create(:expence, user_id: @user.id)
-    # @operaton_detail = FactoryBot.create(:operation_detail, operation_id: @operaton.id, expence_id: @expence.id)
-    # allow(controller).to receive(:current_user).and_return(user)
+    @user = FactoryBot.create(:user)
+    @operaton = FactoryBot.create(:operation, user_id: @user.id)
+    @expence = FactoryBot.create(:expence, user_id: @user.id)
+    @operaton_detail = FactoryBot.create(:operation_detail, operation_id: @operaton.id, expence_id: @expence.id)
   end
 
   describe 'GET index' do
@@ -19,16 +18,17 @@ RSpec.describe ChartsController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'has a related heading when  signed in' do
-      user = FactoryBot.create(:user)
-      sign_in user
+    it 'has a chart when  signed in' do
+      sign_in @user
       get :show
-      expect(response.body).to match(/PieChart/im)
+      expect(response.body).to match(/Great name","99.66/im)
     end
   end
 
   after do
-    # @user.destroy
-    # @operaton.destroy
+    @user.destroy
+    @operaton.destroy
+    @expence.destroy
+    # @operaton_detail.destroy
   end
 end
