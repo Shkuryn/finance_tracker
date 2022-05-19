@@ -34,6 +34,6 @@ RSpec.describe ChartsController, type: :controller do
     @user.destroy
     @operaton.destroy
     @expence.destroy
-    # @operaton_detail.destroy
+    @operaton_detail.destroy
   end
 end
