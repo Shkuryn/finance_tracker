@@ -17,6 +17,11 @@ RSpec.describe ChartsController, type: :controller do
       get :show
       expect(response).to have_http_status(:ok)
     end
+    it 'to #show if not login' do
+      get :show
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to match(/<h3> please login/im)
+    end
 
     it 'has a chart when  signed in' do
       sign_in @user
