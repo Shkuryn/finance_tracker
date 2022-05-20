@@ -65,6 +65,7 @@ class OperationsController < ApplicationController
   end
 
   private
+
   def check_user_signed
     render template: 'welcome/index' unless user_signed_in?
   end

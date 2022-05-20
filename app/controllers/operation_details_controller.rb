@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class OperationDetailsController < ApplicationController
+  respond_to :html, :xml, :json
   before_action :set_operation_detail, only: %i[show edit update destroy]
 
   # GET /operation_details or /operation_details.json
@@ -23,13 +24,10 @@ class OperationDetailsController < ApplicationController
   def create
     @operation_detail = OperationDetail.new(operation_detail_params)
 
-    respond_to do |format|
+    @operation = Operation.find(@operation_detail.operation_id)
+    respond_with @operation do |format|
       if @operation_detail.save
-        format.html { redirect_to operation_operation_details_path(@operation_detail), notice: 'Operation detail was successfully created.' }
-        format.json { render :show, status: :created, location: @operation_detail }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @operation_detail.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_operation_url(@operation), notice: 'Operation was successfully updated.' }
       end
     end
   end

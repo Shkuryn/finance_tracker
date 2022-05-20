@@ -12,7 +12,6 @@ RSpec.describe ChartsController, type: :controller do
   end
 
   describe 'GET index' do
-
     it 'returns a 200' do
       get :show
       expect(response).to have_http_status(:ok)
