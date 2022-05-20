@@ -20,7 +20,9 @@
     </div>
     <div class="Action">
       <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) != "new" %>
-        <%= form.button "Update ", type: "submit", :class => "btn btn-primary" %>
+        <% if @expence.predefined == false %>
+          <%= form.button "Update ", type: "submit", :class => "btn btn-primary" %>
+        <% end %>
       <% else %>
         <%= form.button "Create ", type: "submit", :class => "btn btn-primary" %>
       <% end %>
