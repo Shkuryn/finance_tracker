@@ -5,7 +5,7 @@ class OperationsController < ApplicationController
   before_action :check_user_signed, only: %i[show new edit update destroy index]
   # GET /operations or /operations.json
   def index
-    @operations = Operation.all
+    @operations = Operation.with_user(current_user.id) unless current_user.nil?
   end
 
   # GET /operations/1 or /operations/1.json
