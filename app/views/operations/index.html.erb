@@ -24,7 +24,7 @@
         <td><%= operation.user_id %></td>
         <td><%= link_to 'Show', operation %></td>
         <td><%= link_to 'Edit', edit_operation_path(operation) %></td>
-        <td><%= link_to 'Destroy', operation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', operation, method: :delete, data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%></td>
       </tr>
     <% end %>
   </tbody>

@@ -15,8 +15,7 @@
         <td><%= expence.name %></td>
         <td><%= link_to 'Show', expence %></td>
         <td><%= link_to 'Edit', edit_expence_path(expence) %></td>
-        <td><%= button_to 'Destroy', expence, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+        <td> <%= link_to 'Destroy', expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-decoration-none" %></td>
       </tr>
     <% end %>
   </tbody>
