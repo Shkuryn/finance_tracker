@@ -80,6 +80,6 @@ class ExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @expence.id != current_user.id && not(@expence.predefined)
+    render template: 'welcome/index' if @expence.user_id != current_user.id && not(@expence.predefined)
   end
 end
