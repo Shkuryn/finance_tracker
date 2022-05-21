@@ -31,10 +31,7 @@ RSpec.describe ExpencesController, type: :controller do
     end
 
     it 'has a related heading when  signed in' do
-      visit new_user_session_path
-      fill_in 'user_email', with: @user.email
-      fill_in 'user_password', with: @user.password
-      click_on 'commit'
+      login_user
       visit expences_path
       expect(page).to have_content('Expences')
       expect(page).to have_content('Great name')
@@ -42,10 +39,7 @@ RSpec.describe ExpencesController, type: :controller do
   end
   describe 'POST expence#create' do
     it 'should create a new expence' do
-      visit new_user_session_path
-      fill_in 'user_email', with: @user.email
-      fill_in 'user_password', with: @user.password
-      click_on 'commit'
+      login_user
       visit new_expence_path
       expect(page).to have_content('New Expence')
     end
