@@ -42,6 +42,15 @@ RSpec.describe OperationsController, type: :controller do
       fill_in 'amount', with: 5.0
       click_on 'commit'
       expect(page).to have_content('Editing Operation')
+      expect(page).to have_content('Operation was successfully updated')
+    end
+    it 'stay the same page after adding row without amount' do
+      login_user
+      visit "/operations/#{@operaton.id}/edit"
+      click_on 'save'
+      click_on 'commit'
+      expect(page).to have_content('Editing Operation')
+      expect(page).to have_content('Amount must be filled!')
     end
   end
   after do

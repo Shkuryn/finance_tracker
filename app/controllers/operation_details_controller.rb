@@ -3,7 +3,7 @@
 class OperationDetailsController < ApplicationController
   respond_to :html, :xml, :json
   before_action :set_operation_detail, only: %i[show edit update destroy]
-
+  before_action :check_params, only: %i[create]
   # GET /operation_details or /operation_details.json
   def index
     @operation_details = OperationDetail.all
@@ -23,7 +23,6 @@ class OperationDetailsController < ApplicationController
   # POST /operation_details or /operation_details.json
   def create
     @operation_detail = OperationDetail.new(operation_detail_params)
-
     @operation = Operation.find(@operation_detail.operation_id)
     respond_with @operation do |format|
       if @operation_detail.save
@@ -66,4 +65,12 @@ class OperationDetailsController < ApplicationController
   def operation_detail_params
     params.permit(:comment, :amount, :operation_id, :id, :expence_id)
   end
-end
+
+  def check_params
+
+    if @operation_detail.nil? && params[:amount].blank?
+      redirect_to edit_operation_path(params[:operation_id]),
+                  notice: 'Amount must be filled!'
+    end
+    end
+  end
