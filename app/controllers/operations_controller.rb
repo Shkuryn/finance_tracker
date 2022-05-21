@@ -3,6 +3,7 @@
 class OperationsController < ApplicationController
   before_action :set_operation, only: %i[show edit update destroy]
   before_action :check_user_signed, only: %i[show new edit update destroy index]
+  before_action :check_user_owner, only: %i[show edit]
   # GET /operations or /operations.json
   def index
     @operations = Operation.with_user(current_user.id) unless current_user.nil?
@@ -78,5 +79,8 @@ class OperationsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def operation_params
     params.require(:operation).permit(:comment, :marked, :date, :id, :user_id)
+  end
+  def check_user_owner
+    render template: 'welcome/index' if @operation.user_id != current_user.id
   end
 end
