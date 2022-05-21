@@ -13,6 +13,17 @@ RSpec.describe ExpencesController, type: :controller do
       get :index
       expect(response).to have_http_status(:ok)
     end
+    it 'return correct operation count' do
+      user2 = FactoryBot.create(:user, id: 2, name: "Petr", surname: "Petrov", email: "aaa@aaddd.com")
+      expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
+      expence_predefined = FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true)
+      expences_count = Expence.count
+      expences_count_user1 = Expence.where(predefined: true).or(Expence.with_user(@user.id)).count
+      expences_count_user2 = Expence.where(predefined: true).or(Expence.with_user(user2.id)).count
+      expect(expences_count).to eq(3)
+      expect(expences_count_user1).to eq(2)
+      expect(expences_count_user2).to eq(2)
+    end
     describe 'GET show' do
       it 'to #show if not login' do
         get :show, params: { id: @expence }
