@@ -44,6 +44,19 @@ RSpec.describe ExpencesController, type: :controller do
       expect(page).to have_content('New Expence')
     end
   end
+  describe '#update' do
+    it 'there is no edit button for predefined expence' do
+      expence = FactoryBot.create(:expence, user_id: @user.id, predefined: true, id: 22)
+      login_user
+      visit "/expences/#{expence.id}/edit"
+      expect(have_no_button 'Update')
+    end
+    it 'there is edit button for non predefined expence' do
+      login_user
+      visit "/expences/#{@expence.id}/edit"
+      expect(have_button 'Update')
+    end
+  end
   after do
     @user.destroy
     @expence.destroy

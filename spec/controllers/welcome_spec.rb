@@ -18,7 +18,7 @@ RSpec.describe 'Welcome page', type: :system do
       expect(page).to have_content('Welcome John!')
     end
   end
-  describe 'visibiity login/exit button' do
+  describe 'visibility login/exit button' do
     it 'shows login button when guest' do
       visit root_path
       expect(have_link 'Login', href: new_user_session_path)
