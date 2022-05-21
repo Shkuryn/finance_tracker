@@ -35,7 +35,7 @@
     <%= form.number_field :user_id, :value => current_user.id %>
   </div>
 
-  <button class="btn btn-primary" type="submit">Save</button>
+  <button class="btn btn-primary" id ='save' name ='save' type="submit">Save</button>
 <% end %>
 
 <%= form_tag("/operations/#{@operation.id}/operation_details", action: "create", method: "post") do %>

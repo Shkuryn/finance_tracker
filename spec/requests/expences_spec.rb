@@ -47,7 +47,6 @@ RSpec.describe ExpencesController, type: :controller do
       fill_in 'user_password', with: @user.password
       click_on 'commit'
       visit new_expence_path
-      sleep(5)
       expect(page).to have_content('New Expence')
     end
   end

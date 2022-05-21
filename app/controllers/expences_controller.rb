@@ -43,19 +43,20 @@ class ExpencesController < ApplicationController
   # PATCH/PUT /expences/1 or /expences/1.json
   def update
     respond_to do |format|
-     if @expence.update(expence_params)
-       format.html { redirect_to expence_url(@expence), notice: 'Expence was successfully updated.' }
-       format.json { render :show, status: :ok, location: @expence }
-     else
-       format.html { render :edit, status: :unprocessable_entity }
-       format.json { render json: @expence.errors, status: :unprocessable_entity }
-     end
-   end
+      if @expence.update(expence_params)
+        format.html { redirect_to expence_url(@expence), notice: 'Expence was successfully updated.' }
+        format.json { render :show, status: :ok, location: @expence }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @expence.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /expences/1 or /expences/1.json
   def destroy
     return if @expence.predefined == true
+
     @expence.destroy
     respond_to do |format|
       format.html { redirect_to expences_url, notice: 'Expence was successfully destroyed.' }
@@ -80,6 +81,6 @@ class ExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @expence.user_id != current_user.id && not(@expence.predefined)
+    render template: 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
   end
 end
