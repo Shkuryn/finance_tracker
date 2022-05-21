@@ -14,7 +14,7 @@ RSpec.describe ExpencesController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
     it 'return correct expences count' do
-      user2 = FactoryBot.create(:user, id: 2, name: "Petr", surname: "Petrov", email: "aaa@aaddd.com")
+      user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
       expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
       expence_predefined = FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true)
       expences_count = Expence.count
@@ -60,12 +60,12 @@ RSpec.describe ExpencesController, type: :controller do
       expence = FactoryBot.create(:expence, user_id: @user.id, predefined: true, id: 22)
       login_user
       visit "/expences/#{expence.id}/edit"
-      expect(have_no_button 'Update')
+      expect(have_no_button('Update'))
     end
     it 'there is edit button for non predefined expence' do
       login_user
       visit "/expences/#{@expence.id}/edit"
-      expect(have_button 'Update')
+      expect(have_button('Update'))
     end
   end
   after do

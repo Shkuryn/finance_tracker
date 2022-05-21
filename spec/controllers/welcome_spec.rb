@@ -21,18 +21,17 @@ RSpec.describe 'Welcome page', type: :system do
   describe 'visibility login/exit button' do
     it 'shows login button when guest' do
       visit root_path
-      expect(have_link 'Login', href: new_user_session_path)
-      expect(have_no_link 'exit', href: destroy_user_session_path)
+      expect(have_link('Login', href: new_user_session_path))
+      expect(have_no_link('exit', href: destroy_user_session_path))
     end
     it 'shows exit button when user singed_in' do
       visit root_path
       login_user
-      expect(have_no_link 'Login', href: new_user_session_path)
-      expect(have_link 'exit', href: destroy_user_session_path)
+      expect(have_no_link('Login', href: new_user_session_path))
+      expect(have_link('exit', href: destroy_user_session_path))
     end
   end
   after do
     @user.destroy
   end
-
 end

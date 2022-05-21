@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 def login_user
   visit new_user_session_path
   fill_in 'user_email', with: @user.email
