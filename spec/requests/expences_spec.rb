@@ -13,7 +13,7 @@ RSpec.describe ExpencesController, type: :controller do
       get :index
       expect(response).to have_http_status(:ok)
     end
-    it 'return correct operation count' do
+    it 'return correct expences count' do
       user2 = FactoryBot.create(:user, id: 2, name: "Petr", surname: "Petrov", email: "aaa@aaddd.com")
       expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
       expence_predefined = FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true)
