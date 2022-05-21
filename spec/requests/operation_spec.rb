@@ -29,10 +29,18 @@ RSpec.describe OperationsController, type: :controller do
       expect(response.body).to match(/<h1>Editing Operation/)
     end
 
-    it 'get stay the same page capybara' do
+    it 'stay the same page' do
       login_user
       visit "/operations/#{@operaton.id}/edit"
       click_on 'save'
+      expect(page).to have_content('Editing Operation')
+    end
+    it 'stay the same page after adding row with amount' do
+      login_user
+      visit "/operations/#{@operaton.id}/edit"
+      click_on 'save'
+      fill_in 'amount', with: 5.0
+      click_on 'commit'
       expect(page).to have_content('Editing Operation')
     end
   end
