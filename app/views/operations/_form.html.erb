@@ -48,7 +48,12 @@
 
   <%= label_tag(:amount, "Comment:") %>
   <%= text_field_tag(:comment) %>
-  <%= submit_tag("Add") %>
+
+  <% if not @operation.id.nil? %>
+    <%= submit_tag("Add") %>
+  <% else %>
+    <%= button_to 'Add', {}, disabled: @operation.id.nil? %>
+  <% end %>
 
   <table class="table table-sm">
     <thead>
