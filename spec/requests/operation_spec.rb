@@ -29,32 +29,31 @@ RSpec.describe OperationsController, type: :controller do
     end
   end
   describe 'GET show' do
+
     it 'to #show' do
       get :show, params: { id: @operaton }
     end
   end
   describe '#create' do
+    subject(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
+    subject(:operation2) { FactoryBot.create(:operation, user_id: user2.id, id: 22) }
     it 'get correct heading' do
       sign_in @user
       get :edit, params: { id: @operaton }
       expect(response.body).to match(/<h1>Editing Operation/)
     end
     it 'redirect to welcome page if try edit alien page' do
-      user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
-      operation2 = FactoryBot.create(:operation, user_id: user2.id, id: 22)
       sign_in @user
       get :edit, params: { id: operation2 }
       expect(response.body).to match(/<h1>Welcome/)
       expect(response).to render_template('welcome/index')
     end
     it 'redirect to welcome page if try to show alien page' do
-      user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
-      operation2 = FactoryBot.create(:operation, user_id: user2.id, id: 22)
       sign_in @user
       get :show, params: { id: operation2 }
       expect(response.body).to match(/<h1>Welcome/)
       expect(response).to render_template('welcome/index')
-    end
+     end
 
     it 'stay the same page' do
       login_user
