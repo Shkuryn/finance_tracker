@@ -73,6 +73,10 @@
         <td><%= Expence.find(operation_detail.expence_id).name  %></td>
         <td><%=operation_detail.amount  %></td>
         <td><%=operation_detail.comment  %></td>
+        <td><%=operation_detail.comment  %></td>
+        <td><%= link_to 'Edit', edit_operation_operation_detail_path(operation_detail) %></td>
+        <td><%= link_to 'Delete', edit_operation_operation_detail_path(operation_detail), method: :delete,
+                        data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%></td>
         <% idx += 1 %>
 
       </tr>

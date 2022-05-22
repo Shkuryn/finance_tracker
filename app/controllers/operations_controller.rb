@@ -29,7 +29,6 @@ class OperationsController < ApplicationController
 
   # POST /operations or /operations.json
   def create
-    binding.pry
     @operation = Operation.new(operation_params)
     respond_to do |format|
       if @operation.save
