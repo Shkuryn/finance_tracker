@@ -29,9 +29,29 @@ RSpec.describe OperationsController, type: :controller do
     end
   end
   describe 'GET show' do
-
+    subject(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
+    subject(:operation2) { FactoryBot.create(:operation, user_id: user2.id, id: 22) }
     it 'to #show' do
       get :show, params: { id: @operaton }
+    end
+    it 'redirect to welcome page if try to show alien page' do
+      sign_in @user
+      get :show, params: { id: operation2 }
+      expect(response.body).to match(/<h1>Welcome/)
+      expect(response).to render_template('welcome/index')
+    end
+    it 'stay the same page' do
+      login_user
+      visit "/operations/#{@operaton.id}/edit"
+      click_on 'save'
+      expect(page).to have_content('Editing Operation')
+      expect(response).to render_template('operations/edit')
+    end
+    it 'redirect to welcome page if try edit alien page' do
+      sign_in @user
+      get :edit, params: { id: operation2 }
+      expect(response.body).to match(/<h1>Welcome/)
+      expect(response).to render_template('welcome/index')
     end
   end
   describe '#create' do
@@ -42,35 +62,15 @@ RSpec.describe OperationsController, type: :controller do
       get :edit, params: { id: @operaton }
       expect(response.body).to match(/<h1>Editing Operation/)
     end
-    it 'redirect to welcome page if try edit alien page' do
-      sign_in @user
-      get :edit, params: { id: operation2 }
-      expect(response.body).to match(/<h1>Welcome/)
-      expect(response).to render_template('welcome/index')
-    end
-    it 'redirect to welcome page if try to show alien page' do
-      sign_in @user
-      get :show, params: { id: operation2 }
-      expect(response.body).to match(/<h1>Welcome/)
-      expect(response).to render_template('welcome/index')
-     end
-
-    it 'stay the same page' do
-      login_user
-      visit "/operations/#{@operaton.id}/edit"
-      click_on 'save'
-      expect(page).to have_content('Editing Operation')
-      expect(response).to render_template('operations/edit')
-    end
     it 'stay the same page after adding row with amount' do
-      login_user
-      visit "/operations/#{@operaton.id}/edit"
-      click_on 'save'
-      fill_in 'amount', with: 5.0
-      click_on 'commit'
-      expect(response).to render_template('operations/edit')
-      expect(page).to have_content('Operation was successfully updated')
-    end
+       login_user
+       visit "/operations/#{@operaton.id}/edit"
+       click_on 'save'
+       fill_in 'amount', with: 5.0
+       click_on 'commit'
+       expect(response).to render_template('operations/edit')
+       expect(page).to have_content('Operation was successfully updated')
+     end
     it 'stay the same page after adding row without amount' do
       login_user
       visit "/operations/#{@operaton.id}/edit"
