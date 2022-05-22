@@ -45,6 +45,7 @@ RSpec.describe OperationsController, type: :controller do
       sign_in @user
       get :edit, params: { id: operation2 }
       expect(response.body).to match(/<h1>Welcome/)
+      expect(response).to render_template('welcome/index')
     end
     it 'redirect to welcome page if try to show alien page' do
       user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
@@ -52,6 +53,7 @@ RSpec.describe OperationsController, type: :controller do
       sign_in @user
       get :show, params: { id: operation2 }
       expect(response.body).to match(/<h1>Welcome/)
+      expect(response).to render_template('welcome/index')
     end
 
     it 'stay the same page' do
@@ -59,6 +61,7 @@ RSpec.describe OperationsController, type: :controller do
       visit "/operations/#{@operaton.id}/edit"
       click_on 'save'
       expect(page).to have_content('Editing Operation')
+      expect(response).to render_template('operations/edit')
     end
     it 'stay the same page after adding row with amount' do
       login_user
@@ -66,7 +69,7 @@ RSpec.describe OperationsController, type: :controller do
       click_on 'save'
       fill_in 'amount', with: 5.0
       click_on 'commit'
-      expect(page).to have_content('Editing Operation')
+      expect(response).to render_template('operations/edit')
       expect(page).to have_content('Operation was successfully updated')
     end
     it 'stay the same page after adding row without amount' do
@@ -74,7 +77,7 @@ RSpec.describe OperationsController, type: :controller do
       visit "/operations/#{@operaton.id}/edit"
       click_on 'save'
       click_on 'commit'
-      expect(page).to have_content('Editing Operation')
+      expect(response).to render_template('operations/edit')
       expect(page).to have_content('Amount must be filled!')
     end
   end
