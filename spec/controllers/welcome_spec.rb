@@ -4,9 +4,7 @@ require 'rails_helper'
 require 'requests_helper'
 
 RSpec.describe 'Welcome page', type: :system do
-  before do
-    @user = FactoryBot.create(:user)
-  end
+  let(:user) { FactoryBot.create :user }
   describe 'index page' do
     it 'shows the right content when guest visit' do
       visit root_path
@@ -14,7 +12,7 @@ RSpec.describe 'Welcome page', type: :system do
     end
     it 'shows the right content when user visit' do
       visit root_path
-      login_user
+      login_user user
       expect(page).to have_content('Welcome John!')
     end
   end
@@ -26,12 +24,9 @@ RSpec.describe 'Welcome page', type: :system do
     end
     it 'shows exit button when user singed_in' do
       visit root_path
-      login_user
+      login_user user
       expect(have_no_link('Login', href: new_user_session_path))
       expect(have_link('exit', href: destroy_user_session_path))
     end
-  end
-  after do
-    @user.destroy
   end
 end
