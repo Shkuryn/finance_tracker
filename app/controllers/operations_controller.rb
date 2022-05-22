@@ -81,8 +81,8 @@ class OperationsController < ApplicationController
   def operation_params
     params.require(:operation).permit(:comment, :marked, :date, :id, :user_id)
   end
+
   def check_user_owner
     render template: 'welcome/index' if @operation.user_id != current_user.id
   end
-
 end
