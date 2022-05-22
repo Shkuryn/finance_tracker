@@ -31,8 +31,8 @@
           <td>
         <% end %>
         <td><%= operation.comment %></td>
-        <td><%=  operation.user_presentation %></td>
-        <td><%= 'amount' %></td>
+        <td><%= author(operation.user_id) %></td>
+        <td><%= operation_sum(operation.id) %></td>
         <td><%= link_to 'Show', operation %></td>
         <td><%= link_to 'Edit', edit_operation_path(operation) %></td>
         <td><%= link_to 'Destroy', operation, method: :delete, data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%></td>

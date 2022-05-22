@@ -7,7 +7,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :incomes, dependent: :destroy
   has_many :expences, dependent: :destroy
-  def presentation
-    "#{name} #{surname}"
-  end
 end

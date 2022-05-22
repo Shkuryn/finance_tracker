@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class OperationsController < ApplicationController
+  helper OperationsHelper
   before_action :set_operation, only: %i[show edit update destroy]
   before_action :check_user_signed, only: %i[show new edit update destroy index]
   before_action :check_user_owner, only: %i[show edit]
+
   # GET /operations or /operations.json
   def index
     @operations = Operation.with_user(current_user.id) unless current_user.nil?
@@ -82,4 +84,5 @@ class OperationsController < ApplicationController
   def check_user_owner
     render template: 'welcome/index' if @operation.user_id != current_user.id
   end
+
 end
