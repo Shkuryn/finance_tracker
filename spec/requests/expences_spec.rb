@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ExpencesController, type: :controller do
   render_views
-  let (:user) { FactoryBot.create :user }
+  let(:user) { FactoryBot.create :user }
   let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
   let(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
   let(:expence2) { FactoryBot.create(:expence, user_id: user2.id, id: 22) }
@@ -18,16 +18,16 @@ RSpec.describe ExpencesController, type: :controller do
       get :index
       expect(response).to render_template('welcome/index')
     end
-    it 'return correct expences count' do 
+    it 'return correct expences count' do
       # TODO: rid it off
       user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
-      expence=  FactoryBot.create(:expence, user_id: user.id)
+      expence = FactoryBot.create(:expence, user_id: user.id)
       expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
       expence_predefined = FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true)
       expences_count = Expence.count
       expences_count_user1 = Expence.where(predefined: true).or(Expence.with_user(user.id)).count
       expences_count_user2 = Expence.where(predefined: true).or(Expence.with_user(user2.id)).count
-       expect(expences_count).to eq(3)
+      expect(expences_count).to eq(3)
       expect(expences_count_user1).to eq(2)
       expect(expences_count_user2).to eq(2)
     end
