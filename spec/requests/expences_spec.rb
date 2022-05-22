@@ -13,6 +13,10 @@ RSpec.describe ExpencesController, type: :controller do
       get :index
       expect(response).to have_http_status(:ok)
     end
+    it 'renders the index template' do
+      get :index
+      expect(response).to render_template('welcome/index')
+    end
     it 'return correct expences count' do
       user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
       expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
@@ -24,18 +28,13 @@ RSpec.describe ExpencesController, type: :controller do
       expect(expences_count_user1).to eq(2)
       expect(expences_count_user2).to eq(2)
     end
-    describe 'GET show' do
+    describe '#show' do
       it 'to #show if not login' do
         get :show, params: { id: @expence }
         expect(response).to have_http_status(:ok)
         expect(response.body).to match(/<h3> please login/im)
         assert_template('welcome/index')
       end
-    end
-
-    it 'renders the index template' do
-      get :index
-      expect(response).to render_template('welcome/index')
     end
     it 'has a related heading when not signed in' do
       get :index
@@ -50,7 +49,7 @@ RSpec.describe ExpencesController, type: :controller do
       expect(page).to have_content('Great name')
     end
   end
-  describe 'POST expence#create' do
+  describe '#create' do
     it 'should create a new expence' do
       login_user
       visit new_expence_path
