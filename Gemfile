@@ -12,6 +12,7 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 
+gem 'activeadmin'
 gem 'chartkick'
 gem 'devise'
 gem 'groupdate'
@@ -63,9 +64,10 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'pry'
+  gem 'rails-controller-testing'
   gem 'rubocop-rspec'
   gem 'webdrivers'
-  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

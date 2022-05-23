@@ -2,7 +2,8 @@
 
 class ExpencesController < ApplicationController
   before_action :set_expence, only: %i[show edit update destroy]
-  before_action :check_user_signed, only: %i[show new edit update destroy]
+  before_action :check_user_signed, only: %i[show new edit update destroy index]
+  before_action :check_user_owner, only: %i[show edit]
 
   # GET /expences or /expences.json
   def index
@@ -57,7 +58,6 @@ class ExpencesController < ApplicationController
     return if @expence.predefined == true
 
     @expence.destroy
-
     respond_to do |format|
       format.html { redirect_to expences_url, notice: 'Expence was successfully destroyed.' }
       format.json { head :no_content }
@@ -78,5 +78,9 @@ class ExpencesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def expence_params
     params.require(:expence).permit(:name, :description, :id, :user_id)
+  end
+
+  def check_user_owner
+    render template: 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
   end
 end

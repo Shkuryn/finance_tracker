@@ -67,13 +67,19 @@
       <!-- Left links -->
 
       <div class="d-flex align-items-center">
-        <button type="button" class="btn btn-link px-3 me-2">
-          <%= link_to 'Login', new_user_session_path %>
-        </button>
         <button type="button" class="btn btn-primary me-3">
           <%= link_to 'Sign up for free', new_user_registration_path,  style: 'color:#FFFFFF;', class: 'text-white bg-blue' %>
         </button>
-        <%= button_to 'Exit', destroy_user_session_path, method: :delete %>
+        <% if user_signed_in? %>
+        <button type="button" class="btn btn-secondary me-3" >
+        <%= link_to 'Exit', destroy_user_session_path,  style: 'color:#FFFFFF;',method: :delete,
+                    data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%>
+        </button>
+        <% else %>
+        <button type="button" class="btn btn-link px-3 me-2">
+          <%= link_to 'Login', new_user_session_path %>
+        </button>
+        <% end %>
       </div>
     </div>
     <!-- Collapsible wrapper -->

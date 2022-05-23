@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  helper :all # include all helpers, all the time
   before_action :update_allowed_parameters, if: :devise_controller?
 
   protected

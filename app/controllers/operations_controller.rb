@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class OperationsController < ApplicationController
+  helper OperationsHelper
   before_action :set_operation, only: %i[show edit update destroy]
+  before_action :check_user_signed, only: %i[show new edit update destroy index]
+  before_action :check_user_owner, only: %i[show edit]
 
   # GET /operations or /operations.json
   def index
-    @operations = Operation.all
+    @operations = Operation.with_user(current_user.id) unless current_user.nil?
   end
 
   # GET /operations/1 or /operations/1.json
@@ -29,10 +32,9 @@ class OperationsController < ApplicationController
   # POST /operations or /operations.json
   def create
     @operation = Operation.new(operation_params)
-
     respond_to do |format|
       if @operation.save
-        format.html { redirect_to operation_url(@operation), notice: 'Operation was successfully created.' }
+        format.html { redirect_to edit_operation_url(@operation), notice: 'Operation was successfully created.' }
         format.json { render :show, status: :created, location: @operation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +47,7 @@ class OperationsController < ApplicationController
   def update
     respond_to do |format|
       if @operation.update(operation_params)
-        format.html { redirect_to operation_url(@operation), notice: 'Operation was successfully updated.' }
+        format.html { redirect_to edit_operation_url(@operation), notice: 'Operation was successfully updated.' }
         format.json { render :show, status: :ok, location: @operation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,6 +68,10 @@ class OperationsController < ApplicationController
 
   private
 
+  def check_user_signed
+    render template: 'welcome/index' unless user_signed_in?
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_operation
     @operation = Operation.find(params[:id])
@@ -74,5 +80,9 @@ class OperationsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def operation_params
     params.require(:operation).permit(:comment, :marked, :date, :id, :user_id)
+  end
+
+  def check_user_owner
+    render template: 'welcome/index' if @operation.user_id != current_user.id
   end
 end
