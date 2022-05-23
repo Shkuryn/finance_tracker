@@ -10,7 +10,11 @@ class OperationDetailsController < ApplicationController
   end
 
   # GET /operation_details/1 or /operation_details/1.json
-  def show; end
+  def show
+    @operation_detail = OperationDetail.new(operation_detail_params)
+    # @operation = Operation.find(@operation_detail.operation_id)
+  end
+
 
   # GET /operation_details/new
   def new
@@ -18,7 +22,10 @@ class OperationDetailsController < ApplicationController
   end
 
   # GET /operation_details/1/edit
-  def edit; end
+  def edit
+    @expences = Expence.all
+    @expence = Expence.find(@operation_detail.expence_id)
+  end
 
   # POST /operation_details or /operation_details.json
   def create
@@ -46,10 +53,10 @@ class OperationDetailsController < ApplicationController
 
   # DELETE /operation_details/1 or /operation_details/1.json
   def destroy
+    @operation = Operation.find(@operation_detail.operation_id)
     @operation_detail.destroy
-
     respond_to do |format|
-      format.html { redirect_to operation_details_url, notice: 'Operation detail was successfully destroyed.' }
+      format.html { redirect_to edit_operation_path(@operation), notice: 'Operation detail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

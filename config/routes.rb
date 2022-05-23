@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'welcome#index'
   resources :operations do
-    resources :operation_details
+    resources :operation_details, shallow: true
   end
   resources :incomes
   resources :expences
