@@ -13,7 +13,11 @@
 
   <div class="field">
     <%= form.label :date %>
+    <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) == "new" %>
+    <%= form.datetime_field :date, :value => Time.now.strftime('%Y-%m-%dT%H:%M:%S') %>
+    <% else %>
     <%= form.datetime_field :date %>
+    <% end %>
     <%= form.label :ignore %>
     <%= form.check_box :marked %>
   </div>
@@ -27,11 +31,11 @@
   <div class="d-none d-print-block">
     <%= form.label :id %>
     <%= form.text_field :id %>
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.label :user_id%>
+    <%= form.number_field :user_id, :value => current_user.id %>
   </div>
 
-  <button class="btn btn-primary" type="submit">Save</button>
+  <button class="btn btn-primary" id ='save' name ='save' type="submit">Save</button>
 <% end %>
 
 <%= form_tag("/operations/#{@operation.id}/operation_details", action: "create", method: "post") do %>
@@ -44,7 +48,12 @@
 
   <%= label_tag(:amount, "Comment:") %>
   <%= text_field_tag(:comment) %>
-  <%= submit_tag("Add") %>
+
+  <% if not @operation.id.nil? %>
+    <%= submit_tag("Add") %>
+  <% else %>
+    <%= button_to 'Add', {}, disabled: @operation.id.nil? %>
+  <% end %>
 
   <table class="table table-sm">
     <thead>
@@ -64,6 +73,10 @@
         <td><%= Expence.find(operation_detail.expence_id).name  %></td>
         <td><%=operation_detail.amount  %></td>
         <td><%=operation_detail.comment  %></td>
+        <td><%=operation_detail.comment  %></td>
+        <td><%= link_to 'Edit', edit_operation_operation_detail_path(operation_detail) %></td>
+        <td><%= link_to 'Delete', edit_operation_operation_detail_path(operation_detail), method: :delete,
+                        data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%></td>
         <% idx += 1 %>
 
       </tr>

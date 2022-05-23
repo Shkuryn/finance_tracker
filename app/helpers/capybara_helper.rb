@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CapybaraHelper
   def capybara_can_find_by(id)
     "id='#{id}'".html_safe if Rails.env.test?

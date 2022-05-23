@@ -2,11 +2,12 @@
 
 class ExpencesController < ApplicationController
   before_action :set_expence, only: %i[show edit update destroy]
-  before_action :check_user_signed, only: %i[show new edit update destroy]
+  before_action :check_user_signed, only: %i[show new edit update destroy index]
+  before_action :check_user_owner, only: %i[show edit]
 
   # GET /expences or /expences.json
   def index
-   @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id)) unless current_user.nil?
+    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id)) unless current_user.nil?
   end
 
   # GET /expences/1 or /expences/1.json
@@ -57,7 +58,6 @@ class ExpencesController < ApplicationController
     return if @expence.predefined == true
 
     @expence.destroy
-
     respond_to do |format|
       format.html { redirect_to expences_url, notice: 'Expence was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +69,7 @@ class ExpencesController < ApplicationController
   def check_user_signed
     render template: 'welcome/index' unless user_signed_in?
   end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_expence
     @expence = Expence.find(params[:id])
@@ -77,5 +78,9 @@ class ExpencesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def expence_params
     params.require(:expence).permit(:name, :description, :id, :user_id)
+  end
+
+  def check_user_owner
+    render template: 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
   end
 end

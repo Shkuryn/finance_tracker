@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class OperationDetailsController < ApplicationController
+  respond_to :html, :xml, :json
   before_action :set_operation_detail, only: %i[show edit update destroy]
-
+  before_action :check_params, only: %i[create]
   # GET /operation_details or /operation_details.json
   def index
     @operation_details = OperationDetail.all
@@ -22,14 +23,10 @@ class OperationDetailsController < ApplicationController
   # POST /operation_details or /operation_details.json
   def create
     @operation_detail = OperationDetail.new(operation_detail_params)
-
-    respond_to do |format|
+    @operation = Operation.find(@operation_detail.operation_id)
+    respond_with @operation do |format|
       if @operation_detail.save
-        format.html { redirect_to operation_operation_details_path(@operation_detail), notice: 'Operation detail was successfully created.' }
-        format.json { render :show, status: :created, location: @operation_detail }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @operation_detail.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_operation_url(@operation), notice: 'Operation was successfully updated.' }
       end
     end
   end
@@ -67,5 +64,12 @@ class OperationDetailsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def operation_detail_params
     params.permit(:comment, :amount, :operation_id, :id, :expence_id)
+  end
+
+  def check_params
+    if @operation_detail.nil? && params[:amount].blank?
+      redirect_to edit_operation_path(params[:operation_id]),
+                  notice: 'Amount must be filled!'
+    end
   end
 end
