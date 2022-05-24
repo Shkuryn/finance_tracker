@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :operations do
     resources :operation_details
   end
+  resources :incomes
   resources :expences
   devise_for :users
   get 'charts/show'

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-class IncomeController < ApplicationController
+class IncomesController < ApplicationController
   before_action :set_income, only: %i[show edit update destroy]
+  before_action :check_user_signed, only: %i[show new edit update destroy]
 
   # GET /incomes
   def index
-    @incomes = Income.where(predefined: true).or(Income.with_user(current_user.id))
+    @incomes = Income.where(predefined: true).or(Income.with_user(current_user.id)) unless current_user.nil?
   end
 
   # GET /incomes/1
@@ -29,7 +30,7 @@ class IncomeController < ApplicationController
 
     respond_to do |format|
       if @income.save
-        format.html { redirect_to expence_url(@income), notice: 'Income was successfully created.' }
+        format.html { redirect_to income_url(@income), notice: 'Income was successfully created.' }
         format.json { render :show, status: :created, location: @income }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +43,7 @@ class IncomeController < ApplicationController
   def update
     respond_to do |format|
       if @income.update(income_params)
-        format.html { redirect_to expence_url(@income), notice: 'Income was successfully updated.' }
+        format.html { redirect_to income_url(@income), notice: 'Income was successfully updated.' }
         format.json { render :show, status: :ok, location: @income }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,6 +65,10 @@ class IncomeController < ApplicationController
   end
 
   private
+
+  def check_user_signed
+    render template: 'welcome/index' unless user_signed_in?
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_income
