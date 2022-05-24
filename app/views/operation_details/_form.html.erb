@@ -1,11 +1,16 @@
 <%= simple_form_for @operation_detail do |f| %>
-  <div class="container .text-primary">
-    <h1 class="text-primary">Operation details</h1>
-  </div>
-  <div class="container">
+  <div class="col-md-4 mb-3">
+  <%=f.label :category %>
   <%= f.select :expence_id, options_for_select(@expences.map{ |c| [c.name, c.id]}, @expence.id) %>
-  <%= f.input :comment%>
-  <%= f.input :amount %>
-  <%= f.button :submit %>
+  </div>
+  <div class="mb-3">
+  <%= f.input :comment,  :input_html => {:style => 'width: 500px'} %>
+  </div>
+  <div class="mb-3">
+  <%= f.input :amount, as: :numeric, :input_html => {:style => 'width: 125px'} %>
+  </div>
+ <div class="mb-3">
+  <%= f.button :submit, "Update", class: "btn btn-primary" %>
+ </div>
 <% end %>
-</div>
+
