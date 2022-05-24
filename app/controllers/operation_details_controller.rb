@@ -40,9 +40,10 @@ class OperationDetailsController < ApplicationController
 
   # PATCH/PUT /operation_details/1 or /operation_details/1.json
   def update
+    @operation = Operation.find(@operation_detail.operation_id)
     respond_to do |format|
-      if @operation_detail.update(operation_detail_params)
-        format.html { redirect_to operation_detail_url(@operation_detail), notice: 'Operation detail was successfully updated.' }
+      if @operation_detail.update(operation_detail_params[:operation_detail])
+        format.html { redirect_to edit_operation_url(@operation), notice: 'Operation detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @operation_detail }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -70,7 +71,9 @@ class OperationDetailsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_detail_params
-    params.permit(:comment, :amount, :operation_id, :id, :expence_id)
+    params.permit(:comment, :amount, :operation_id, :id, :expence_id,
+                  :_method, :authenticity_token, :commit,
+                  operation_detail: %i[amount comment expence_id])
   end
 
   def check_params

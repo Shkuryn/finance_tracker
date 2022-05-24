@@ -1,19 +1,11 @@
-<%= form_with(model: [@operation, @operation_detail]) do |form| %>
-  <div class="actions">
-
-    <div class="field">
-      <%= form.label :category %>
-      <%= form.select(:expence_id, options_for_select(@expences), :include_blank => false ) %>
-    </div>
-    <div class="field">
-      <%= form.label :comment %>
-      <%= form.text_area(:comment, size: '80x1') %>
-    </div>
-    <div class="mb-3">
-      <%= form.label :amount, { class: "form-label" } %>
-      <%= form.text_field :amount, { class: "form-control", placeholder: "amount"} %>
-    </div>
-   
-    <%= form.submit %>
+<%= simple_form_for @operation_detail do |f| %>
+  <div class="container .text-primary">
+    <h1 class="text-primary">Operation details</h1>
   </div>
+  <div class="container">
+  <%= f.select :expence_id, options_for_select(@expences.map{ |c| [c.name, c.id]}, @expence.id) %>
+  <%= f.input :comment%>
+  <%= f.input :amount %>
+  <%= f.button :submit %>
 <% end %>
+</div>
