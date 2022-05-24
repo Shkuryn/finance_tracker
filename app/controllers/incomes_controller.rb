@@ -30,7 +30,7 @@ class IncomesController < ApplicationController
 
     respond_to do |format|
       if @income.save
-        format.html { redirect_to expence_url(@income), notice: 'Income was successfully created.' }
+        format.html { redirect_to income_url(@income), notice: 'Income was successfully created.' }
         format.json { render :show, status: :created, location: @income }
       else
         format.html { render :new, status: :unprocessable_entity }
