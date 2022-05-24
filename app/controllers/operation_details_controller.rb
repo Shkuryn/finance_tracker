@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OperationDetailsController < ApplicationController
-
   respond_to :html, :xml, :json
   before_action :set_operation_detail, only: %i[show edit update destroy]
   before_action :check_params, only: %i[create]
@@ -16,7 +15,6 @@ class OperationDetailsController < ApplicationController
     @operation = Operation.find(OperationDetail.find(params[:id]).operation_id)
     redirect_to edit_operation_url(@operation)
   end
-
 
   # GET /operation_details/new
   def new
