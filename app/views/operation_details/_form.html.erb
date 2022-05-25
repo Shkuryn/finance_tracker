@@ -1,17 +1,16 @@
-<%= form_with(model: operation_detail) do |form| %>
-  <% if operation_detail.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(operation_detail.errors.count, "error") %> prohibited this operation_detail from being saved:</h2>
-
-      <ul>
-        <% operation_detail.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+<%= simple_form_for @operation_detail do |f| %>
+  <div class="col-md-4 mb-3">
+  <%=f.label :category %>
+  <%= f.select :expence_id, options_for_select(@expences.map{ |c| [c.name, c.id]}, @expence.id) %>
   </div>
+  <div class="mb-3">
+  <%= f.input :comment,  :input_html => {:style => 'width: 500px'} %>
+  </div>
+  <div class="mb-3">
+  <%= f.input :amount, as: :numeric, :input_html => {:style => 'width: 125px'} %>
+  </div>
+ <div class="mb-3">
+  <%= f.button :submit, "Update", class: "btn btn-primary" %>
+ </div>
 <% end %>
+

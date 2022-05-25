@@ -18,6 +18,7 @@ gem 'devise'
 gem 'groupdate'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
+gem 'simple_form'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -64,7 +65,6 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'pry'
   gem 'rails-controller-testing'
   gem 'rubocop-rspec'
   gem 'webdrivers'

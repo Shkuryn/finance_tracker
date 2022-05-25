@@ -10,7 +10,11 @@ class OperationDetailsController < ApplicationController
   end
 
   # GET /operation_details/1 or /operation_details/1.json
-  def show; end
+  def show
+    @operation_detail = OperationDetail.new(operation_detail_params)
+    @operation = Operation.find(OperationDetail.find(params[:id]).operation_id)
+    redirect_to edit_operation_url(@operation)
+  end
 
   # GET /operation_details/new
   def new
@@ -18,7 +22,10 @@ class OperationDetailsController < ApplicationController
   end
 
   # GET /operation_details/1/edit
-  def edit; end
+  def edit
+    @expences = Expence.all
+    @expence = Expence.find(@operation_detail.expence_id)
+  end
 
   # POST /operation_details or /operation_details.json
   def create
@@ -33,9 +40,10 @@ class OperationDetailsController < ApplicationController
 
   # PATCH/PUT /operation_details/1 or /operation_details/1.json
   def update
+    @operation = Operation.find(@operation_detail.operation_id)
     respond_to do |format|
-      if @operation_detail.update(operation_detail_params)
-        format.html { redirect_to operation_detail_url(@operation_detail), notice: 'Operation detail was successfully updated.' }
+      if @operation_detail.update(operation_detail_params[:operation_detail])
+        format.html { redirect_to edit_operation_url(@operation), notice: 'Operation detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @operation_detail }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -46,10 +54,10 @@ class OperationDetailsController < ApplicationController
 
   # DELETE /operation_details/1 or /operation_details/1.json
   def destroy
+    @operation = Operation.find(@operation_detail.operation_id)
     @operation_detail.destroy
-
     respond_to do |format|
-      format.html { redirect_to operation_details_url, notice: 'Operation detail was successfully destroyed.' }
+      format.html { redirect_to edit_operation_path(@operation), notice: 'Operation detail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -63,7 +71,9 @@ class OperationDetailsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_detail_params
-    params.permit(:comment, :amount, :operation_id, :id, :expence_id)
+    params.permit(:comment, :amount, :operation_id, :id, :expence_id,
+                  :_method, :authenticity_token, :commit,
+                  operation_detail: %i[amount comment expence_id])
   end
 
   def check_params
