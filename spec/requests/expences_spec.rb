@@ -9,7 +9,7 @@ RSpec.describe ExpencesController, type: :controller do
   let(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
   let(:expence2) { FactoryBot.create(:expence, user_id: user2.id, id: 22) }
   let(:expence_predefined) { FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true) }
-  describe 'GET index' do
+  describe '#index' do
     it 'returns a 200' do
       get :index
       expect(response).to have_http_status(:ok)
