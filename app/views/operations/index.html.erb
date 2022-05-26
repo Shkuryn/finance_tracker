@@ -4,15 +4,13 @@
 </div>
 <div class="container">
   <%= search_form_for @q do |f| %>
-
     <%= f.label :comment_cont %>
     <%= f.search_field :comment_cont %>
-    <%=  f.label 'date between' %>
+    <%= f.label 'date between' %>
     <%= f.search_field :date_gteq %>
     <%= f.search_field :date_lteq %>
     <%= f.submit %>
   <% end %>
-
 
   <div class="row">
     <div class="col-md-8">
@@ -20,11 +18,11 @@
   <thead>
     <tr>
       <th>#</th>
-      <th class="block" style="width:28%">Date</th>
-      <th class="block" style="width:3%">Marked</th>
-      <th class="block" style="width:50%">Comment</th>
-      <th class="block" style="width:15%">Author</th>
-      <th class="block" style="width:15%">Amount</th>
+      <th class="block" style="width:33%"> <%= sort_link(@q, :date) %> </th>
+      <th class="block" style="width:3%"> <%= sort_link(@q, :marked) %> </th>
+      <th class="block" style="width:50%"><%= sort_link(@q, :comment) %></th>
+      <th class="block" style="width:15%"> <%= sort_link(@q, :user_id) %> </th>
+      <th class="block" style="width:15%"> <%= sort_link(@q, :amount) %></th>
 
     </tr>
   </thead>
