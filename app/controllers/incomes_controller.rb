@@ -6,7 +6,6 @@ class IncomesController < ApplicationController
 
   # GET /incomes
   def index
-
     @q = Income.where(predefined: true).or(Income.with_user(current_user.id)).ransack(params[:q]) unless current_user.nil?
     @incomes = @q.result(distinct: true)
   end
