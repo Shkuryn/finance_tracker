@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container .text-primary">
+<div class="container .text-primasry">
   <h1 class="text-primary">Expences</h1>
 </div>
+
 <div class="container">
+  <%= search_form_for @q do |f| %>
+
+    <%= f.label :name_or_description_cont %>
+    <%= f.search_field :name_or_description_cont %>
+
+    <%= f.submit %>
+  <% end %>
   <div class="row">
     <div class="col-md-8">
       <table class="table table-bordered table-sm">

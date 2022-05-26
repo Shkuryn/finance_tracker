@@ -3,6 +3,13 @@
   <h1 class="text-primary">Operations</h1>
 </div>
 <div class="container">
+  <%= search_form_for @q do |f| %>
+
+    <%= f.label :comment_cont %>
+    <%= f.search_field :comment_cont %>
+
+    <%= f.submit %>
+  <% end %>
   <div class="row">
     <div class="col-md-8">
 <table class="table table-bordered table-sm">

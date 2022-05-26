@@ -8,7 +8,8 @@ class OperationsController < ApplicationController
 
   # GET /operations or /operations.json
   def index
-    @operations = Operation.with_user(current_user.id) unless current_user.nil?
+    @q = Operation.with_user(current_user.id).ransack(params[:q]) unless current_user.nil?
+    @operations = @q.result(distinct: true)
   end
 
   # GET /operations/1 or /operations/1.json
