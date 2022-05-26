@@ -7,9 +7,13 @@
 
     <%= f.label :comment_cont %>
     <%= f.search_field :comment_cont %>
-
+    <%=  f.label 'date between' %>
+    <%= f.search_field :date_gteq %>
+    <%= f.search_field :date_lteq %>
     <%= f.submit %>
   <% end %>
+
+
   <div class="row">
     <div class="col-md-8">
 <table class="table table-bordered table-sm">

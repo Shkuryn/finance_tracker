@@ -8,6 +8,10 @@ class OperationsController < ApplicationController
 
   # GET /operations or /operations.json
   def index
+    params[:q] ||= {}
+    if params[:q][:date_lteq].present?
+      params[:q][:date_lteq] = params[:q][:date_lteq].to_date.end_of_day
+    end
     @q = Operation.with_user(current_user.id).ransack(params[:q]) unless current_user.nil?
     @operations = @q.result(distinct: true)
   end
