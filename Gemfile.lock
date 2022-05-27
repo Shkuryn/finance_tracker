@@ -127,6 +127,10 @@ GEM
       activesupport (>= 5.2)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    image_magick (0.1.9)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     inherited_resources (1.13.1)
       actionpack (>= 5.2, < 7.1)
       has_scope (~> 0.6)
@@ -162,6 +166,7 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mini_magick (4.11.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
     msgpack (1.5.1)
@@ -266,6 +271,8 @@ GEM
     rubocop-rspec (2.9.0)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
@@ -330,6 +337,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  activestorage
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
@@ -339,6 +347,8 @@ DEPENDENCIES
   factory_bot
   factory_bot_rails
   groupdate
+  image_magick
+  image_processing (>= 1.2)
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)
