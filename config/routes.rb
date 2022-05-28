@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'planned_expences/index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'welcome#index'
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :incomes
   resources :expences
+  resources :planned_expences
   devise_for :users
   get 'charts/show'
 end
