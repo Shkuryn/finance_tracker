@@ -2,12 +2,11 @@
 
 class CreateOperations < ActiveRecord::Migration[6.1]
   def change
-    create_table :operations, id: false do |t|
+    create_table :operations do |t|
       t.string :comment
       t.boolean :marked
       t.datetime :date
-      t.primary_key :id
-      t.integer :user_id
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
