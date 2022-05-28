@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_17_155714) do
+ActiveRecord::Schema.define(version: 2022_05_27_121025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,19 @@ ActiveRecord::Schema.define(version: 2022_05_17_155714) do
     t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
+  create_table "planned_expences", force: :cascade do |t|
+    t.bigint "expence_id", null: false
+    t.string "description"
+    t.datetime "date"
+    t.boolean "sent"
+    t.bigint "user_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expence_id"], name: "index_planned_expences_on_expence_id"
+    t.index ["user_id"], name: "index_planned_expences_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -101,4 +114,6 @@ ActiveRecord::Schema.define(version: 2022_05_17_155714) do
   add_foreign_key "operation_details", "expences", column: "expences_id"
   add_foreign_key "operation_details", "operations", column: "operations_id"
   add_foreign_key "operations", "users"
+  add_foreign_key "planned_expences", "expences"
+  add_foreign_key "planned_expences", "users"
 end
