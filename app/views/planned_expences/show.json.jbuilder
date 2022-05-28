@@ -1,0 +1,1 @@
+json.partial! "planned_expences/planned_expence", planned_expence: @planned_expence

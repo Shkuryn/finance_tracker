@@ -1,0 +1,17 @@
+<%= form_with(model: planned_expence) do |form| %>
+  <% if planned_expence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(planned_expence.errors.count, "error") %> prohibited this planned_expence from being saved:</h2>
+
+      <ul>
+        <% planned_expence.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
