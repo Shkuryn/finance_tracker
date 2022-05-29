@@ -27,8 +27,6 @@ class OperationDetailsController < ApplicationController
 
   # POST /operation_details or /operation_details.json
   def create
-    # binding.pry
-
     @operation_detail = OperationDetail.new(operation_detail_params.except(:user_id, :authenticity_token, :commit))
     @operation = Operation.find(@operation_detail.operation_id)
     respond_with @operation do |format|
