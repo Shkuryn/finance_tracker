@@ -9,6 +9,7 @@ RSpec.describe OperationDetailsController, type: :controller do
   let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
   let(:operation) { FactoryBot.create(:operation, user_id: user.id) }
   let(:operation_detail) { FactoryBot.create(:operation_detail, expence_id: expence.id, operation_id: operation.id) }
+
   describe '#how' do
     subject(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
     # let(:operation2) { FactoryBot.create(:operation, user_id: user2.id) }
@@ -31,6 +32,23 @@ RSpec.describe OperationDetailsController, type: :controller do
       it 'status ok for own page' do
         sign_in user
         get :edit, params: { id: operation_detail }
+        expect(response).to have_http_status(:ok)
+      end
+    end
+    describe '#create' do
+      subject { FactoryBot.create(:operation_detail, expence_id: expence.id, operation_id: operation.id) }
+      it 'success creation' do
+        expect { subject }.to change { OperationDetail.count }.by(1)
+      end
+      it 'success addition' do
+        expect { subject }.to change { OperationDetail.count }.from(0).to(1)
+      end
+      it 'registered user can add operation details' do
+        login_user user
+        visit "/operations/#{operation.id}/edit"
+        fill_in 'comment', with: 'test comment'
+        fill_in 'amount', with: 5.5
+        click_on 'Add'
         expect(response).to have_http_status(:ok)
       end
     end
