@@ -2,12 +2,13 @@
 
 class CreateOperationDetails < ActiveRecord::Migration[6.1]
   def change
-    create_table :operation_details, id: false do |t|
+    create_table :operation_details do |t|
       t.decimal :amount
-      t.primary_key :id
-      t.integer :operation_id
-      t.integer :expence_id
       t.string :comment
+      t.references :expences, null: false, foreign_key: true
+      t.references :operations, null: false, foreign_key: true
+
+
       t.timestamps
     end
   end

@@ -2,8 +2,7 @@
 
 class CreateExpences < ActiveRecord::Migration[6.1]
   def change
-    create_table :operation, id: false do |t|
-      t.integer :id
+    create_table :expences do |t|
       t.string :name
       t.string :description
       t.boolean :predefined
