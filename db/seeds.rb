@@ -42,4 +42,5 @@ incomes_list.each do |name|
 end
 p "Created #{Income.count} items"
 
-AdminUser.create!(email: 'admin@example.com', password: '12345678', password_confirmation: '12345678') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: '12345678', password_confirmation: '12345678') if Rails.env.development? || Rails.env.production?
+p "Created #{AdminUser.count}" items"
