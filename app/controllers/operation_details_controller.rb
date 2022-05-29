@@ -2,6 +2,7 @@
 
 class OperationDetailsController < ApplicationController
   respond_to :html, :xml, :json
+  skip_before_action :verify_authenticity_token if Rails.env.test?
   before_action :set_operation_detail, only: %i[show edit update destroy]
   before_action :set_operation, only: %i[show edit update destroy]
   before_action :check_params, only: %i[create]
@@ -26,7 +27,9 @@ class OperationDetailsController < ApplicationController
 
   # POST /operation_details or /operation_details.json
   def create
-    @operation_detail = OperationDetail.new(operation_detail_params)
+    # binding.pry
+
+    @operation_detail = OperationDetail.new(operation_detail_params.except(:user_id, :authenticity_token, :commit))
     @operation = Operation.find(@operation_detail.operation_id)
     respond_with @operation do |format|
       if @operation_detail.save
@@ -68,7 +71,7 @@ class OperationDetailsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_detail_params
-    params.permit(:comment, :amount, :operation_id, :id, :expence_id,
+    params.permit(:comment, :amount, :operation_id, :id, :expence_id, :user_id,
                   :_method, :authenticity_token, :commit,
                   operation_detail: %i[amount comment expence_id])
   end
