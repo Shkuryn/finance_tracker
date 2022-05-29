@@ -2,17 +2,15 @@
 
 class OperationDetailsController < ApplicationController
   respond_to :html, :xml, :json
+  skip_before_action :verify_authenticity_token if Rails.env.test?
   before_action :set_operation_detail, only: %i[show edit update destroy]
+  before_action :set_operation, only: %i[show edit update destroy]
   before_action :check_params, only: %i[create]
+  before_action :check_user_owner, only: %i[show edit]
   # GET /operation_details or /operation_details.json
-  def index
-    @operation_details = OperationDetail.all
-  end
 
   # GET /operation_details/1 or /operation_details/1.json
   def show
-    @operation_detail = OperationDetail.new(operation_detail_params)
-    @operation = Operation.find(OperationDetail.find(params[:id]).operation_id)
     redirect_to edit_operation_url(@operation)
   end
 
@@ -29,7 +27,7 @@ class OperationDetailsController < ApplicationController
 
   # POST /operation_details or /operation_details.json
   def create
-    @operation_detail = OperationDetail.new(operation_detail_params)
+    @operation_detail = OperationDetail.new(operation_detail_params.except(:user_id, :authenticity_token, :commit))
     @operation = Operation.find(@operation_detail.operation_id)
     respond_with @operation do |format|
       if @operation_detail.save
@@ -71,9 +69,17 @@ class OperationDetailsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_detail_params
-    params.permit(:comment, :amount, :operation_id, :id, :expence_id,
+    params.permit(:comment, :amount, :operation_id, :id, :expence_id, :user_id,
                   :_method, :authenticity_token, :commit,
                   operation_detail: %i[amount comment expence_id])
+  end
+
+  def set_operation
+    @operation = Operation.find(OperationDetail.find(params[:id]).operation_id)
+  end
+
+  def check_user_owner
+    render template: 'welcome/index' if @operation.user_id != current_user.id
   end
 
   def check_params
