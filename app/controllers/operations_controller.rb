@@ -13,11 +13,28 @@ class OperationsController < ApplicationController
       params[:q][:date_lteq] = params[:q][:date_lteq].to_date.end_of_day
     end
 
-    unless current_user.nil?
-      @q = Operation.with_user(current_user.id).with_amount_gteq(params[:q][:operation_details_amount])
-                    .ransack(params[:q])
-    end
+    @q = if params[:q][:operation_details_amount].to_i.positive? && params[:compare].present?
+           case params[:compare]
+           when '>='
+             Operation.with_user(current_user.id).with_amount_gteq(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '>'
+             Operation.with_user(current_user.id).with_amount_gt(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '='
+             Operation.with_user(current_user.id).with_amount_eq(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '<='
+             Operation.with_user(current_user.id).with_amount_lteq(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '<'
+             Operation.with_user(current_user.id).with_amount_lt(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           end
+         else
 
+           Operation.with_user(current_user.id).ransack(params[:q])
+         end
     @operations = @q.result(distinct: true)
   end
 

@@ -60,11 +60,11 @@ RSpec.describe OperationsController, type: :controller do
       expect(response.body).to match(/<h1>Editing Operation/)
     end
     it 'stay the same page after adding row with amount' do
-       login_user user
-       visit "/operations/#{operation.id}/edit"
-       fill_in 'amount', with: 5.0
-       click_on 'commit'
-       expect(response).to render_template('operations/edit')
+      login_user user
+      visit "/operations/#{operation.id}/edit"
+      fill_in 'amount', with: 5.0
+      click_on 'commit'
+      expect(response).to render_template('operations/edit')
     end
     it 'stay the same page after adding row without amount' do
       login_user user
