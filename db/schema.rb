@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_27_121025) do
+ActiveRecord::Schema.define(version: 2022_05_30_202406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,15 +44,14 @@ ActiveRecord::Schema.define(version: 2022_05_27_121025) do
   create_table "expences", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.boolean "predefined"
+    t.boolean "predefined", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_expences_on_user_id"
   end
 
-  create_table "incomes", id: false, force: :cascade do |t|
-    t.integer "id"
+  create_table "incomes", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.boolean "predefined"
@@ -64,20 +63,23 @@ ActiveRecord::Schema.define(version: 2022_05_27_121025) do
 
   create_table "operation_details", force: :cascade do |t|
     t.decimal "amount"
-    t.integer "operation_id"
-    t.integer "expence_id"
     t.string "comment"
+    t.bigint "expences_id", null: false
+    t.bigint "operations_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["expences_id"], name: "index_operation_details_on_expences_id"
+    t.index ["operations_id"], name: "index_operation_details_on_operations_id"
   end
 
   create_table "operations", force: :cascade do |t|
     t.string "comment"
     t.boolean "marked"
     t.datetime "date"
-    t.integer "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
   create_table "planned_expences", force: :cascade do |t|
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 2022_05_27_121025) do
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["expence_id"], name: "index_planned_expences_on_expence_id"
     t.index ["user_id"], name: "index_planned_expences_on_user_id"
   end
@@ -109,8 +112,9 @@ ActiveRecord::Schema.define(version: 2022_05_27_121025) do
 
   add_foreign_key "expences", "users"
   add_foreign_key "incomes", "users"
-  add_foreign_key "operation_details", "expences"
-  add_foreign_key "operation_details", "operations"
+  add_foreign_key "operation_details", "expences", column: "expences_id"
+  add_foreign_key "operation_details", "operations", column: "operations_id"
+  add_foreign_key "operations", "users"
   add_foreign_key "planned_expences", "expences"
   add_foreign_key "planned_expences", "users"
 end

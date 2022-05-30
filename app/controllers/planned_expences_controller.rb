@@ -1,4 +1,16 @@
-class PlannedExpencesController < InheritedResources::Base
+class PlannedExpencesController < ApplicationController
+  before_action :set_expence, only: %i[show edit update destroy]
+  before_action :check_user_owner, only: %i[show edit]
+
+  def index
+    @planned_expences = PlannedExpence.where(PlannedExpence.with_user(current_user.id))
+  end
+
+  def create
+    @planned_expence = PlannedExpence.new
+    @planned_expence.user_id = current_user.id
+    @planned_expence.sent = false
+  end
 
   private
 
