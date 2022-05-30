@@ -44,14 +44,15 @@ ActiveRecord::Schema.define(version: 2022_05_27_121025) do
   create_table "expences", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.boolean "predefined", default: false
+    t.boolean "predefined"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_expences_on_user_id"
   end
 
-  create_table "incomes", force: :cascade do |t|
+  create_table "incomes", id: false, force: :cascade do |t|
+    t.integer "id"
     t.string "name"
     t.string "description"
     t.boolean "predefined"

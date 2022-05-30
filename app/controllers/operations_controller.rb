@@ -12,7 +12,12 @@ class OperationsController < ApplicationController
     if params[:q][:date_lteq].present?
       params[:q][:date_lteq] = params[:q][:date_lteq].to_date.end_of_day
     end
-    @q = Operation.with_user(current_user.id).ransack(params[:q]) unless current_user.nil?
+
+    unless current_user.nil?
+      @q = Operation.with_user(current_user.id).with_amount_gteq(params[:q][:operation_details_amount])
+                    .ransack(params[:q])
+    end
+
     @operations = @q.result(distinct: true)
   end
 
@@ -84,7 +89,7 @@ class OperationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_params
-    params.require(:operation).permit(:comment, :marked, :date, :id, :user_id)
+    params.require(:operation).permit(:comment, :marked, :date, :id, :user_id, :compare)
   end
 
   def check_user_owner
