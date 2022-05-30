@@ -6,6 +6,10 @@ class PlannedExpencesController < ApplicationController
     @planned_expences = PlannedExpence.where(PlannedExpence.with_user(current_user.id))
   end
 
+  def new
+    @planned_expence = PlannedExpence.new
+  end
+
   def create
     @planned_expence = PlannedExpence.new
     @planned_expence.user_id = current_user.id
