@@ -1,6 +1,4 @@
 class PlannedExpencesController < ApplicationController
-  before_action :set_expence, only: %i[show edit update destroy]
-  before_action :check_user_owner, only: %i[show edit]
 
   def index
     @planned_expences = PlannedExpence.where(PlannedExpence.with_user(current_user.id))
@@ -8,6 +6,10 @@ class PlannedExpencesController < ApplicationController
 
   def new
     @planned_expence = PlannedExpence.new
+  end
+
+  def edit
+    @planned_expence = PlannedExpence.find_by(id: params[:id])
   end
 
   def create
