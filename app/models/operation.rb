@@ -7,8 +7,28 @@ class Operation < ApplicationRecord
   belongs_to :user
   scope :with_user, ->(user_id) { where('user_id = ?', user_id) }
   scope :with_amount_gteq, lambda { |sum|
-                             joins('left join public.operation_details on operations.id = operation_details.operation_id')
+                             joins('left join operation_details on operations.id = operation_details.operation_id')
                                .group('id')
                                .having('sum(operation_details.amount) >= ?', sum)
                            }
+  scope :with_amount_gt, lambda { |sum|
+    joins('left join operation_details on operations.id = operation_details.operation_id')
+      .group('id')
+      .having('sum(operation_details.amount) > ?', sum)
+  }
+  scope :with_amount_eq, lambda { |sum|
+    joins('left join operation_details on operations.id = operation_details.operation_id')
+      .group('id')
+      .having('sum(operation_details.amount) = ?', sum)
+  }
+  scope :with_amount_lteq, lambda { |sum|
+    joins('left join operation_details on operations.id = operation_details.operation_id')
+      .group('id')
+      .having('sum(operation_details.amount) <= ?', sum)
+  }
+  scope :with_amount_lt, lambda { |sum|
+    joins('left join operation_details on operations.id = operation_details.operation_id')
+      .group('id')
+      .having('sum(operation_details.amount) < ?', sum)
+  }
 end

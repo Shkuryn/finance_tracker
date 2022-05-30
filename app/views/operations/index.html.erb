@@ -13,14 +13,15 @@
     <%= f.search_field :user_name_cont, size: 8 %>
     <%= f.label 'amount:' %>
     <select name="compare" id= "compare">
-<!--      <option value="="> = </option>-->
+      <option disabled selected value>  </option>
+      <option value="="> = </option>
       <option value=">=" > >= </option>
-<!--      <option value="<="> <= </option>-->
-<!--      <option value=">"> > </option>-->
-<!--      <option value="<"> < </option>-->
+      <option value="<="> <= </option>
+      <option value=">"> > </option>
+      <option value="<"> < </option>
     </select>
 
-    <%= f.search_field :operation_details_amount, size: 8 %>
+    <%= f.search_field :operation_details_amount, size: 8, :input_html => { :type =>"number"} %>
     <%= f.submit %>
   <% end %>
   <div class="form-group">

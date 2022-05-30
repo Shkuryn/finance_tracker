@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
+
 
 RSpec.describe "planned_expences/index", type: :view do
   before(:each) do
@@ -29,4 +32,5 @@ RSpec.describe "planned_expences/index", type: :view do
     assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
   end
+
 end
