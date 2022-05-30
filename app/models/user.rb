@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :incomes, dependent: :destroy
   has_many :expences, dependent: :destroy
+  has_many :operations, dependent: :destroy
 end
