@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePlannedExpences < ActiveRecord::Migration[6.1]
   def change
     create_table :planned_expences do |t|

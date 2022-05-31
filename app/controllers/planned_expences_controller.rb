@@ -1,8 +1,7 @@
-class PlannedExpencesController < ApplicationController
+# frozen_string_literal: true
 
-  def index
-    @planned_expences = PlannedExpence.where(PlannedExpence.with_user(current_user.id))
-  end
+class PlannedExpencesController < ApplicationController
+  def index; end
 
   def new
     @planned_expence = PlannedExpence.new
@@ -20,8 +19,7 @@ class PlannedExpencesController < ApplicationController
 
   private
 
-    def planned_expence_params
-      params.require(:planned_expence).permit(:expence_id, :description, :date, :sent, :user_id, :amount)
-    end
-  
+  def planned_expence_params
+    params.require(:planned_expence).permit(:expence_id, :description, :date, :sent, :user_id, :amount)
+  end
 end

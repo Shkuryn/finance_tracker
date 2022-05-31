@@ -8,7 +8,6 @@ class CreateOperationDetails < ActiveRecord::Migration[6.1]
       t.references :expences, null: false, foreign_key: true
       t.references :operations, null: false, foreign_key: true
 
-
       t.timestamps
     end
   end
