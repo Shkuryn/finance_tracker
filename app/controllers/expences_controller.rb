@@ -7,7 +7,8 @@ class ExpencesController < ApplicationController
 
   # GET /expences or /expences.json
   def index
-    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id)) unless current_user.nil?
+    @q = Expence.where(predefined: true).or(Expence.with_user(current_user.id)).ransack(params[:q]) unless current_user.nil?
+    @expences = @q.result(distinct: true)
   end
 
   # GET /expences/1 or /expences/1.json

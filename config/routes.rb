@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :incomes
   resources :expences
+  resources :planned_expences
   devise_for :users
   get 'charts/show'
 end

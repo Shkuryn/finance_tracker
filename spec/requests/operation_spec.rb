@@ -27,7 +27,7 @@ RSpec.describe OperationsController, type: :controller do
       expect(operation_count_other_user).to eq(2)
     end
   end
-  describe '#how' do
+  describe '#show' do
     subject(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
     subject(:operation2) { FactoryBot.create(:operation, user_id: user2.id, id: 22) }
     it 'to #show' do
@@ -59,14 +59,13 @@ RSpec.describe OperationsController, type: :controller do
       get :edit, params: { id: operation }
       expect(response.body).to match(/<h1>Editing Operation/)
     end
-    # it 'stay the same page after adding row with amount' do
-    #    login_user user
-    #    visit "/operations/#{operation.id}/edit"
-    #    fill_in 'amount', with: 5.0
-    #    click_on 'commit'
-    #    # expect(response).to render_template('operations/edit')
-    #    expect(page).to have_content('Operation was successfully updated')
-    #  end
+    it 'stay the same page after adding row with amount' do
+      login_user user
+      visit "/operations/#{operation.id}/edit"
+      fill_in 'amount', with: 5.0
+      click_on 'commit'
+      expect(response).to render_template('operations/edit')
+    end
     it 'stay the same page after adding row without amount' do
       login_user user
       visit "/operations/#{operation.id}/edit"

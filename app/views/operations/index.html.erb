@@ -3,17 +3,41 @@
   <h1 class="text-primary">Operations</h1>
 </div>
 <div class="container">
+  <%= search_form_for @q do |f| %>
+    <%= f.label 'Comment:' %>
+    <%= f.search_field :comment_cont, size: 8 %>
+    <%= f.label 'date between:' %>
+    <%= f.search_field :date_gteq, size: 8 %>
+    <%= f.search_field :date_lteq, size: 8 %>
+    <%= f.label 'Author:' %>
+    <%= f.search_field :user_name_cont, size: 8 %>
+    <%= f.label 'amount:' %>
+    <select name="compare" id= "compare">
+      <option disabled selected value>  </option>
+      <option value="="> = </option>
+      <option value=">=" > >= </option>
+      <option value="<="> <= </option>
+      <option value=">"> > </option>
+      <option value="<"> < </option>
+    </select>
+
+    <%= f.search_field :operation_details_amount, size: 8, :input_html => { :type =>"number"} %>
+    <%= f.submit %>
+  <% end %>
+  <div class="form-group">
+
+  </div>
   <div class="row">
     <div class="col-md-8">
 <table class="table table-bordered table-sm">
   <thead>
     <tr>
       <th>#</th>
-      <th class="block" style="width:28%">Date</th>
-      <th class="block" style="width:3%">Marked</th>
-      <th class="block" style="width:50%">Comment</th>
-      <th class="block" style="width:15%">Author</th>
-      <th class="block" style="width:15%">Amount</th>
+      <th class="block" style="width:33%"> <%= sort_link(@q, :date) %> </th>
+      <th class="block" style="width:3%"> <%= sort_link(@q, :marked) %> </th>
+      <th class="block" style="width:50%"> <%= sort_link(@q, :comment) %></th>
+      <th class="block" style="width:15%"> <%= sort_link(@q, :user_id) %> </th>
+      <th class="block" style="width:15%"> <%= sort_link(@q, :amount) %></th>
 
     </tr>
   </thead>

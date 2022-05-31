@@ -6,7 +6,7 @@ class ChartsController < ApplicationController
   def index; end
 
   def show
-    @data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
+    @data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expences_id')
                            .group(:name).sum(:amount).sort_by { |_key, value| value }.reverse.to_h
   end
 
@@ -15,5 +15,4 @@ class ChartsController < ApplicationController
   def check_user_signed
     render template: 'welcome/index' unless user_signed_in?
   end
-
 end

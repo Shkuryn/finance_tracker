@@ -8,7 +8,34 @@ class OperationsController < ApplicationController
 
   # GET /operations or /operations.json
   def index
-    @operations = Operation.with_user(current_user.id) unless current_user.nil?
+    params[:q] ||= {}
+    if params[:q][:date_lteq].present?
+      params[:q][:date_lteq] = params[:q][:date_lteq].to_date.end_of_day
+    end
+
+    @q = if params[:q][:operation_details_amount].to_i.positive? && params[:compare].present?
+           case params[:compare]
+           when '>='
+             Operation.with_user(current_user.id).with_amount_gteq(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '>'
+             Operation.with_user(current_user.id).with_amount_gt(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '='
+             Operation.with_user(current_user.id).with_amount_eq(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '<='
+             Operation.with_user(current_user.id).with_amount_lteq(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           when '<'
+             Operation.with_user(current_user.id).with_amount_lt(params[:q][:operation_details_amount])
+                      .ransack(params[:q])
+           end
+         else
+
+           Operation.with_user(current_user.id).ransack(params[:q])
+         end
+    @operations = @q.result(distinct: true)
   end
 
   # GET /operations/1 or /operations/1.json
@@ -79,7 +106,7 @@ class OperationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_params
-    params.require(:operation).permit(:comment, :cover_picture, :marked, :date, :id, :user_id)
+    params.require(:operation).permit(:comment,:cover_picture, :marked, :date, :id, :user_id, :compare)
   end
 
   def check_user_owner

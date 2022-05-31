@@ -29,6 +29,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
+gem 'ransack'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -46,6 +47,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot'
   gem 'factory_bot_rails'
+  gem 'pry'
   gem 'rspec-rails', '~> 6.0.0.rc1'
 end
 
@@ -57,7 +59,6 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'pry'
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'spring'

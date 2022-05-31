@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container .text-primasry">
+  <h1 class="text-primary">Planned Expences</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-bordered table-sm">
+        <thead>
+        <tr>
+          <th class="block" style="width:70%">Name</th>
+          <th class="block" style="width:10%"></th>
+          <th class="block" style="width:10%"></th>
+          <th class="block" style="width:10%"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @planned_expences.each do |planned_expence| %>
+            <td><%= planned_expence.name %></td>
+            <td><%= link_to 'Show', planned_expence %></td>
+            <td><%= link_to 'Edit', edit_planned_expence_path(planned_expence) %></td>
+            <td> <%= link_to 'Destroy', planned_expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-decoration-none" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<div class="btn btn-primary" >
+    <%= link_to 'New Planned expence', new_planned_expence_path, style: 'color:#FFFFFF;' %>
+  </div>
+</div>
