@@ -19,11 +19,13 @@
 
         <tbody>
         <% if @planned_expences != nil%>
+          <tr>
         <% @planned_expences.each do |planned_expence| %>
             <td><%= planned_expence.id %></td>
             <td><%= link_to 'Show', planned_expence %></td>
             <td><%= link_to 'Edit', edit_planned_expence_path(planned_expence) %></td>
             <td> <%= link_to 'Destroy', planned_expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-decoration-none" %></td>
+
           <%end%>
           </tr>
         <% end %>
