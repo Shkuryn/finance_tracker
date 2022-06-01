@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+install yarn
+install node.js
+bundle exec rake webpacker:install
