@@ -64,7 +64,7 @@ class PlannedExpencesController < ApplicationController
   private
 
   def planned_expence_params
-    params.require(:planned_expence).permit(:expence_id, :description, :date, :sent, :user_id, :amount)
+    params.require(:planned_expence).permit(:expence_id, :description, :date, :sent, :user_id, :amount, :id, planned_expence: %i[expence_id ])
   end
 
   def set_planned_expence
