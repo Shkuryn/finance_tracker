@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     resources :operation_details, shallow: true
   end
   resources :incomes
-  resources :expences
-  resources :planned_expences
+  resources :expences do
+    resources :planned_expences
+  end
   devise_for :users
   get 'charts/show'
 end
