@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class PlannedExpencesController < ApplicationController
+  helper PlannedExpencesHelper
   before_action :set_planned_expence, only: %i[show edit update destroy]
-
+   
   def index
     @planned_expences = PlannedExpence.where(Expence.with_user(current_user.id))
     @expence = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
   end
+
 
   def new
     @planned_expence = PlannedExpence.new
