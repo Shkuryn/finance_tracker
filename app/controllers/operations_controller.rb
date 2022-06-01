@@ -4,7 +4,7 @@ class OperationsController < ApplicationController
   helper OperationsHelper
   before_action :set_operation, only: %i[show edit update destroy]
   before_action :check_user_signed, only: %i[show new edit update destroy index]
-  before_action :set_operation_details, only: %i[show new edit]
+  before_action :set_operation_details, only: %i[show edit]
   before_action :check_user_owner, only: %i[show edit]
 
   # GET /operations or /operations.json
@@ -44,6 +44,7 @@ class OperationsController < ApplicationController
 
   # GET /operations/new
   def new
+    @safari = request.env['HTTP_USER_AGENT'].scan('Safari').present?
     @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
     @operation = Operation.new
   end
