@@ -12,7 +12,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< planned_expences2
+ActiveRecord::Schema.define(version: 20_220_530_202_406) do
+=======
 ActiveRecord::Schema.define(version: 20_220_527_121_025) do
+>>>>>>> main
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -45,15 +49,23 @@ ActiveRecord::Schema.define(version: 20_220_527_121_025) do
   create_table 'expences', force: :cascade do |t|
     t.string 'name'
     t.string 'description'
+<<<<<<< planned_expences2
+    t.boolean 'predefined', default: false
+=======
     t.boolean 'predefined'
+>>>>>>> main
     t.bigint 'user_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['user_id'], name: 'index_expences_on_user_id'
   end
 
+<<<<<<< planned_expences2
+  create_table 'incomes', force: :cascade do |t|
+=======
   create_table 'incomes', id: false, force: :cascade do |t|
     t.integer 'id'
+>>>>>>> main
     t.string 'name'
     t.string 'description'
     t.boolean 'predefined'
@@ -90,6 +102,10 @@ ActiveRecord::Schema.define(version: 20_220_527_121_025) do
     t.integer 'amount'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+<<<<<<< planned_expences2
+    t.string 'name'
+=======
+>>>>>>> main
     t.index ['expence_id'], name: 'index_planned_expences_on_expence_id'
     t.index ['user_id'], name: 'index_planned_expences_on_user_id'
   end
