@@ -14,6 +14,7 @@ class PlannedExpencesController < ApplicationController
 
   def edit
     @planned_expence = PlannedExpence.find_by(id: params[:id])
+    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
   end
 
   def show
