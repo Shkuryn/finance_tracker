@@ -6,6 +6,7 @@ class ChartsController < ApplicationController
   def index; end
 
   def show
+    @planned_expences_count = 20
     @data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                            .group(:name).sum(:amount).sort_by { |_key, value| value }.reverse.to_h
   end
