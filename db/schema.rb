@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_01_084710) do
+ActiveRecord::Schema.define(version: 2022_06_01_193934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,12 +64,12 @@ ActiveRecord::Schema.define(version: 2022_06_01_084710) do
   create_table "operation_details", force: :cascade do |t|
     t.decimal "amount"
     t.string "comment"
-    t.bigint "expences_id", null: false
-    t.bigint "operations_id", null: false
+    t.bigint "expence_id", null: false
+    t.bigint "operation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["expences_id"], name: "index_operation_details_on_expences_id"
-    t.index ["operations_id"], name: "index_operation_details_on_operations_id"
+    t.index ["expence_id"], name: "index_operation_details_on_expence_id"
+    t.index ["operation_id"], name: "index_operation_details_on_operation_id"
   end
 
   create_table "operations", force: :cascade do |t|
@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 2022_06_01_084710) do
 
   add_foreign_key "expences", "users"
   add_foreign_key "incomes", "users"
-  add_foreign_key "operation_details", "expences", column: "expences_id"
-  add_foreign_key "operation_details", "operations", column: "operations_id"
+  add_foreign_key "operation_details", "expences"
+  add_foreign_key "operation_details", "operations"
   add_foreign_key "operations", "users"
   add_foreign_key "planned_expences", "expences"
   add_foreign_key "planned_expences", "users"
