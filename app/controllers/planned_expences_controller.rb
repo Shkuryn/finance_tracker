@@ -15,18 +15,11 @@ class PlannedExpencesController < ApplicationController
     @planned_expence = PlannedExpence.new
   end
 
-  def edit
-    
-    
-  end
+  def edit;end
 
-  def show
-    @planned_expence = PlannedExpence.find(params[:id])
-    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
-  end
+  def show;end
 
   def create
-    @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
     @planned_expence = PlannedExpence.new(planned_expence_params)
     @planned_expence.user_id = current_user.id
     @planned_expence.sent = false
