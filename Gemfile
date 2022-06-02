@@ -13,9 +13,15 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 
 gem 'activeadmin'
+gem 'activestorage'
+gem 'activestorage-dropbox'
+gem 'dropbox_api'
+gem 'image_processing', ">= 1.2"
+gem 'image_magick'
 gem 'chartkick'
 gem 'devise'
 gem 'groupdate'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 gem 'simple_form'

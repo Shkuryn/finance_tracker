@@ -108,7 +108,7 @@ class OperationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_params
-    params.require(:operation).permit(:comment, :marked, :date, :id, :user_id, :compare)
+    params.require(:operation).permit(:comment,:cover_picture, :marked, :date, :id, :user_id, :compare)
   end
 
   def check_user_owner

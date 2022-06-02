@@ -23,6 +23,10 @@
   </div>
 
   <div class="field">
+    <%= form.label :attachment %>
+    <%= form.file_field :cover_picture %>
+  </div>
+  <div class="field">
     <%= form.label :comment %>
     <%= form.text_area(:comment, size: '80x1') %>
   </div>
