@@ -12,33 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :expence_id %>
-    <%= form.text_field :expence_id %>
+    <%= form.label :name %>
+    <%= select_tag "planned_expence[expence_id]", options_from_collection_for_select(@expence, "id", "name") %>
   </div>
 
+  <div class="mb-3">
+      <%= form.label :description, { class: "form-label" } %>
+      <%= form.text_field :description, { class: "form-control", placeholder: "Description"} %>
+    </div>
+
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.label :amount %>
+    <%= form.number_field :amount %>
   </div>
 
   <div class="field">
     <%= form.label :date %>
     <%= form.datetime_select :date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sent %>
-    <%= form.check_box :sent %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.number_field :amount %>
   </div>
 
   <div class="actions">

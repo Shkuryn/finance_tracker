@@ -6,6 +6,14 @@ RSpec.describe 'planned_expences/show', type: :view do
   before(:each) do
 
     @planned_expence = assign(:planned_expence, PlannedExpence.create!(
+<<<<<<< planned_expences2
+                                                  expence: nil,
+                                                  description: 'Description',
+                                                  sent: false,
+                                                  user: nil,
+                                                  amount: 2
+                                                ))
+=======
       expence: nil,
       description: "Description",
       sent: false,
@@ -13,6 +21,7 @@ RSpec.describe 'planned_expences/show', type: :view do
       amount: 2
     ))
 
+>>>>>>> main
   end
 
   it 'renders attributes in <p>' do

@@ -1,34 +1,4 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Expence:</strong>
-  <%= @planned_expence.expence_id %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @planned_expence.description %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @planned_expence.date %>
-</p>
-
-<p>
-  <strong>Sent:</strong>
-  <%= @planned_expence.sent %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @planned_expence.user_id %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @planned_expence.amount %>
-</p>
-
-<%= link_to 'Edit', edit_planned_expence_path(@planned_expence) %> |
+<%= render 'form', planned_expence: @planned_expence %>
 <%= link_to 'Back', planned_expences_path %>
