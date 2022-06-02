@@ -7,6 +7,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create!(email: 'user@example.com', password: '12345678', password_confirmation: '12345678')
+p "Created #{User.count} users"
 expencesList = [
   'food',
   'transport',
@@ -25,7 +27,7 @@ expencesList.each do |name|
                  predefined: true)
 end
 
-p "Created #{Expence.count} items"
+p "Created #{Expence.count} expences"
 
 incomes_list = %w[
   salary
@@ -40,7 +42,7 @@ incomes_list.each do |name|
                 user_id: 1,
                 predefined: true)
 end
-p "Created #{Income.count} items"
+p "Created #{Income.count} incomes"
 
-AdminUser.create!(email: 'admin@example.com', password: '12345678', password_confirmation: '12345678') if Rails.env.development? || Rails.env.production?
-p "Created #{AdminUser.count} items"
+AdminUser.create!(email: 'admin@example.com', password: '12345678', password_confirmation: '12345678')
+p "Created #{AdminUser.count} admins"

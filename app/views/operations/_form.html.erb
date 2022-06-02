@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :date %>
-    <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) == "new" %>
+    <% if not @safari && self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) == "new" %>
     <%= form.datetime_field :date, :value => Time.now.strftime('%Y-%m-%dT%H:%M:%S') %>
     <% else %>
     <%= form.datetime_field :date %>
@@ -26,7 +26,6 @@
     <%= form.label :attachment %>
     <%= form.file_field :cover_picture %>
   </div>
-
   <div class="field">
     <%= form.label :comment %>
     <%= form.text_area(:comment, size: '80x1') %>
@@ -68,6 +67,8 @@
       <th scope="col">Comment</th>
     </tr>
     </thead>
+
+<% if @operation_details.present? %>
     <tbody>
     <% idx = 1 %>
     <% @operation_details.each do |operation_detail| %>
@@ -87,6 +88,7 @@
     <% end %>
 
     </tbody>
+    <% end %>
   </table>
 
 <% end %>
