@@ -9,6 +9,8 @@ class ChartsController < ApplicationController
     @planned_expences_count = 20
     @balance = 998.76
     @balance_percent = '25'
+    @spent_current_month = 502
+    @incomes_current_month = 1540
     @data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                            .group(:name).sum(:amount).sort_by { |_key, value| value }.reverse.to_h
   end
