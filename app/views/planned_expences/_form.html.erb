@@ -16,10 +16,10 @@
     <%= select_tag "planned_expence[expence_id]", options_from_collection_for_select(@expence, "id", "name") %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+  <div class="mb-3">
+      <%= form.label :description, { class: "form-label" } %>
+      <%= form.text_field :description, { class: "form-control", placeholder: "Description"} %>
+    </div>
 
   <div class="field">
     <%= form.label :amount %>
