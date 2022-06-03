@@ -50,7 +50,11 @@
     <% else %>
       <tr>
     <% end %>
-        <td><%= operation.operation_type %></td>
+        <% if operation.operation_type == 1 %>
+        <td><%= image_tag('plus.png', size: "24x24")  %></td>
+    <% else %>
+      <td><%= image_tag('minus.png', size: "24x24")  %></td>
+       <% end %>
         <td><%= operation.id %></td>
         <td><%= operation.date.strftime('%a, %d %b %Y %H:%M:%S') %></td>
         <% if operation.marked? %>
