@@ -34,16 +34,17 @@
   <div class="d-none d-print-block">
     <%= form.label :id %>
     <%= form.text_field :id %>
-    <%= form.label :type %>
     <%= form.label :user_id%>
     <%= form.number_field :user_id, :value => current_user.id %>
+    <%= form.label :operation_type %>
+    <%= form.number_field :operation_type, :value => @operation_type %>
   </div>
 
   <button class="btn btn-primary" id ='save' name ='save' type="submit">Save</button>
 <% end %>
 
 <%= form_tag("/operations/#{@operation.id}/operation_details", action: "create", method: "post") do %>
-  <% if @type > 0 %>
+  <% if @operation_type > 0 %>
     <%=select_tag "income_id", options_from_collection_for_select(@incomes, "id", "name") %>
   <% else %>
     <%=select_tag "expence_id", options_from_collection_for_select(@expences, "id", "name") %>
@@ -53,7 +54,7 @@
   <%= text_field_tag(:amount) %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :operation_id, @operation.id %>
-  <%= hidden_field_tag :type, @operation.type %>
+  <%= hidden_field_tag :type, @operation_type %>
   <%= hidden_field_tag :user_id, current_user.id %>
 
   <%= label_tag(:amount, "Comment:") %>
