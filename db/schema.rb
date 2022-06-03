@@ -55,24 +55,6 @@ ActiveRecord::Schema.define(version: 2022_06_02_173158) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-ActiveRecord::Schema.define(version: 2022_06_01_193934) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
-
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -109,24 +91,23 @@ ActiveRecord::Schema.define(version: 2022_06_01_193934) do
 
   create_table "operation_details", force: :cascade do |t|
     t.decimal "amount"
-
-    t.integer "operation_id"
-    t.integer "expence_id"
     t.string "comment"
+    t.bigint "expence_id", null: false
+    t.bigint "operation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-
+    t.index ["expence_id"], name: "index_operation_details_on_expence_id"
+    t.index ["operation_id"], name: "index_operation_details_on_operation_id"
   end
 
   create_table "operations", force: :cascade do |t|
     t.string "comment"
     t.boolean "marked"
     t.datetime "date"
-
-    t.integer "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-
+    t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
   create_table "planned_expences", force: :cascade do |t|
@@ -138,9 +119,6 @@ ActiveRecord::Schema.define(version: 2022_06_01_193934) do
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-
-    t.string "name"
-
     t.index ["expence_id"], name: "index_planned_expences_on_expence_id"
     t.index ["user_id"], name: "index_planned_expences_on_user_id"
   end
@@ -159,17 +137,13 @@ ActiveRecord::Schema.define(version: 2022_06_01_193934) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-
   add_foreign_key "expences", "users"
   add_foreign_key "incomes", "users"
   add_foreign_key "operation_details", "expences"
   add_foreign_key "operation_details", "operations"
-
   add_foreign_key "operations", "users"
-
   add_foreign_key "planned_expences", "expences"
   add_foreign_key "planned_expences", "users"
 end
