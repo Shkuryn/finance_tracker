@@ -7,7 +7,7 @@ class ChartsController < ApplicationController
   def index; end
 
   def show
-    @planned_expences_count = 20
+    @planned_expences_current_month = planned_current_month
     @balance = 998.76
     @balance_percent = '25'
     @spent_current_month = spent_current_month
@@ -28,5 +28,9 @@ class ChartsController < ApplicationController
     OperationDetail.joins(:operation).where(operation: { user_id: current_user.id})
       .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
                    .sum(:amount)
+  end
+  def planned_current_month
+    PlannedExpence.with_user(current_user.id).
+      where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month).sum(:amount)
   end
 end
