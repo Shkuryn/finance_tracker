@@ -14,7 +14,7 @@ RSpec.describe 'planned_expences/edit', type: :view do
                                                   amount: 1
                                                 ))
 
-
+    end
   it 'renders the edit planned_expence form' do
     render
 
@@ -28,6 +28,6 @@ RSpec.describe 'planned_expences/edit', type: :view do
       assert_select 'input[name=?]', 'planned_expence[user_id]'
 
       assert_select 'input[name=?]', 'planned_expence[amount]'
-      end
+    end
   end
-end
+  end
