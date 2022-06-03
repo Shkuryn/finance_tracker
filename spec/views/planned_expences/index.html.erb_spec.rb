@@ -5,14 +5,14 @@ RSpec.describe 'planned_expences/index', type: :view do
   before(:each) do
     assign(:planned_expences, [
              PlannedExpence.create!(
-               expence: nil,
+               expences: nil,
                description: 'Description',
                sent: false,
                user: nil,
                amount: 2
              ),
              PlannedExpence.create!(
-               expence: nil,
+               expences: nil,
                description: 'Description',
                sent: false,
                user: nil,
