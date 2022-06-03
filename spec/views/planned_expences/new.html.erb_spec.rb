@@ -7,11 +7,11 @@ RSpec.describe 'planned_expences/new', type: :view do
 
     assign(:planned_expence, PlannedExpence.new(
 
-                               expence: nil,
-                               description: 'MyString',
-                               sent: false,
-                               user: nil,
-                               amount: 1
+      expences: nil,
+      description: 'MyString',
+      sent: false,
+      user: nil,
+      amount: 1
                              ))
 
   end
