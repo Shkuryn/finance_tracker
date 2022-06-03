@@ -46,7 +46,9 @@ class OperationsController < ApplicationController
   def new
     @safari = request.env['HTTP_USER_AGENT'].scan('Safari').present?
     @expences = Expence.where(predefined: true).or(Expence.with_user(current_user.id))
+    @incomes = Income.where(predefined: true).or(Income.with_user(current_user.id))
     @operation = Operation.new
+    @type = params[:type] == 'income' ? 1 : 0
   end
 
   # GET /operations/1/edit
@@ -108,7 +110,7 @@ class OperationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_params
-    params.require(:operation).permit(:comment,:cover_picture, :marked, :date, :id, :user_id, :compare)
+    params.require(:operation).permit(:comment,:cover_picture, :marked, :date, :id,:type, :user_id, :compare)
   end
 
   def check_user_owner
