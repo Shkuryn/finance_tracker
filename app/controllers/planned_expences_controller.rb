@@ -26,6 +26,7 @@ class PlannedExpencesController < ApplicationController
 
     respond_to do |format|
       if @planned_expence.save
+        PlannedExpenceMailer.with(send_email(user_id): @user).reset_email.deliver_later
         format.html { redirect_to planned_expence_url(@planned_expence), notice: "Planned Expence was successfully created." }
         format.json { render :show, status: :created, location: @planned_expence }
       else

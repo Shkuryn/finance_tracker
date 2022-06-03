@@ -6,6 +6,6 @@ module PlannedExpencesHelper
   end
 
   def send_email(user_id)
-    user = User.find(user_id).email
+    user = User.find(user_id)
   end
 end
