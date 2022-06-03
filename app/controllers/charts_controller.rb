@@ -14,6 +14,7 @@ class ChartsController < ApplicationController
     @incomes_current_month = 1540
     @data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                            .joins(:operation).where(operation: { user_id: current_user.id })
+                           .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
                            .group(:name).sum(:amount)
                            .sort_by { |_key, value| value }.reverse.to_h
   end
