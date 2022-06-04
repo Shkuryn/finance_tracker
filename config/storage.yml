@@ -8,7 +8,12 @@ local:
 
 dropbox:
   service: Dropbox
-  access_token: "sl.BIz3BhtjdI6N-HctEk9OUx6IN_sGEayfHvGdmuB3UXp7C1ezzG95cqEV-fm_kGqYzMZ8wo-4Od1Fypp27Wt4PhuS-iaAs7Zn18XiKy-HvBJ4WnYTYiJvPzXZn5pBzwDOwfvv0hbh_bsB"
+  app_key: <%= Rails.application.credentials.dig(:dropbox, :app_key) %>
+  app_secret: <%= Rails.application.credentials.dig(:dropbox, :app_secret) %>
+  access_token: "sl.BI4_6jQV2ggYvIAWgjFMQME2tc2tzNSqqlErHU0uXXq3dNO_g3v1b88f7B0HNb0Pjl38d6vsGw9uX41C-OqCWfwZZcBnGko7GvlSs0480BzQxoAk5HYccUGeIKboaCH-nEEoO4CMqFXC"
+  user_id: <%= Rails.application.credentials.dig(:dropbox, :user_id) %>
+
+
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3

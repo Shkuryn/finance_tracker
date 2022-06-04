@@ -22,10 +22,23 @@
     <%= form.check_box :marked %>
   </div>
 
-  <div class="field">
-    <%= form.label :attachment %>
-    <%= form.file_field :cover_picture %>
-  </div>
+  <%= form.label :image %>
+
+  <% if operation.image.attached? %>
+    <!-- display the image name and thumbnail -->
+    <p>
+      <%= operation.image.filename %>
+    </p>
+
+    <!-- provide a check box to delete the image -->
+    <div class='form-check'>
+      <%= form.check_box :remove_attached_image, class: 'form-check-input' %>
+      <%= form.label 'Check to remove attached image', class: 'form-check-label' %>
+    </div>
+  <% end %>
+
+  <%= form.file_field :image, class: 'file-field' %>
+
   <div class="field">
     <%= form.label :comment %>
     <%= form.text_area(:comment, size: '80x1') %>
