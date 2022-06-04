@@ -8,7 +8,7 @@ class ChartsController < ApplicationController
 
   def show
     @planned_expences_current_month = planned_current_month
-    @balance = 998.76
+    @balance = balance
     @balance_percent = '25'
     @spent_current_month = spent_current_month
     @incomes_current_month = incomes_current_month
@@ -44,5 +44,15 @@ class ChartsController < ApplicationController
   def planned_current_month
     PlannedExpence.with_user(current_user.id).
       where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month).sum(:amount)
+  end
+  def balance
+    OperationDetail.joins(:operation).where(operation: { user_id: current_user.id})
+                   .where(operation: { operation_type: 1})
+                   .where('date  <= ?', Date.current.end_of_day)
+                   .sum(:amount)-
+    OperationDetail.joins(:operation).where(operation: { user_id: current_user.id})
+                   .where(operation: { operation_type: 0})
+                   .where('date  <= ?', Date.current.end_of_day)
+                   .sum(:amount)
   end
 end
