@@ -12,7 +12,7 @@ class ChartsController < ApplicationController
     @balance_percent = '25'
     @spent_current_month = spent_current_month
     @incomes_current_month = 1540
-    @data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
+    @expences_chart_data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                            .joins(:operation).where(operation: { user_id: current_user.id })
                            .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
                            .group(:name).sum(:amount)
