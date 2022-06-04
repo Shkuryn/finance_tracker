@@ -21,13 +21,19 @@ class OperationDetailsController < ApplicationController
 
   # GET /operation_details/1/edit
   def edit
-    @expences = Expence.all
-    @expence = Expence.find(@operation_detail.expence_id)
+    if params[:operation_type] == '1'
+      @incomes = Income.all
+      @income = Income.find(@operation_detail.income_id)
+    else
+      @expences = Expence.all
+      @expence = Expence.find(@operation_detail.expence_id)
+    end
   end
 
   # POST /operation_details or /operation_details.json
   def create
-    @operation_detail = OperationDetail.new(operation_detail_params.except(:user_id, :authenticity_token, :commit))
+    @operation_detail = OperationDetail.new(operation_detail_params.except(:user_id, :authenticity_token,
+                                                                           :operation_type,:commit))
     @operation = Operation.find(@operation_detail.operation_id)
     respond_with @operation do |format|
       if @operation_detail.save
@@ -69,7 +75,7 @@ class OperationDetailsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_detail_params
-    params.permit(:comment, :amount, :operation_id, :id, :expence_id, :user_id,
+    params.permit(:comment, :amount, :operation_id, :id, :expence_id, :user_id, :income_id, :operation_type,
                   :_method, :authenticity_token, :commit,
                   operation_detail: %i[amount comment expence_id])
   end
