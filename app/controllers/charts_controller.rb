@@ -17,6 +17,11 @@ class ChartsController < ApplicationController
                            .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
                            .group(:name).sum(:amount)
                            .sort_by { |_key, value| value }.reverse.to_h
+    @incomes_chart_data = OperationDetail.joins('INNER JOIN incomes on incomes.id =operation_details.income_id')
+                           .joins(:operation).where(operation: { user_id: current_user.id })
+                           .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
+                           .group(:name).sum(:amount)
+                           .sort_by { |_key, value| value }.reverse.to_h
   end
 
   private
