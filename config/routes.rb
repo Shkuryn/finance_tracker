@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root 'dashboardr#show'
+  root 'dashboard#show'
   resources :operations do
     resources :operation_details, shallow: true
   end
