@@ -15,6 +15,7 @@ gem 'puma', '~> 5.0'
 gem 'activeadmin'
 gem 'activestorage'
 gem 'activestorage-dropbox'
+gem 'delayed_job_active_record'
 gem 'dropbox_api'
 gem 'image_processing', ">= 1.2"
 gem 'image_magick'
