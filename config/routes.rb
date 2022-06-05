@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :planned_expences
   devise_for :users
   get 'charts/show'
+  get 'dashboard/show'
 end
