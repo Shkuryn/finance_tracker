@@ -1,7 +1,7 @@
 <%#= form_with url: charts_show_path, local: true, method: :post do %>
 <%#= form_tag("/show", method: "post") do  %>
 <%= simple_form_for charts_path method: :post  do |f| %>
-<!--<form accept-charset="UTF-8" action="/charts/show" method="post">-->
+  <!--<form accept-charset="UTF-8" action="/charts/show" method="post">-->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container">
     <div class="row">
@@ -17,14 +17,9 @@
                 <hr>
                 <!-- BEGIN FILTER BY CHART TYPE -->
                 <h4>Select object for analyze:</h4>
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                  <label class="btn btn-outline-primary" for="btnradio1">Expences</label>
-
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="btnradio2">Incomes</label>
-
-
+                <div class="btn-group" role="group" >
+                  <%= f.collection_radio_buttons :object_for_analyze, [['Expences', 'Expences'] ,['Incomes', 'Incomes']], :first, :last,
+                                                 :checked => ['Expences', 'Expences']  %>
                 </div>
                 <!-- BEGIN FILTER BY DATE -->
                 <h4>By date:</h4>
@@ -46,18 +41,12 @@
                 <!-- BEGIN FILTER BY CHART TYPE -->
                 <div>
                   <span>Type of chart?</span>
-                  <div>
-                    <%= radio_button_tag "foobar", true, true %>
-                    <%= label_tag "pie", 'pie' %>
-                  </div>
-                  <div>
-                    <%= radio_button_tag "foobar", false, false %>
-                    <%= label_tag "column", 'column' %>
+                  <div class="btn-group" role="group" >
+                    <%= f.collection_radio_buttons :type_of_chart, [['Pie', 'Pie'] ,['Column', 'Column']], :first, :last,
+                                                   :checked => ['Pie', 'Pie']  %>
                   </div>
                 </div>
 
-                <%= f.label :ignore %>
-                <%= f.check_box :marked %>
 
                 <!-- END FILTER BY CHART TYPE -->
                 <!-- BEGIN FILTER BY CATEGORY -->
@@ -73,9 +62,9 @@
                 </div>
                 <!-- END FILTER BY CATEGORY -->
 
-<!--                <div class="btn btn-primary " >-->
-                  <%#= link_to 'Go', charts_show_path, style: 'color:#FFFFFF;' %>
-<!--                </div>-->
+                <!--                <div class="btn btn-primary " >-->
+                <%#= link_to 'Go', charts_show_path, style: 'color:#FFFFFF;' %>
+                <!--                </div>-->
                 <div class="mb-3">
                   <%= f.button :submit, "Go", class: "btn btn-primary" %>
                 </div>
@@ -99,7 +88,11 @@
                     <tbody><tr>
                       <td>
                         <div class="chart-area">
-                          <%= pie_chart @expences_chart_data%>
+                          <% if @type_of_chart == "Pie"%>
+                          <%= pie_chart @chart_data%>
+                            <% else %>
+                            <%= column_chart @chart_data%>
+                            <% end %>
                         </div>
                       </td>
 

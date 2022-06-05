@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :expences
   resources :planned_expences
   devise_for :users
-  get 'charts/show'
+  resources :charts, only: %i[show index create]
+  # get 'charts/show'
   get 'dashboard/show'
 end
