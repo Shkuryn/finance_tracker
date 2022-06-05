@@ -6,7 +6,7 @@ class PlannedExpencesController < ApplicationController
   before_action :set_expence, only: %i[index new edit show]
   before_action :check_user_owner, only: %i[show edit]
   before_action :check_user_signed, only: %i[show new edit update destroy index]
-   
+
   def index
     @planned_expences = PlannedExpence.where(Expence.with_user(current_user.id)) unless current_user.nil?
   end
@@ -15,9 +15,9 @@ class PlannedExpencesController < ApplicationController
     @planned_expence = PlannedExpence.new
   end
 
-  def edit;end
+  def edit; end
 
-  def show;end
+  def show; end
 
   def create
     @planned_expence = PlannedExpence.new(planned_expence_params)
@@ -26,7 +26,7 @@ class PlannedExpencesController < ApplicationController
 
     respond_to do |format|
       if @planned_expence.save
-        format.html { redirect_to planned_expence_url(@planned_expence), notice: "Planned Expence was successfully created." }
+        format.html { redirect_to planned_expence_url(@planned_expence), notice: 'Planned Expence was successfully created.' }
         format.json { render :show, status: :created, location: @planned_expence }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class PlannedExpencesController < ApplicationController
   def update
     respond_to do |format|
       if @planned_expence.update(planned_expence_params)
-        format.html { redirect_to planned_expence_url(@planned_expence), notice: "Planned Expence was successfully updated." }
+        format.html { redirect_to planned_expence_url(@planned_expence), notice: 'Planned Expence was successfully updated.' }
         format.json { render :show, status: :ok, location: @planned_expence }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class PlannedExpencesController < ApplicationController
     @planned_expence.destroy
 
     respond_to do |format|
-      format.html { redirect_to planned_expences_url, notice: "Planned Expence was successfully destroyed." }
+      format.html { redirect_to planned_expences_url, notice: 'Planned Expence was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

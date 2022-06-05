@@ -108,13 +108,14 @@ class OperationsController < ApplicationController
   def set_operation
     @operation = Operation.find(params[:id])
   end
+
   def set_operation_details
     @operation_details = @operation.operation_details
   end
 
   # Only allow a list of trusted parameters through.
   def operation_params
-    params.require(:operation).permit(:comment,:cover_picture, :marked, :date, :id,:operation_type,
+    params.require(:operation).permit(:comment, :cover_picture, :marked, :date, :id, :operation_type,
                                       :user_id, :compare)
   end
 
