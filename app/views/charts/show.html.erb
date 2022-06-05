@@ -1,0 +1,101 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row">
+    <!-- BEGIN SEARCH RESULT -->
+    <div class="col-md-12">
+      <div class="grid search">
+        <div class="grid-body">
+          <div class="row">
+            <!-- BEGIN FILTERS -->
+            <div class="col-md-3">
+              <h2 class="grid-title"><i class="fa fa-filter"></i> Filters</h2>
+              <hr>
+              <!-- BEGIN FILTER BY CHART TYPE -->
+              <h4>Select object for analyze:</h4>
+              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">Expences</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">Incomes</label>
+
+
+              </div>
+              <!-- BEGIN FILTER BY DATE -->
+              <h4>By date:</h4>
+              From
+              <div class="input-group date form_date" data-date="2014-06-14T05:25:07Z" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1">
+                <input type="text" class="form-control">
+                <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
+              </div>
+              <input type="hidden" id="dtp_input1" value="">
+
+              To
+              <div class="input-group date form_date" data-date="2014-06-14T05:25:07Z" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2">
+                <input type="text" class="form-control">
+                <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
+              </div>
+              <input type="hidden" id="dtp_input2" value="">
+              <!-- END FILTER BY DATE -->
+
+              <!-- BEGIN FILTER BY CHART TYPE -->
+              <h4>Select chart type:</h4>
+              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">Pie chart</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">Bar chart</label>
+              </div>
+
+              <!-- END FILTER BY CHART TYPE -->
+              <!-- BEGIN FILTER BY CATEGORY -->
+              <h4>By members:</h4>
+              <div class="checkbox">
+                <label><input type="checkbox" class="icheck"> Me</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" class="icheck"> Member 1</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" class="icheck"> Member 2</label>
+              </div>
+              <!-- END FILTER BY CATEGORY -->
+              <button type="button" class="btn btn-primary">Go</button>
+              <div class="padding"></div>
+
+
+            </div>
+            <!-- END FILTERS -->
+            <!-- BEGIN RESULT -->
+            <div class="col-md-9">
+              <h2><i class="fa fa-file-o"></i> Result</h2>
+
+              <div class="row">
+              </div>
+
+              <!-- BEGIN TABLE RESULT -->
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody><tr>
+                    <td class="number text-center">1</td>
+                    <td class="image"><img src="https://via.placeholder.com/400x300/FF8C00" alt=""></td>
+                    <td class="product"><strong>Product 1</strong><br>This is the product description.</td>
+                    <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></span></td>
+                    <td class="price text-right">$350</td>
+                  </tr>
+
+
+                  </tbody></table>
+              </div>
+              <!-- END TABLE RESULT -->
+
+            </div>
+            <!-- END RESULT -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END SEARCH RESULT -->
+  </div>
+</div>
