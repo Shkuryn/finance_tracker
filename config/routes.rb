@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root 'charts#show'
+  root 'dashboardr#show'
   resources :operations do
     resources :operation_details, shallow: true
   end
@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :planned_expences
   devise_for :users
   get 'charts/show'
+
 end
