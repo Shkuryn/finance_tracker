@@ -23,19 +23,10 @@
                 </div>
                 <!-- BEGIN FILTER BY DATE -->
                 <h4>By date:</h4>
-                From
-                <div class="input-group date form_date" data-date="2014-06-14T05:25:07Z" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1">
-                  <input type="text" class="form-control">
-                  <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
-                </div>
-                <input type="hidden" id="dtp_input1" value="">
 
-                To
-                <div class="input-group date form_date" data-date="2014-06-14T05:25:07Z" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2">
-                  <input type="text" class="form-control">
-                  <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
-                </div>
-                <input type="hidden" id="dtp_input2" value="">
+                  <%= f.input :start_date, as: :date, html5: true %>
+                  <%= f.input :end_date, as: :date, html5: true %>
+                
                 <!-- END FILTER BY DATE -->
 
                 <!-- BEGIN FILTER BY CHART TYPE -->
@@ -60,11 +51,7 @@
                 <div class="checkbox">
                   <label><input type="checkbox" class="icheck"> Member 2</label>
                 </div>
-                <!-- END FILTER BY CATEGORY -->
 
-                <!--                <div class="btn btn-primary " >-->
-                <%#= link_to 'Go', charts_show_path, style: 'color:#FFFFFF;' %>
-                <!--                </div>-->
                 <div class="mb-3">
                   <%= f.button :submit, "Go", class: "btn btn-primary" %>
                 </div>

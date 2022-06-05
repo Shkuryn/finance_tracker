@@ -8,16 +8,20 @@ class ChartsController < ApplicationController
     params_hash = params.to_unsafe_h
     object_for_analyze = params_hash["/charts?method=post"].fetch('object_for_analyze')
     @type_of_chart = params_hash["/charts?method=post"].fetch('type_of_chart')
+    @start_date = params_hash["/charts?method=post"].fetch('start_date')
+    @end_date = params_hash["/charts?method=post"].fetch('end_date')
     if object_for_analyze == 'Expences'
       @chart_data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                                             .joins(:operation).where(operation: { user_id: current_user.id })
-                                            .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
+                                            .where('date BETWEEN ? AND ?',
+      @start_date.present? ? @start_date : DateTime.new(2022,1,1,0,0,0), @end_date.present? ? @end_date : DateTime.new(2100,1,1,0,0,0))
                                             .group(:name).sum(:amount)
                                             .sort_by { |_key, value| value }.reverse.to_h
     else
       @chart_data = OperationDetail.joins('INNER JOIN incomes on incomes.id =operation_details.income_id')
                                            .joins(:operation).where(operation: { user_id: current_user.id })
-                                           .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
+                      .where('date BETWEEN ? AND ?',
+                             @start_date.present? ? @start_date : DateTime.new(2022,1,1,0,0,0), @end_date.present? ? @end_date : DateTime.new(2100,1,1,0,0,0))
                                            .group(:name).sum(:amount)
                                            .sort_by { |_key, value| value }.reverse.to_h
     end
