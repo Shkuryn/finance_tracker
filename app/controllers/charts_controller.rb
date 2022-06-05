@@ -8,7 +8,6 @@ class ChartsController < ApplicationController
   def show
     @planned_expences_current_month = planned_current_month
     @balance = balance
-    @balance_percent = '25'
     @spent_current_month = spent_current_month
     @incomes_current_month = incomes_current_month
     @expences_chart_data = OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
