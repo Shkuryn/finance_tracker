@@ -3,13 +3,15 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root 'welcome#index'
+  root 'dashboard#show'
   resources :operations do
     resources :operation_details, shallow: true
   end
   resources :incomes
-  resources :expences 
+  resources :expences
   resources :planned_expences
   devise_for :users
-  get 'charts/show'
+  resources :charts, only: %i[show index create]
+  # get 'charts/show'
+  get 'dashboard/show'
 end

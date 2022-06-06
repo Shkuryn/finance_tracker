@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :expence do
+  factory :expences do
     id { '1' }
     name { 'Great name' }
     description { 'Good description' }

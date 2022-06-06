@@ -15,12 +15,13 @@ gem 'puma', '~> 5.0'
 gem 'activeadmin'
 gem 'activestorage'
 gem 'activestorage-dropbox'
-gem 'dropbox_api'
-gem 'image_processing', ">= 1.2"
-gem 'image_magick'
 gem 'chartkick'
 gem 'devise'
+gem 'dropbox_api'
 gem 'groupdate'
+gem 'image_magick'
+gem 'image_processing', '>= 1.2'
+gem 'simple-form-datepicker'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
