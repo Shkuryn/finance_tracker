@@ -23,10 +23,12 @@ class PlannedExpencesController < ApplicationController
     @planned_expence = PlannedExpence.new(planned_expence_params)
     @planned_expence.user_id = current_user.id
     @planned_expence.sent = false
+    @user = current_user
 
     respond_to do |format|
       if @planned_expence.save
-        format.html { redirect_to planned_expence_url(@planned_expence), notice: 'Planned Expence was successfully created.' }
+        PlannedExpenceMailer.delay(run_at: @planned_expence.date).notification_about_expence
+        format.html { redirect_to planned_expence_url(@planned_expence), notice: "Planned Expence was successfully created." }
         format.json { render :show, status: :created, location: @planned_expence }
       else
         format.html { render :new, status: :unprocessable_entity }

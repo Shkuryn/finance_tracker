@@ -12,7 +12,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_604_173_827) do
+ActiveRecord::Schema.define(version: 2022_06_05_122839) do
+
+
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 20_220_604_173_827) do
     t.string 'variation_digest', null: false
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
 
+
   end
 
   create_table 'admin_users', force: :cascade do |t|
@@ -72,14 +75,30 @@ ActiveRecord::Schema.define(version: 20_220_604_173_827) do
     t.index ['reset_password_token'], name: 'index_admin_users_on_reset_password_token', unique: true
   end
 
-  create_table 'expences', force: :cascade do |t|
-    t.string 'name'
-    t.string 'description'
-    t.boolean 'predefined', default: false
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_expences_on_user_id'
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "expences", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.boolean "predefined", default: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_expences_on_user_id"
+
   end
 
   create_table 'incomes', force: :cascade do |t|
@@ -92,43 +111,39 @@ ActiveRecord::Schema.define(version: 20_220_604_173_827) do
     t.index ['user_id'], name: 'index_incomes_on_user_id'
   end
 
-
-  create_table 'operation_details', force: :cascade do |t|
-    t.decimal 'amount'
-    t.string 'comment'
-    t.bigint 'expence_id', null
-    t.bigint 'operation_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'income_id'
-    t.index ['expence_id'], name: 'index_operation_details_on_expence_id'
-    t.index ['operation_id'], name: 'index_operation_details_on_operation_id'
+  create_table "operation_details", force: :cascade do |t|
+    t.decimal "amount"
+    t.string "comment"
+    t.bigint "expence_id", null: false
+    t.bigint "operation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expence_id"], name: "index_operation_details_on_expence_id"
+    t.index ["operation_id"], name: "index_operation_details_on_operation_id"
   end
 
-  create_table 'operations', force: :cascade do |t|
-    t.string 'comment'
-    t.boolean 'marked'
-    t.datetime 'date'
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'operation_type'
-    t.index ['user_id'], name: 'index_operations_on_user_id'
+  create_table "operations", force: :cascade do |t|
+    t.string "comment"
+    t.boolean "marked"
+    t.datetime "date"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_operations_on_user_id"
   end
 
-  create_table 'planned_expences', force: :cascade do |t|
-    t.bigint 'expence_id', null: false
-    t.string 'description'
-    t.datetime 'date'
-    t.boolean 'sent'
-    t.bigint 'user_id', null: false
-    t.integer 'amount'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['expence_id'], name: 'index_planned_expences_on_expence_id'
-    t.index ['user_id'], name: 'index_planned_expences_on_user_id'
+  create_table "planned_expences", force: :cascade do |t|
+    t.bigint "expence_id", null: false
+    t.string "description"
+    t.datetime "date"
+    t.boolean "sent"
+    t.bigint "user_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expence_id"], name: "index_planned_expences_on_expence_id"
+    t.index ["user_id"], name: "index_planned_expences_on_user_id"
 
- 
   end
 
   create_table 'users', force: :cascade do |t|
@@ -145,14 +160,14 @@ ActiveRecord::Schema.define(version: 20_220_604_173_827) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
-  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'expences', 'users'
-  add_foreign_key 'incomes', 'users'
-  add_foreign_key 'operation_details', 'expences'
-  add_foreign_key 'operation_details', 'operations'
-  add_foreign_key 'operations', 'users'
-  add_foreign_key 'planned_expences', 'expences'
-  add_foreign_key 'planned_expences', 'users'
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "expences", "users"
+  add_foreign_key "incomes", "users"
+  add_foreign_key "operation_details", "expences"
+  add_foreign_key "operation_details", "operations"
+  add_foreign_key "operations", "users"
+  add_foreign_key "planned_expences", "expences"
+  add_foreign_key "planned_expences", "users"
 
 end
