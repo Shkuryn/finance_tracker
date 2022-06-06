@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe ExpencesController, type: :controller do
   render_views
   let(:user) { FactoryBot.create :user }
-  let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
+  let(:expences) { FactoryBot.create(:expences, user_id: user.id) }
   let(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
-  let(:expence2) { FactoryBot.create(:expence, user_id: user2.id, id: 22) }
-  let(:expence_predefined) { FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true) }
+  let(:expence2) { FactoryBot.create(:expences, user_id: user2.id, id: 22) }
+  let(:expence_predefined) { FactoryBot.create(:expences, user_id: user2.id, id: 23, predefined: true) }
   describe '#index' do
     it 'returns a 200' do
       get :index
@@ -21,9 +21,9 @@ RSpec.describe ExpencesController, type: :controller do
     it 'return correct expences count' do
       # TODO: rid it off
       user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
-      expence = FactoryBot.create(:expence, user_id: user.id)
-      expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
-      expence_predefined = FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true)
+      expence = FactoryBot.create(:expences, user_id: user.id)
+      expence2 = FactoryBot.create(:expences, user_id: user2.id, id: 22)
+      expence_predefined = FactoryBot.create(:expences, user_id: user2.id, id: 23, predefined: true)
       expences_count = Expence.count
       expences_count_user1 = Expence.where(predefined: true).or(Expence.with_user(user.id)).count
       expences_count_user2 = Expence.where(predefined: true).or(Expence.with_user(user2.id)).count
@@ -61,7 +61,7 @@ RSpec.describe ExpencesController, type: :controller do
   end
   describe '#update' do
     it 'there is no edit button for predefined expence' do
-      expence = FactoryBot.create(:expence, user_id: user.id, predefined: true, id: 22)
+      expence = FactoryBot.create(:expences, user_id: user.id, predefined: true, id: 22)
       login_user user
       visit "/expences/#{expence.id}/edit"
       expect(have_no_button('Update'))

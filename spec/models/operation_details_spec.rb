@@ -6,7 +6,7 @@ RSpec.describe OperationDetail, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @operaton = FactoryBot.create(:operation, user_id: @user.id)
-    @expence = FactoryBot.create(:expence, user_id: @user.id)
+    @expence = FactoryBot.create(:expences, user_id: @user.id)
     @operaton_detail = FactoryBot.build(:operation_detail, expence_id: @expence.id, operation_id: @operaton.id)
   end
   describe '#create' do
