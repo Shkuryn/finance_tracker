@@ -19,9 +19,14 @@ gem 'delayed_job_active_record'
 gem 'dropbox_api'
 gem 'image_processing', ">= 1.2"
 gem 'image_magick'
+
 gem 'chartkick'
 gem 'devise'
+gem 'dropbox_api'
 gem 'groupdate'
+gem 'image_magick'
+gem 'image_processing', '>= 1.2'
+gem 'simple-form-datepicker'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
@@ -47,6 +52,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'cancancan', '~> 1.15'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'simplecov', require: false
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
   gem 'factory_bot'

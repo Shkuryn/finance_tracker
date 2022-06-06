@@ -5,14 +5,14 @@ RSpec.describe 'planned_expences/index', type: :view do
   before(:each) do
     assign(:planned_expences, [
              PlannedExpence.create!(
-               expence: nil,
+               expences: nil,
                description: 'Description',
                sent: false,
                user: nil,
                amount: 2
              ),
              PlannedExpence.create!(
-               expence: nil,
+               expences: nil,
                description: 'Description',
                sent: false,
                user: nil,
@@ -30,5 +30,4 @@ RSpec.describe 'planned_expences/index', type: :view do
     assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
   end
-
 end

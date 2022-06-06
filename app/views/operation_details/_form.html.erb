@@ -1,8 +1,12 @@
 <%= simple_form_for @operation_detail do |f| %>
   <div class="col-md-4 mb-3">
   <%=f.label :category %>
+    <% if @income.present? %>
+      <%= f.select :income_id, options_for_select(@incomes.map{ |c| [c.name, c.id]}, @income.id) %>
+      <% else %>
   <%= f.select :expence_id, options_for_select(@expences.map{ |c| [c.name, c.id]}, @expence.id) %>
-  </div>
+      <% end %>
+      </div>
   <div class="mb-3">
   <%= f.input :comment,  :input_html => {:style => 'width: 500px'} %>
   </div>
