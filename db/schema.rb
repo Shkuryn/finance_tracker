@@ -170,4 +170,6 @@ ActiveRecord::Schema.define(version: 2022_06_05_122839) do
   add_foreign_key "planned_expences", "expences"
   add_foreign_key "planned_expences", "users"
 
+
 end
+
