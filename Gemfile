@@ -47,6 +47,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'cancancan', '~> 1.15'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'simplecov', require: false
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
   gem 'factory_bot'
