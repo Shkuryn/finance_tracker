@@ -32,6 +32,7 @@ gem 'simple-form-datepicker'
 gem 'sass-rails', '>= 6'
 gem 'simple_form'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'rails_12factor', group: :production
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
