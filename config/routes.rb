@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :charts, only: %i[show index create]
   # get 'charts/show'
   get 'dashboard/show'
+  resources :users
 end
