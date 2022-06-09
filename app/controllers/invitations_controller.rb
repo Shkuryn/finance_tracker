@@ -13,5 +13,10 @@ class InvitationsController < ApplicationController
         redirect_to current_user
     end
 
-  
+    def update
+        invitation = Invitation.find(params[:invitation_id])
+        p current_user
+        invitation.update(confirmed: true)
+        redirect_to current_user
+    end
 end
