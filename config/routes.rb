@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   # get 'charts/show'
   get 'dashboard/show'
   resources :users
+  get 'invitations/update'
+  get 'invitations/create'
+  get 'invitations/destroy'
 end

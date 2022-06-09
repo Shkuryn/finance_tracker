@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :operations, dependent: :destroy
   has_many :invitations
   has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: 'member_id'
+  belongs_to :family
 
   def members
     members_i_sent_invitation = Invitation.where(user_id: id, confirmed: true).pluck(:member_id)
