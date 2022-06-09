@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Invitation < ApplicationRecord
   belongs_to :user
 
@@ -20,5 +22,4 @@ class Invitation < ApplicationRecord
       Invitation.where(user_id: id1, member_id: id2, confirmed: true)[0].id
     end
   end
-  
 end

@@ -9,6 +9,7 @@ class Operation < ApplicationRecord
   validate :acceptable_image
   # add ability to delete attached images
   attr_accessor :remove_attached_image
+
   after_save :purge_attached_image, if: :remove_attached_image?
 
   # define the acceptable_image validation
@@ -23,7 +24,6 @@ class Operation < ApplicationRecord
     acceptable_types = ['image/jpeg', 'image/jpg', 'image/png']
     errors.add(:image, 'must be a JPEG or PNG') unless acceptable_types.include?(image.content_type)
   end
-
 
   # define the after_save action to remove an image
   def remove_attached_image?
