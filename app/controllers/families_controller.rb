@@ -2,7 +2,14 @@
 
 class FamiliesController < ApplicationController
     def create
-        @family = Family.new(family_params)
-        @family.user_id = 
+    end
+
+    def show
+    end
+
+    def update
+    end
+
+    def destroy
     end
 end
