@@ -6,7 +6,7 @@ RSpec.describe OperationsController, type: :controller do
   render_views
   let(:user) { FactoryBot.create :user }
   let(:other_user) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
-  let(:expences) { FactoryBot.create(:expences, user_id: user.id) }
+  let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
   let(:operation) { FactoryBot.create(:operation, user_id: user.id) }
   let(:operation_detail) { FactoryBot.create(:operation_detail, expence_id: expence.id, operation_id: operation.id) }
 
