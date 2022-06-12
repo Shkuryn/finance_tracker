@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pro-equinox-351521",
+  "private_key_id": "94465eab6e9ed6eaf757e3263d18891a1fb81078",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDR8VVXIsqw3xla\nDqXrELFv24z+ztUhsU/LwkbSYbAlEj0NEWRIdBFbyjIAk0EjSQfA7lEqORRMQ/+v\nnxPcmg2k0/dKxoZrOFahCDYIPbkQrV2Ys1b1M4/gTkRSDr3Z72xVXZYV1SB9PPzR\nA4Fq6SAEZN55L8JJeGxmXov6mPpUzkLWEV98Di/OPgDfT6448Zvjb+dhxREG++Ze\nj6QIwAM8w15kVNZpSt7xMUeDdxQ+m94ioa87Aa8wTBeQqbVuaRISDzBMJpV5RfdX\nUXvsbx+KWMloVYRoGD9SIC+684H6KY1Jfvv7QayNeE35UwvgVNiJD11JhFAP7k4Q\n9f9TnDpxAgMBAAECggEAEqTX61EPpv1pBvJeEa390+0vbEF58/AHIhUyrOQ3/FLO\nUSbGPRjxobEnF538HuIRajS/yHwhLVSslDAQV3rm00hvoZhXv5XVO5+7DKhOkwiS\nU0k547SchlLtBkyA16XHfR0+gtnWdMjBut4Q1Cm3yiwbBbAUFOo41i53R93l/Tna\n0IhJ42Ojfs/ItSIrNBhYXU2Ay7IvRaxbcAP2OFjN/pwc6bOExlADUX65XJ0D2Fjx\nS/GRtzpRTLAyI0QehGPZ5n0XraQ19KedbvqJzxhNBbsY6zSYHOSIpYRWvczu87ua\nc1A7HsNZZwcw+CCAud/u6XYnz17c2oaPHQhXizT/cQKBgQDoknKMYr2cCZk+dz09\npFhmGQU6QC1htahIKrPC9xgtU+jnXZX321bZ74CKvnvkUC4fUzGJi+y2OvErfkyB\n/F2mzL3h4WNB/EWsdx1z6aJ6YfHwbgnppl0yDut34RTs2jQZSepojGnCfaw7N8Fm\nc1uxO9yFvrcVicBU3AeCBSawTwKBgQDnF1JbpXnMI4J4pSykCGPg6acb7ICBZvvy\n0NQKDPKvZ0Pgg3i7/R2lk/yetkXxlj7fJSxV25g0S62q/uksvLeRhhwTWu7NYU8G\nJKWoOZn3wzpkk6cgO87dqstQ1EDnFf5UjUYsX5qAkOoo9Ic6WLXobYaJLfYJue7p\nvdc9SEb5PwKBgEOFeRI+/JOXydDz52jFFREXRIhD56kNh3zkQOpiuLc4PE8nwYmD\nObTuLuCZKvj/OlTH34Lyh9fkRu58rZOzhDEQEjTJLfsTVdsbfgaQFyb21roaCHC4\nZyhIYp6cT2nwc92/svmFgpL/z4glyNWIul87ZOvDkf4Dzz4T324lNrVLAoGASAut\nUYU1g79OXe6hDELRYL13q+z/41gIFJumf7upraW0M7rJWVKAe663g4OwKrF8yHT+\nbYYY3bT6X+U5LQlo8aWt+xrOeJlt2axzOQ88QVJMUi72W8ZJqDInUPvbgDALKrEg\nv5TOxmZnmn0h677cd6ot13bMzht5sMXO5PwzpGECgYEAweK+XQC0D4pY7eeKu/5/\n0KJh2utydG6k+XmzLJI/gdIfHMgsLCxfrzHd8ogEmn3B6APx7gHFwBq5pSiLqUdH\nu3ncxNOUpk5jPMJHFzFKWSDzEbUws+276Tg6WAhjFCstgLTfQBMbT7xJLhL3ovQx\nvi8MPVjwnZswYLGOchCZX8U=\n-----END PRIVATE KEY-----\n",
+  "client_email": "serviceaccount2@pro-equinox-351521.iam.gserviceaccount.com",
+  "client_id": "105926650407906564087",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/serviceaccount2%40pro-equinox-351521.iam.gserviceaccount.com"
+}
