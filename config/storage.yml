@@ -6,13 +6,6 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-dropbox:
-  service: Dropbox
-  app_key: <%= Rails.application.credentials.dig(:dropbox, :app_key) %>
-  app_secret: <%= Rails.application.credentials.dig(:dropbox, :app_secret) %>
-  access_token: "sl.BI4_6jQV2ggYvIAWgjFMQME2tc2tzNSqqlErHU0uXXq3dNO_g3v1b88f7B0HNb0Pjl38d6vsGw9uX41C-OqCWfwZZcBnGko7GvlSs0480BzQxoAk5HYccUGeIKboaCH-nEEoO4CMqFXC"
-  user_id: <%= Rails.application.credentials.dig(:dropbox, :user_id) %>
-
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
@@ -22,11 +15,11 @@ dropbox:
 #   bucket: your_own_bucket
 
 # Remember not to checkin your GCS keyfile to a repository
-# google:
-#   service: GCS
-#   project: your_project
-#   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
-#   bucket: your_own_bucket
+google:
+ service: GCS
+ project: financetracker
+ credentials: <%= Rails.root.join("gcs.keyfile") %>
+ bucket: financetracker
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
@@ -38,4 +31,4 @@ dropbox:
 # mirror:
 #   service: Mirror
 #   primary: local
-#   mirrors: [ amazon, google, microsoft ]
+  #   mirrors: [ amazon, google, microsoft ]
