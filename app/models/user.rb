@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :operations, dependent: :destroy
   has_many :invitations
   has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: 'member_id'
-  belongs_to :family
+  belongs_to :family, optional: true
   has_one :family_parent, class_name: 'Family', foreign_key: 'parent_id'
 
   def members
