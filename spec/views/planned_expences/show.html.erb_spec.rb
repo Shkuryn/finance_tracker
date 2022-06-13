@@ -4,16 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'planned_expences/show', type: :view do
   before(:each) do
-
     @planned_expence = assign(:planned_expence, PlannedExpence.create!(
-
                                                   expence: nil,
                                                   description: 'Description',
                                                   sent: false,
                                                   user: nil,
                                                   amount: 2
                                                 ))
-
   end
 
   it 'renders attributes in <p>' do
