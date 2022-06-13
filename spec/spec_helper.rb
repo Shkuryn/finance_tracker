@@ -2,7 +2,9 @@
 
 require 'simplecov'
 SimpleCov.start 'rails' do
-  add_filter '/spec/' # for rspec
+
+  add_filter ['app/jobs', 'app/channels']
+
 end
 require 'devise'
 require 'capybara/rspec'
