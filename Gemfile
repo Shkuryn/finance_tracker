@@ -17,8 +17,8 @@ gem 'activestorage'
 gem 'activestorage-dropbox'
 gem 'delayed_job_active_record'
 gem 'dropbox_api'
-gem 'image_processing', ">= 1.2"
 gem 'image_magick'
+gem 'image_processing', '>= 1.2'
 
 
 gem "google-cloud-storage", "~> 1.11", require: false
@@ -58,13 +58,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'cancancan', '~> 1.15'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'simplecov', require: false
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'pry'
   gem 'rspec-rails', '~> 6.0.0.rc1'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -75,10 +75,10 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'letter_opener'
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'spring'
-  gem 'letter_opener'
 end
 
 group :test do

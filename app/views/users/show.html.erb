@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1>Name:   <%=@user.name %></h1>
+<h2>Surname:   <%=@user.surname %></h2>
+<h3>Email:   <%=@user.email %></h3>
+<h4>List of family members:  </h4>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', root_path %>
+<%= link_to 'Add user to your family', root_path %>
