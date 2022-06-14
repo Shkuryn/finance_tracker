@@ -2,7 +2,7 @@
 
 class PlannedExpenceMailer < ApplicationMailer
   def notification_about_expence(user)
-    @user = params[:user]
+    @user = user
     mail to: @user.email, subject: 'Notification about planned expence | FinanceTracker'
   end
 end
