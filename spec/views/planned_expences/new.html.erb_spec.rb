@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'planned_expences/new', type: :view do
   before(:each) do
     assign(:planned_expence, PlannedExpence.new(
-                               expences: nil,
+                               expence: nil,
                                description: 'MyString',
                                sent: false,
                                user: nil,

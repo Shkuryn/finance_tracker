@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe Expence, type: :model do
+RSpec.describe Income, type: :model do
   before do
     @user = FactoryBot.create(:user)
-    @income = FactoryBot.build(:incomes, user_id: @user.id)
+    @income = FactoryBot.build(:income, user_id: @user.id)
   end
 
   describe '#create' do
@@ -17,7 +17,7 @@ RSpec.describe Expence, type: :model do
 
     context 'unsuccessfully' do
       it 'is invalid without name' do
-        @income.name = nil
+        @income.name = ''
         expect(@income).not_to be_valid
       end
       it 'is invalid when name is too short' do

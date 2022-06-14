@@ -5,7 +5,7 @@ RSpec.describe 'planned_expences/index', type: :view do
   before(:each) do
     assign(:planned_expences, [
              PlannedExpence.create!(
-               expences: nil,
+               expence: nil,
                description: 'Description',
                sent: false,
                user: nil,
