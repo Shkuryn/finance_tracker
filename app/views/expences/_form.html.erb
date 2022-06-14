@@ -1,5 +1,5 @@
 <%= form_for @expence, html: { class: "form-vertical center" } do |form| %>
-  <% if expence.errors.any? %>
+  <% if expences.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(expence.errors.count, "error") %> prohibited this expence from being saved:</h2>
       <ul>
