@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Expence, type: :model do
   before do
     @user = FactoryBot.create(:user)
-    @expence = FactoryBot.build(:expences, user_id: @user.id)
+    @expence = FactoryBot.build(:expence, user_id: @user.id)
   end
 
   describe '#create' do
