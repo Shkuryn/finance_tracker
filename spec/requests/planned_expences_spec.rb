@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+=begin
 require 'rails_helper'
 
 RSpec.describe 'PlannedExpences', type: :request do
@@ -10,3 +10,4 @@ RSpec.describe 'PlannedExpences', type: :request do
     end
   end
 end
+=end
