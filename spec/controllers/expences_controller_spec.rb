@@ -72,4 +72,22 @@ RSpec.describe ExpencesController, type: :controller do
       expect(have_button('Update'))
     end
   end
+
+  describe '#create' do
+    subject { FactoryBot.create(:expence, user_id: user.id) }
+    it 'success creation' do
+      expect { subject }.to change { Expence.count }.by(1)
+    end
+    it 'success addition' do
+      expect { subject }.to change { Expence.count }.from(0).to(1)
+    end
+    it 'registered user can add new expence' do
+      login_user user
+      visit new_expence_path
+      fill_in 'name', with: 'test name'
+      fill_in 'description', with: 'test description'
+      click_on 'save'
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end
