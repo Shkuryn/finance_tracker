@@ -90,4 +90,21 @@ RSpec.describe ExpencesController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe '#destroy' do
+    it 'deletes non predefined item' do
+      expence = FactoryBot.create(:expence, user_id: user.id)
+
+      expect do
+        expence.destroy
+      end.to change(Expence, :count).by(-1)
+    end
+    it 'cannot deletes predefined item' do
+      expence_predefined = FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true)
+
+      expect do
+        expence_predefined.destroy
+      end.to change(Expence, :count).by(-1)
+    end
+  end
 end
