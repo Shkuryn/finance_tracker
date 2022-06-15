@@ -7,7 +7,7 @@ RSpec.describe ChartsController, type: :controller do
   before do
     @user = FactoryBot.create(:user)
     @operaton = FactoryBot.create(:operation, user_id: @user.id)
-    @expence = FactoryBot.create(:expences, user_id: @user.id)
+    @expence = FactoryBot.create(:expence, user_id: @user.id)
     @operaton_detail = FactoryBot.create(:operation_detail, operation_id: @operaton.id, expence_id: @expence.id)
   end
 

@@ -78,7 +78,7 @@ class ExpencesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def expence_params
-    params.require(:expences).permit(:name, :description, :id, :user_id)
+    params.require(:expence).permit(:name, :description, :id, :user_id)
   end
 
   def check_user_owner
