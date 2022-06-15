@@ -6,7 +6,7 @@ RSpec.describe OperationDetail, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @operaton = FactoryBot.create(:operation, user_id: @user.id)
-    @expence = FactoryBot.create(:expences, user_id: @user.id)
+    @expence = FactoryBot.create(:expence, user_id: @user.id)
     @operaton_detail = FactoryBot.build(:operation_detail, expence_id: @expence.id, operation_id: @operaton.id)
   end
   describe '#create' do
@@ -20,9 +20,15 @@ RSpec.describe OperationDetail, type: :model do
         @operaton_detail.operation_id = nil
         expect(@operaton_detail).not_to be_valid
       end
-      it 'is invalid if expence is empty' do
+      it 'is invalid if expence and income is empty' do
         @operaton_detail.expence_id = nil
+        @operaton_detail.income_id = nil
         expect(@operaton_detail).not_to be_valid
+      end
+      it 'is valid if expence blank  and income is presence' do
+        @operaton_detail.expence_id = nil
+        @operaton_detail.income_id = 1
+        expect(@operaton_detail).to be_valid
       end
       it 'is invalid if amount is empty' do
         @operaton_detail.amount = 0
