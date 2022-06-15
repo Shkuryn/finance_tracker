@@ -1,7 +1,24 @@
-<h1>Name:   <%=@user.name %></h1>
-<h2>Surname:   <%=@user.surname %></h2>
-<h3>Email:   <%=@user.email %></h3>
-<h4>List of family members:  </h4>
+<div style="width: 40vw; height: 20vh">
+  <h1>Name:   <%=@user.name %></h1>
+  <h2>Surname:   <%=@user.surname %></h2>
+  <h3>Email:   <%=@user.email %></h3>
+  <h4>List of family members:  </h4>
 
-<%= link_to 'Back', root_path %>
-<%= link_to 'Add user to your family', root_path %>
+  <%= render 'users/invitation_form.html.erb' %>
+
+  <div id="forms">
+    <%= form_tag users_path, :method=> "get" do %>
+
+      <%= label_tag :email, "Email" %>
+      <%= text_field_tag :email%>
+
+      <%= link_to "Send", invitations_path, :method=> "post"%>
+      <%= link_to "Clear Search", request.path, class:"cancel-button" %>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back', root_path %>
+  <%= link_to 'Add user to your family', root_path %>
+
+</div>
+
