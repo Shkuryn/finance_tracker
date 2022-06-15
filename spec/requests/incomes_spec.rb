@@ -42,6 +42,13 @@ RSpec.describe IncomesController, type: :controller do
     end
   end
   describe '#create' do
+    subject { FactoryBot.create(:income, user_id: user.id) }
+    it 'success creation' do
+      expect { subject }.to change { Income.count }.by(1)
+    end
+    it 'success addition' do
+      expect { subject }.to change { Income.count }.from(0).to(1)
+    end
     it 'should create a new income' do
       login_user user
       visit new_income_path

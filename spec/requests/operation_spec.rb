@@ -54,6 +54,13 @@ RSpec.describe OperationsController, type: :controller do
     end
   end
   describe '#create' do
+    subject { FactoryBot.create(:operation, user_id: user.id) }
+    it 'success creation' do
+      expect { subject }.to change { Operation.count }.by(1)
+    end
+    it 'success addition' do
+      expect { subject }.to change { Operation.count }.from(0).to(1)
+    end
     it 'get correct heading' do
       sign_in user
       get :edit, params: { id: operation }
