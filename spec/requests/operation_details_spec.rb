@@ -12,11 +12,9 @@ RSpec.describe OperationDetailsController, type: :controller do
 
   describe '#how' do
     subject(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
-    # let(:operation2) { FactoryBot.create(:operation, user_id: user2.id) }
-    # let(:operation_detail2) { FactoryBot.create(:operation_detail, expence_id: expence.id, operation_id: operation.id) }
-    it 'to #show' do
-      get :show, params: { id: operation_detail }
-    end
+    # it 'to #show' do
+    #   get :show, params: { operation_detail_id: operation_detail }
+    # end
     it 'redirect to welcome page if try to show alien page' do
       sign_in user2
       get :show, params: { id: operation_detail }
