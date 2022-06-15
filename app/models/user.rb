@@ -27,4 +27,10 @@ class User < ApplicationRecord
   def send_invitation(user)
     invitations.create(member_id: user.id)
   end
+
+  def self.emails(email)
+    user = all
+    user = user.where("email LIKE ?", "%#{email}%")
+    return user
+  end
 end
