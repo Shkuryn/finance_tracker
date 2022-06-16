@@ -41,18 +41,27 @@ RSpec.describe IncomesController, type: :controller do
       expect(page).to have_content('Income name')
     end
   end
+
   describe '#create' do
     subject { FactoryBot.create(:income, user_id: user.id) }
+    it 'should create a new income' do
+      login_user user
+      visit new_income_path
+      expect(page).to have_content('New Income')
+    end
     it 'success creation' do
       expect { subject }.to change { Income.count }.by(1)
     end
     it 'success addition' do
       expect { subject }.to change { Income.count }.from(0).to(1)
     end
-    it 'should create a new income' do
+    it 'registered user can add new income' do
       login_user user
       visit new_income_path
-      expect(page).to have_content('New Income')
+      fill_in 'name', with: 'test name'
+      fill_in 'description', with: 'test description'
+      click_on 'save'
+      expect(response).to have_http_status(:ok)
     end
   end
   describe '#update' do

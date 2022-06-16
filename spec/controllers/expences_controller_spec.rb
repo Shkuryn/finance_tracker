@@ -52,13 +52,7 @@ RSpec.describe ExpencesController, type: :controller do
       expect(page).to have_content('Great name')
     end
   end
-  describe '#create' do
-    it 'should create a new expence' do
-      login_user user
-      visit new_expence_path
-      expect(page).to have_content('New Expence')
-    end
-  end
+
   describe '#update' do
     it 'there is no edit button for predefined expence' do
       expence = FactoryBot.create(:expence, user_id: user.id, predefined: true, id: 22)
@@ -75,6 +69,11 @@ RSpec.describe ExpencesController, type: :controller do
 
   describe '#create' do
     subject { FactoryBot.create(:expence, user_id: user.id) }
+    it 'should create a new expence' do
+      login_user user
+      visit new_expence_path
+      expect(page).to have_content('New Expence')
+    end
     it 'success creation' do
       expect { subject }.to change { Expence.count }.by(1)
     end
