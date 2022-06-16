@@ -6,11 +6,19 @@ class ChartsController < ApplicationController
 
   def create
     params_hash = params.to_unsafe_h
-    object_for_analyze = params_hash['/charts?method=post'].fetch('object_for_analyze')
+    @start_date1 = params_hash['/charts?method=post'].fetch('start_date(1i)')
+    @start_date2 = params_hash['/charts?method=post'].fetch('start_date(2i)')
+    @start_date3 = params_hash['/charts?method=post'].fetch('start_date(3i)')
+    @end_date1 = params_hash['/charts?method=post'].fetch('end_date(1i)')
+    @end_date2 = params_hash['/charts?method=post'].fetch('end_date(2i)')
+    @end_date3 = params_hash['/charts?method=post'].fetch('end_date(3i)')
+    @object_for_analyze = params_hash['/charts?method=post'].fetch('object_for_analyze')
     @type_of_chart = params_hash['/charts?method=post'].fetch('type_of_chart')
-    @start_date = params_hash['/charts?method=post'].fetch('start_date')
-    @end_date = params_hash['/charts?method=post'].fetch('end_date')
-    @chart_data = if object_for_analyze == 'Expences'
+    # @start_date = params_hash['/charts?method=post'].fetch('start_date')
+    @start_date = Date.civil(@start_date1.to_i, @start_date2.to_i, @start_date3.to_i)
+    # @end_date = params_hash['/charts?method=post'].fetch('end_date')
+    @end_date = Date.civil(@end_date1.to_i, @end_date2.to_i, @end_date3.to_i)
+    @chart_data = if @object_for_analyze == 'Expences'
                     OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                                    .joins(:operation).where(operation: { user_id: current_user.id })
                                    .where('date BETWEEN ? AND ?',
