@@ -20,9 +20,15 @@ RSpec.describe OperationDetail, type: :model do
         @operaton_detail.operation_id = nil
         expect(@operaton_detail).not_to be_valid
       end
-      it 'is invalid if expence is empty' do
+      it 'is invalid if expence and income is empty' do
         @operaton_detail.expence_id = nil
+        @operaton_detail.income_id = nil
         expect(@operaton_detail).not_to be_valid
+      end
+      it 'is valid if expence blank  and income is presence' do
+        @operaton_detail.expence_id = nil
+        @operaton_detail.income_id = 1
+        expect(@operaton_detail).to be_valid
       end
       it 'is invalid if amount is empty' do
         @operaton_detail.amount = 0

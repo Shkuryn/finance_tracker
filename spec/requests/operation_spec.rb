@@ -54,6 +54,18 @@ RSpec.describe OperationsController, type: :controller do
     end
   end
   describe '#create' do
+    subject { FactoryBot.create(:operation, user_id: user.id) }
+    it 'should create a new operation' do
+      login_user user
+      visit new_operation_path
+      expect(page).to have_content('New Operation')
+    end
+    it 'success creation' do
+      expect { subject }.to change { Operation.count }.by(1)
+    end
+    it 'success addition' do
+      expect { subject }.to change { Operation.count }.from(0).to(1)
+    end
     it 'get correct heading' do
       sign_in user
       get :edit, params: { id: operation }
@@ -73,6 +85,13 @@ RSpec.describe OperationsController, type: :controller do
       click_on 'commit'
       expect(response).to render_template('operations/edit')
       expect(page).to have_content('Amount must be filled!')
+    end
+    it 'registered user can add new operation' do
+      login_user user
+      visit new_operation_path
+      fill_in 'comment', with: 'test comment'
+      click_on 'save'
+      expect(response).to have_http_status(:ok)
     end
   end
 end
