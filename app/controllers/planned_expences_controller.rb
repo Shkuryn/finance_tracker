@@ -8,7 +8,7 @@ class PlannedExpencesController < ApplicationController
   before_action :check_user_signed, only: %i[show new edit update destroy index]
 
   def index
-    @planned_expences = PlannedExpence.where(Expence.with_user(current_user.id)) unless current_user.nil?
+    @planned_expences = PlannedExpence.with_user(current_user.id) unless current_user.nil?
   end
 
   def new
