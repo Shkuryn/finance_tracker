@@ -72,4 +72,23 @@ RSpec.describe ExpencesController, type: :controller do
       expect(have_button('Update'))
     end
   end
+
+  describe '#destroy' do
+
+    it 'deletes non predefined item' do
+      expence = FactoryBot.create(:expence, user_id: user.id)
+
+      expect do
+        expence.destroy
+      end.to change(Expence, :count).by(-1)
+    end
+
+    it 'should not be able to delete predefined' do
+      expect do
+        expence_predefined.destroy
+      end.to change(Expence, :count).by(-0)
+    end
+
+  end
+
 end
