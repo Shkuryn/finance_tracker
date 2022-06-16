@@ -81,5 +81,12 @@ RSpec.describe OperationsController, type: :controller do
       expect(response).to render_template('operations/edit')
       expect(page).to have_content('Amount must be filled!')
     end
+    it 'registered user can add new operation' do
+      login_user user
+      visit new_operation_path
+      fill_in 'comment', with: 'test comment'
+      click_on 'save'
+      expect(response).to have_http_status(:ok)
+    end
   end
 end
