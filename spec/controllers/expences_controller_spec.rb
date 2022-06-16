@@ -19,7 +19,6 @@ RSpec.describe ExpencesController, type: :controller do
       expect(response).to render_template('welcome/index')
     end
     it 'return correct expences count' do
-      # TODO: rid it off
       user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
       expence = FactoryBot.create(:expence, user_id: user.id)
       expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
