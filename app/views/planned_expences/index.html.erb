@@ -10,10 +10,10 @@
       <table class="table table-bordered table-sm">
         <thead>
         <tr>
-          <th class="block" style="width:20%">Category</th>
+          <th class="block" style="width:10%">Category</th>
           <th class="block" style="width:20%">Description</th>
           <th class="block" style="width:20%">Date</th>
-          <th class="block" style="width:10%">Status</th>
+          <th class="block" style="width:20%">Status</th>
           <th class="block" style="width:10%"></th>
           <th class="block" style="width:10%"></th>
           <th class="block" style="width:10%"></th>
@@ -28,10 +28,10 @@
             <td><%= planned_expence_name(planned_expence.expence_id) %></td>
             <td><%= planned_expence.description %></td>
             <td><%= planned_expence.date %></td>
-            <td><%= planned_expence.sent %></td>
+            <td><%= planned_expence.sent == false ? "Waiting to send" : "Already sent" %></td>
             <td><%= link_to 'Show', planned_expence %></td>
             <td><%= link_to 'Edit', edit_planned_expence_path(planned_expence) %></td>
-            <td> <%= link_to 'Destroy', planned_expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-decoration-none" %></td>
+            <td> <%= link_to 'Delete', planned_expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-decoration-none" %></td>
 
           <%end%>
           </tr>
