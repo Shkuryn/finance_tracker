@@ -10,4 +10,10 @@ RSpec.describe PlannedExpencesHelper, type: :helper do
       expect(helper.planned_expence_name(expence.id)).to eq(expence.name)
     end
   end
+
+  describe '#send_email' do
+    it 'returns user' do
+      expect(helper.send_email(user.id)).to eq(user)
+    end
+  end
 end
