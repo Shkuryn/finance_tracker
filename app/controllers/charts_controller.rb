@@ -4,7 +4,8 @@ class ChartsController < ApplicationController
   before_action :check_user_signed, only: %i[show new edit update destroy index]
 
   def index
-    @members = %w[Wife Son Daughter]
+    @members = User.with_family(current_user.family_id)
+                   .to_a.reject { |u| u == current_user }.pluck(:name)
   end
 
   def create
