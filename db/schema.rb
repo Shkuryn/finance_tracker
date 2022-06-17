@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_071156) do
+ActiveRecord::Schema.define(version: 2022_06_17_195610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,18 +112,18 @@ ActiveRecord::Schema.define(version: 2022_06_17_071156) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.integer "member_id"
     t.boolean "confirmed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_invitations_on_users_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "operation_details", force: :cascade do |t|
     t.decimal "amount"
     t.string "comment"
-    t.bigint "expence_id", null: false
+    t.bigint "expence_id"
     t.bigint "operation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -156,13 +156,6 @@ ActiveRecord::Schema.define(version: 2022_06_17_071156) do
     t.index ["user_id"], name: "index_planned_expences_on_user_id"
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -173,7 +166,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_071156) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "surname"
-    t.integer "family_id"
+    t.bigint "family_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -182,11 +175,10 @@ ActiveRecord::Schema.define(version: 2022_06_17_071156) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "expences", "users"
   add_foreign_key "incomes", "users"
-  add_foreign_key "invitations", "users", column: "users_id"
+  add_foreign_key "invitations", "users"
   add_foreign_key "operation_details", "expences"
   add_foreign_key "operation_details", "operations"
   add_foreign_key "operations", "users"
   add_foreign_key "planned_expences", "expences"
   add_foreign_key "planned_expences", "users"
-  add_foreign_key "profiles", "users"
 end
