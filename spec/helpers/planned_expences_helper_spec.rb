@@ -2,16 +2,12 @@
 
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the PlannedExpencesHelper. For example:
-#
-# describe PlannedExpencesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe PlannedExpencesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { FactoryBot.create :user }
+  let(:expence) {FactoryBot.create(:expence, user_id: user.id) }
+  describe '#planned_expence_name' do
+    it 'returns expence_name' do
+      expect(helper.planned_expence_name(expence.id)).to eq(expence.name)
+    end
+  end
 end
