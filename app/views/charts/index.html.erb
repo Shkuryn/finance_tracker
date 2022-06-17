@@ -65,16 +65,17 @@
 
                 <!-- END FILTER BY CHART TYPE -->
                 <!-- BEGIN FILTER BY CATEGORY -->
+
                 <h4>By members:</h4>
                 <div class="checkbox">
                   <label><input type="checkbox" class="icheck" checked="true"> Me</label>
                 </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" class="icheck"> Member 1</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" class="icheck"> Member 2</label>
-                </div>
+                <% @members.each do |m| %>
+                  <div class="checkbox">
+                    <label><input type="checkbox" class="icheck"> <%= m %> </label>
+                  </div>
+                <% end %>
+
 
                 <div class="mb-3">
                   <%= f.button :submit, "Go", class: "btn btn-primary" %>
