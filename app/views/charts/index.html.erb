@@ -49,7 +49,7 @@
 
                 <!-- BEGIN FILTER BY CHART TYPE -->
                 <div>
-                  <span>Type of chart?</span>
+                  <span>Type of chart:</span>
                   <div class="btn-group" role="group">
                     <% if @type_of_chart == 'Pie' %>
                       <%= f.collection_radio_buttons :type_of_chart, [['Pie', 'Pie'], ['Column', 'Column']], :first, :last,
@@ -66,15 +66,16 @@
                 <!-- END FILTER BY CHART TYPE -->
                 <!-- BEGIN FILTER BY CATEGORY -->
 
-                <h4>By members:</h4>
-                <div class="checkbox">
-                  <label><input type="checkbox" class="icheck" checked="true"> Me</label>
-                </div>
-                <% @members.each do |m| %>
-                  <div class="checkbox">
-                    <label><input type="checkbox" class="icheck"> <%= m %> </label>
-                  </div>
-                <% end %>
+                <h6>
+                  <%= f.input :by_members, as: :check_boxes, collection: @members,
+                              input_html: { multiple: true }, label: false %>
+                </h6>
+                <!--                <div class="checkbox">-->
+                <%#= f.input :Me, :as => :boolean, :input_html => { :checked => "checked" } %>
+                <!--                </div>-->
+                <%# @members.each do |m| %>
+                <%#= f.input m, :as => :boolean, :input_html => { :checked => "checked" } %>
+                <%# end %>
 
 
                 <div class="mb-3">
