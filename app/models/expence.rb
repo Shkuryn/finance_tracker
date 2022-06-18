@@ -11,8 +11,8 @@ class Expence < ApplicationRecord
 
   def check_predefined
     if predefined
-      self.errors[:base] << "cannot be deleted"
-      return false
+      errors[:base] << 'cannot be deleted'
+      false
     end
   end
 end

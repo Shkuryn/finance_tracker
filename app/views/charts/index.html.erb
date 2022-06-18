@@ -65,18 +65,11 @@
 
                 <!-- END FILTER BY CHART TYPE -->
                 <!-- BEGIN FILTER BY CATEGORY -->
-                <h1>  <%= @members %></h1>
+                <!--                <h1>  <%#= @members %></h1>-->
                 <h6>
                   <%= f.input :by_members, as: :check_boxes, collection: @members,
                               input_html: { multiple: true }, label: false %>
                 </h6>
-                <!--                <div class="checkbox">-->
-                <%#= f.input :Me, :as => :boolean, :input_html => { :checked => "checked" } %>
-                <!--                </div>-->
-                <%# @members.each do |m| %>
-                <%#= f.input m, :as => :boolean, :input_html => { :checked => "checked" } %>
-                <%# end %>
-
 
                 <div class="mb-3">
                   <%= f.button :submit, "Go", class: "btn btn-primary" %>

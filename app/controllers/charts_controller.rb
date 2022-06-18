@@ -7,6 +7,7 @@ class ChartsController < ApplicationController
     # @members = User.with_family(current_user.family_id)
     #                .to_a.reject { |u| u == current_user }.pluck(:name)
     @members = User.with_family(current_user.family_id).pluck(:name)
+    @family = User.with_family(current_user.family_id)
   end
 
   def create
@@ -23,6 +24,7 @@ class ChartsController < ApplicationController
     @end_date = Date.civil(@end_date1.to_i, @end_date2.to_i, @end_date3.to_i)
     @by_members = params_hash['/charts?method=post'].fetch('by_members')
     @members = User.with_family(current_user.family_id).pluck(:name)
+
     @chart_data = if @object_for_analyze == 'Expences'
                     OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                                    .joins(:operation)

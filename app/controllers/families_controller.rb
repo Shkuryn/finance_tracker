@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 class FamiliesController < ApplicationController
-    def create
-    end
+  def create; end
 
-    def show
-    end
+  def show; end
 
-    def update
-    end
+  def index; end
 
-    def destroy
-    end
+  def update; end
+
+  def destroy; end
 end
