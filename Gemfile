@@ -20,10 +20,7 @@ gem 'dropbox_api'
 gem 'image_magick'
 gem 'image_processing', '>= 1.2'
 
-
-gem "google-cloud-storage", "~> 1.11", require: false
-
-
+gem 'google-cloud-storage', '~> 1.11', require: false
 
 gem 'chartkick'
 gem 'devise'

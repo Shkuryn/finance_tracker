@@ -7,7 +7,7 @@ class OperationDetail < ApplicationRecord
   validate :any_present?
 
   def any_present?
-    if %w[income_id expence_id].all? {|attr| self[attr].blank? }
+    if %w[income_id expence_id].all? { |attr| self[attr].blank? }
       errors.add :base, 'income or expence must be present'
     end
   end

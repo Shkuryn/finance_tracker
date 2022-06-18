@@ -10,7 +10,6 @@ RSpec.describe IncomesController, type: :controller do
   let(:income2) { FactoryBot.create(:income, user_id: user2.id, id: 22) }
   let(:income_predefined) { FactoryBot.create(:income, user_id: user2.id, id: 23, predefined: true) }
   describe '#index' do
-
     # it 'returns a 200' do
     #   get :index
     #   expect(response).to have_http_status(:ok)

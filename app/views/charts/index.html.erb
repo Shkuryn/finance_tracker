@@ -17,47 +17,65 @@
                 <hr>
                 <!-- BEGIN FILTER BY CHART TYPE -->
                 <h4>Select object for analyze:</h4>
-                <div class="btn-group" role="group" >
-                  <%= f.collection_radio_buttons :object_for_analyze, [['Expences', 'Expences'] ,['Incomes', 'Incomes']], :first, :last,
-                                                 :checked => ['Expences', 'Expences']  %>
+                <div class="btn-group" role="group">
+                  <% if @object_for_analyze == 'Incomes' %>
+                    <%= f.collection_radio_buttons :object_for_analyze, [['Expences', 'Expences'], ['Incomes', 'Incomes']], :first, :last,
+                                                   :checked => ['Incomes', 'Incomes'] %>
+                  <% else %>
+                    <%= f.collection_radio_buttons :object_for_analyze, [['Expences', 'Expences'], ['Incomes', 'Incomes']], :first, :last,
+                                                   :checked => ['Expences', 'Expences'] %>
+                  <% end %>
                 </div>
                 <!-- BEGIN FILTER BY DATE -->
+                <!--                <h1><%#= Date.parse(@start_date) if @start_date.present?  %></h1>-->
                 <h4>By date:</h4>
 
-                  <%= f.input :start_date, as: :date, html5: true %>
-                  <%= f.input :end_date, as: :date, html5: true %>
-                
+
+                <%= f.label :start %>
+                <% if @start_date.present? %>
+                  <%= f.date_select :start_date, selected: @start_date %>
+                <% else %>
+                  <%= f.date_select :start_date, selected: Date.today.at_beginning_of_month %>
+                <% end %>
+                <br>
+                <br>
+                <%= f.label :end %>
+                <% if @end_date.present? %>
+                  <%= f.date_select :end_date, selected: @end_date %>
+                <% else %>
+                  <%= f.date_select :end_date, selected: Date.tomorrow %>
+                <% end %>
                 <!-- END FILTER BY DATE -->
 
                 <!-- BEGIN FILTER BY CHART TYPE -->
                 <div>
-                  <span>Type of chart?</span>
-                  <div class="btn-group" role="group" >
-                    <%= f.collection_radio_buttons :type_of_chart, [['Pie', 'Pie'] ,['Column', 'Column']], :first, :last,
-                                                   :checked => ['Pie', 'Pie']  %>
+                  <span>Type of chart:</span>
+                  <div class="btn-group" role="group">
+                    <% if @type_of_chart == 'Pie' %>
+                      <%= f.collection_radio_buttons :type_of_chart, [['Pie', 'Pie'], ['Column', 'Column']], :first, :last,
+                                                     :checked => ['Pie', 'Pie'] %>
+                    <% else %>
+                      <%= f.collection_radio_buttons :type_of_chart, [['Pie', 'Pie'], ['Column', 'Column']], :first, :last,
+                                                     :checked => ['Column', 'Column'] %>
+                    <% end %>
+
                   </div>
                 </div>
 
 
                 <!-- END FILTER BY CHART TYPE -->
                 <!-- BEGIN FILTER BY CATEGORY -->
-                <h4>By members:</h4>
-                <div class="checkbox">
-                  <label><input type="checkbox" class="icheck"> Me</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" class="icheck"> Member 1</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" class="icheck"> Member 2</label>
-                </div>
+                <!--                <h1>  <%#= @members %></h1>-->
+                <h6>
+                  <%= f.input :by_members, as: :check_boxes, collection: @members,
+                              input_html: { multiple: true }, label: false %>
+                </h6>
 
                 <div class="mb-3">
                   <%= f.button :submit, "Go", class: "btn btn-primary" %>
                 </div>
 
                 <div class="padding"></div>
-
 
               </div>
 
