@@ -65,7 +65,7 @@
 
                 <!-- END FILTER BY CHART TYPE -->
                 <!-- BEGIN FILTER BY CATEGORY -->
-
+                <h1>  <%= @members %></h1>
                 <h6>
                   <%= f.input :by_members, as: :check_boxes, collection: @members,
                               input_html: { multiple: true }, label: false %>

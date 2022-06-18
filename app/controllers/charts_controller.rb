@@ -22,7 +22,7 @@ class ChartsController < ApplicationController
     @start_date = Date.civil(@start_date1.to_i, @start_date2.to_i, @start_date3.to_i)
     @end_date = Date.civil(@end_date1.to_i, @end_date2.to_i, @end_date3.to_i)
     @by_members = params_hash['/charts?method=post'].fetch('by_members')
-
+    @members = User.with_family(current_user.family_id).pluck(:name)
     @chart_data = if @object_for_analyze == 'Expences'
                     OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                                    .joins(:operation)
@@ -84,7 +84,6 @@ class ChartsController < ApplicationController
       User.with_family(current_user.family_id).where('name IN (?)', @by_members)
     else
       User.where('id = ?', current_user.id)
-
     end
   end
 end
