@@ -17,24 +17,24 @@ class OperationsController < ApplicationController
     @q = if params[:q][:operation_details_amount].to_i.positive? && params[:compare].present?
            case params[:compare]
            when '>='
-             Operation.with_family(current_user.family_id).with_amount_gteq(params[:q][:operation_details_amount])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_gteq(params[:q][:operation_details_amount])
                       .ransack(params[:q])
            when '>'
-             Operation.with_family(current_user.family_id).with_amount_gt(params[:q][:operation_details_amount])
-                      .ransack(params[:q])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_gt(params[:q][:operation_details_amount])
+                                                                                                       .ransack(params[:q])
            when '='
-             Operation.with_family(current_user.family_id).with_amount_eq(params[:q][:operation_details_amount])
-                      .ransack(params[:q])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_eq(params[:q][:operation_details_amount])
+                                                                                                       .ransack(params[:q])
            when '<='
-             Operation.with_family(current_user.family_id).with_amount_lteq(params[:q][:operation_details_amount])
-                      .ransack(params[:q])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_lteq(params[:q][:operation_details_amount])
+                                                                                                       .ransack(params[:q])
            when '<'
-             Operation.with_family(current_user.family_id).with_amount_lt(params[:q][:operation_details_amount])
-                      .ransack(params[:q])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_lt(params[:q][:operation_details_amount])
+                                                                                                       .ransack(params[:q])
            end
          else
 
-           Operation.with_family(current_user.family_id).ransack(params[:q])
+           Operation.with_user(current_user.id).or(Operation.with_family(current_user.family_id)).ransack(params[:q])
          end
     @operations = @q.result(distinct: true)
   end
@@ -120,7 +120,7 @@ class OperationsController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' unless @operation.user_id != current_user.id ||
+    render template: 'welcome/index' if @operation.user_id != current_user.id &&
       User.with_family(current_user.family_id).pluck(:id).include?(@operation.user_id)
   end
 end
