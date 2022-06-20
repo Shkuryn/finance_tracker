@@ -13,6 +13,7 @@ class User < ApplicationRecord
   belongs_to :family, optional: true
   has_one :family_parent, class_name: 'Family', foreign_key: 'parent_id'
   scope :with_family, ->(family_id) { where('family_id = ?', family_id) }
+  scope :with_email, ->(email) { where('email = ?', email) }
 
   def members
     members_i_sent_invitation = Invitation.where(user_id: id, confirmed: true).pluck(:member_id)
