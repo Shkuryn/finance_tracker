@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= render 'form', income: @income %>
-<%= link_to 'Back', incomes_path %>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @income.name %></h1>
+  <p class="lead">  <%= @income.description %></p>
+  <hr class="my-4">
+  <p> </p>
+  <br/>
+  <%= link_to 'List', incomes_path, class:"btn btn-outline-dark" %>
+</div>

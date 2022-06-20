@@ -1,4 +1,11 @@
-<h1>New Expence</h1>
-
-<%= render 'form', expences: @expence %>
-<%= link_to 'Back', expences_path %>
+<br/>
+<div class="card">
+  <div class="card-header">
+    <h4>New Expence</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', expences: @expence %>
+    <br/>
+    <%= link_to 'List', expences_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
