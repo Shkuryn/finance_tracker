@@ -1,10 +1,12 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
+
 RSpec.describe PlannedExpencesController, type: :controller do
   render_views
   let(:user) { FactoryBot.create :user }
-  let(:expence) {FactoryBot.create :expence, user_id: user.id}
-  let(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id) }
+  let(:expence) {FactoryBot.create(:expence, user_id: user.id) }
+  let(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id, id: 1) }
   let(:user2) { FactoryBot.create(:user, id: 2, name: 'Dmitry', surname: 'Usik', email: 'test@example.com') }
   let(:planned_expence2) { FactoryBot.create(:planned_expence2, user_id: user2.id, id: 2, amount: 20, expence_id: expence.id) }
   describe '#index' do
@@ -19,6 +21,26 @@ RSpec.describe PlannedExpencesController, type: :controller do
     it 'returns only current user planned expences' do
       login_user user
       expect(planned_expence.amount).to eq(10)
+    end
+    it 'returns only current user planned expences' do
+      login_user user
+      planned_expences = PlannedExpence.with_user(user.id)
+      expect(planned_expences).to eq(planned_expence)
+    end
+  end
+  describe '#show' do
+    it 'has a related heading when not signed in' do
+        get :index
+        expect(response.body).to match(/<h3> please login/im)
+        assert_template('welcome/index')
+    end
+  end
+  describe '#create' do
+    subject { FactoryBot.create(:planned_expence, user_id: user.id) }
+    it 'shoud create a new planned expence' do
+      login_user user
+      visit new_planned_expence_path
+      expect(page).to have_content('New Planned Expence') 
     end
   end
 end
