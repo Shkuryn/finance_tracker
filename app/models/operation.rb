@@ -11,7 +11,9 @@ class Operation < ApplicationRecord
   attr_accessor :remove_attached_image
 
   after_save :purge_attached_image, if: :remove_attached_image?
-
+  scope :with_family, lambda { |family_id|
+    where('user_id IN (?)', User.with_family(family_id).pluck(:id))
+  }
   # define the acceptable_image validation
   def acceptable_image
     return unless image.attached?
