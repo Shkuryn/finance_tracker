@@ -1,6 +1,10 @@
-<h1>Editing Expence</h1>
-
-<%= render 'form', income: @income %>
-
-<%= link_to 'Show', @income %> |
-<%= link_to 'Back', incomes_path %>
+<div class="card">
+  <div class="card-header">
+    <h4>Edit Income</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', income: @income %>
+    <%= link_to 'Delete', @income, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %>
+    <%= link_to 'List', incomes_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
