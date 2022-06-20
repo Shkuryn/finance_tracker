@@ -4,30 +4,18 @@
   <h3>Email:   <%=@user.email %></h3>
   <h4>List of family members:  </h4>
 
-  <%= render 'users/invitation_form.html.erb' %>
+  <%=render 'users/invitation_form.html.erb' %>
 
-  <div id="forms">
-    <%= form_tag users_path, :method=> "get" do %>
 
-      <%= label_tag :email, "Email" %>
-      <%= text_field_tag :email%>
+  <%= simple_form_for invitations_path method: :post  do |f| %>
 
-      <%= link_to "Send", invitations_path, :method=> "post"%>
-      <%= link_to "Clear Search", request.path, class:"cancel-button" %>
-    <% end %>
-  </div>
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email%>
 
-  <%= link_to 'Back', root_path %>
-  <%= link_to 'Add user to your family', root_path %>
+    <%= f.button :submit, "Send", class: "btn btn-primary" %>
+  <% end %>
+
 
 </div>
 
 
-<%= link_to 'Back', root_path %>
-<%= link_to 'Add user to your family', root_path %>
-
-<div class="container">
-    <!-- Navbar brand -->
-    <a class="navbar-brand me-2" href="/">
-      <%= image_tag('Bell.png', size: "100x100")  %>
-    </a>
