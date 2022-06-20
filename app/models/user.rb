@@ -13,6 +13,7 @@ class User < ApplicationRecord
   belongs_to :family, optional: true
   has_one :family_parent, class_name: 'Family', foreign_key: 'parent_id'
   scope :with_family, ->(family_id) { where('family_id = ?', family_id) }
+
   def members
     members_i_sent_invitation = Invitation.where(user_id: id, confirmed: true).pluck(:member_id)
     members_i_got_invitation = Invitation.where(member_id: id, confirmed: true).pluck(:user_id)
@@ -20,8 +21,17 @@ class User < ApplicationRecord
     User.where(id: ids)
   end
 
-  def family_member?(user)
-    Invitation.confirmed_record?(id, user.id)
+  # def family_member?(user)
+  #   Invitation.confirmed_record?(id, user.id)
+  # end
+  def family_member?
+    return false if family_id.blank?
+    id != Family.find(family_id).parent_id
+  end
+
+  def family_parent?
+    return false if family_id.blank?
+    id == Family.find(family_id).parent_id
   end
 
   def send_invitation(user)
@@ -33,4 +43,5 @@ class User < ApplicationRecord
     user = user.where("email LIKE ?", "%#{email}%")
     return user
   end
+
 end
