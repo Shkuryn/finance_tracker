@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h1 class="display-6">Invitation to the family</h1>
+  <br/>
+  <p class="lead"> From </p>
+  <hr class="my-4">
+  <p><%= %></p>
+
+  <%= link_to 'Accept',  invitation_path(type: 'true'), class:"btn btn-outline-success"%>
+  <%= link_to 'Decline',  invitation_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+</div>
