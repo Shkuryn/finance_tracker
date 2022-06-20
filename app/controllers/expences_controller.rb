@@ -56,7 +56,7 @@ class ExpencesController < ApplicationController
 
   # DELETE /expences/1 or /expences/1.json
   def destroy
-    return if @expence.predefined == true
+    return if @expence.predefined
 
     @expence.destroy
     respond_to do |format|

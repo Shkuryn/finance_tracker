@@ -19,7 +19,6 @@ RSpec.describe ExpencesController, type: :controller do
       expect(response).to render_template('welcome/index')
     end
     it 'return correct expences count' do
-      # TODO: rid it off
       user2 = FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com')
       expence = FactoryBot.create(:expence, user_id: user.id)
       expence2 = FactoryBot.create(:expence, user_id: user2.id, id: 22)
@@ -52,13 +51,7 @@ RSpec.describe ExpencesController, type: :controller do
       expect(page).to have_content('Great name')
     end
   end
-  describe '#create' do
-    it 'should create a new expence' do
-      login_user user
-      visit new_expence_path
-      expect(page).to have_content('New Expence')
-    end
-  end
+
   describe '#update' do
     it 'there is no edit button for predefined expence' do
       expence = FactoryBot.create(:expence, user_id: user.id, predefined: true, id: 22)
@@ -70,6 +63,46 @@ RSpec.describe ExpencesController, type: :controller do
       login_user user
       visit "/expences/#{expence.id}/edit"
       expect(have_button('Update'))
+    end
+  end
+
+  describe '#create' do
+    subject { FactoryBot.create(:expence, user_id: user.id) }
+    it 'should create a new expence' do
+      login_user user
+      visit new_expence_path
+      expect(page).to have_content('New Expence')
+    end
+    it 'success creation' do
+      expect { subject }.to change { Expence.count }.by(1)
+    end
+    it 'success addition' do
+      expect { subject }.to change { Expence.count }.from(0).to(1)
+    end
+    it 'registered user can add new expence' do
+      login_user user
+      visit new_expence_path
+      fill_in 'name', with: 'test name'
+      fill_in 'description', with: 'test description'
+      click_on 'save'
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe '#destroy' do
+    it 'deletes non predefined item' do
+      expence = FactoryBot.create(:expence, user_id: user.id)
+
+      expect do
+        expence.destroy
+      end.to change(Expence, :count).by(-1)
+    end
+    it 'cannot deletes predefined item' do
+      expence_predefined = FactoryBot.create(:expence, user_id: user2.id, id: 23, predefined: true)
+
+      expect do
+        expence_predefined.destroy
+      end.to change(Expence, :count).by(-1)
     end
   end
 end

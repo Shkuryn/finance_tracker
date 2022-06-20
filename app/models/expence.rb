@@ -7,4 +7,12 @@ class Expence < ApplicationRecord
   scope :with_user, ->(user_id) { where('user_id = ?', user_id) }
   scope :with_predefined, -> { where(predefined: true) }
   has_many :planned_expences, dependent: :delete_all
+  before_destroy :check_predefined
+
+  def check_predefined
+    if predefined
+      errors[:base] << 'cannot be deleted'
+      false
+    end
+  end
 end
