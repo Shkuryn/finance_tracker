@@ -4,16 +4,20 @@
   <h3>Email:   <%= @user.email %></h3>
   <h4>List of family members: </h4>
 
+  <% if @invitation.present? %>
   <%= render 'invitation/invitation_form.html.erb' %>
+  <% end %>
 
+  <% if not @family_member %>
   <%= render 'invitation/form' %>
+  <% end %>
 
   <%#= link_to 'Back', root_path %>
   <%#= link_to 'Add user to your family', root_path %>
 
 </div>
 <br> <br>
-
+<%= render 'users/family_form.html.erb' %>
 <%= link_to 'Back', root_path %>
 <%#= link_to 'Add user to your family', root_path %>
 
