@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class InvitationsController < ApplicationController
+  helper OperationsHelper
   before_action :set_invitation, only: %i[show edit update destroy]
   before_action :invitation_params, only: %i[show edit update destroy create]
 
@@ -11,8 +12,7 @@ class InvitationsController < ApplicationController
       redirect_to current_user, alert: 'Email does not exist!'
     elsif email == current_user.email
       redirect_to current_user, alert: 'You can not invite yourself!'
-    elsif member.family_member? || member.family_parent?
-      redirect_to current_user, alert: 'User is already in family!'
+
     else
 
       @invitation = Invitation.new(user_id: current_user.id, member_id: member.first.id)
