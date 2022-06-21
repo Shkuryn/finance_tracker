@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
-
-<%= render 'form', expences: @expence %>
-<%= link_to 'Back', expences_path %>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @expence.name %></h1>
+  <p class="lead">  <%= @expence.description %></p>
+  <hr class="my-4">
+  <p> </p>
+  <br/>
+  <%= link_to 'List',  expences_path, class:"btn btn-outline-dark" %>
+</div>

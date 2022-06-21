@@ -21,10 +21,10 @@
     <div class="Action">
       <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) != "new" %>
         <% if @expence.predefined == false %>
-          <%= form.button "Update ", id: 'update',  type: "submit", :class => "btn btn-primary" %>
+          <%= form.button "Update ", id: 'update',  type: "submit", :class => "btn btn-outline-info" %>
         <% end %>
       <% else %>
-        <%= form.button "Create ", name: 'save', type: "submit", :class => "btn btn-primary" %>
+        <%= form.button "Create ", name: 'save', type: "submit", :class => "btn btn-outline-info" %>
       <% end %>
     </div>
   </div>

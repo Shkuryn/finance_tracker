@@ -1,7 +1,12 @@
-<h1>Welcome <%= @username %>!</h1>
-
 <% if  not user_signed_in? %>
-  <h3> please login for enjoy this app :) </h3>
+
+  <div class="jumbotron">
+    <h1 class="display-4">Finance Tracker</h1>
+    <p class="lead">Control your assets, conveniently!</p>
+    <hr class="my-4">
+    <p>To use this app, please Sign Up or Log in</p>
+    <br/><br/>
+  </div>
 
 <% end %>
 
