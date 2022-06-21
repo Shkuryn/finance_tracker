@@ -18,9 +18,9 @@
         <tr>
           <th class="block" style="width:70%"><%= sort_link(@q, :name) %></th>
           <th class="block" style="width:10%"></th>
-          <th class="block" style="width:10%"></th>
-          <th class="block" style="width:10%"></th>
-          </tr>
+          <!--          <th class="block" style="width:10%"></th>-->
+          <!--          <th class="block" style="width:10%"></th>-->
+        </tr>
         </thead>
 
         <tbody>
@@ -32,6 +32,7 @@
         <% end %>
             <td><%= expence.name %></td>
             <td><%= link_to 'Show', expence %></td>
+
           <% if not expence.predefined? %>
             <td><%= link_to 'Edit', edit_expence_path(expence) %></td>
             <td> <%= link_to 'Destroy', expence, method: :delete, data: { confirm: 'Are you sure?' },
