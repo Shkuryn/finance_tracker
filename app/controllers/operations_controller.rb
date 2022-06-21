@@ -121,6 +121,6 @@ class OperationsController < ApplicationController
 
   def check_user_owner
     render template: 'welcome/index' if @operation.user_id != current_user.id &&
-      User.with_family(current_user.family_id).pluck(:id).include?(@operation.user_id)
+      User.with_family(current_user.family_id).pluck(:id).include?(@operation.user_id).blank?
   end
 end
