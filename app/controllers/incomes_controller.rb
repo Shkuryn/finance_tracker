@@ -2,11 +2,12 @@
 
 class IncomesController < ApplicationController
   before_action :set_income, only: %i[show edit update destroy]
-  before_action :check_user_signed, only: %i[show new edit update destroy]
+  before_action :check_user_signed, only: %i[show new edit update destroy index]
+  before_action :check_user_owner, only: %i[show edit]
 
   # GET /incomes
   def index
-    @q = Income.where(predefined: true).or(Income.with_user(current_user.id)).ransack(params[:q]) unless current_user.nil?
+    @q = Income.where(predefined: true).or(Expence.with_user(current_user.id)).or(Income.with_family(current_user.family_id)).ransack(params[:q]) unless current_user.nil?
     @incomes = @q.result(distinct: true)
   end
 
@@ -79,5 +80,9 @@ class IncomesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def income_params
     params.require(:income).permit(:name, :description, :id, :user_id)
+  end
+
+  def check_user_owner
+    render template: 'welcome/index' if @income.user_id != current_user.id && !@income.predefined
   end
 end

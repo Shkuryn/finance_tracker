@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   # get 'charts/show'
   get 'dashboard/show'
   resources :users
-  resources :invitations, only: %i[update create destroy]
+  resources :invitations, only: %i[new show index update create destroy]
 end

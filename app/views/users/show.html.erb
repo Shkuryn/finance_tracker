@@ -1,15 +1,26 @@
-<h1>Name:   <%=@user.name %></h1>
-<h2>Surname:   <%=@user.surname %></h2>
-<h3>Email:   <%=@user.email %></h3>
-<h4>List of family members:  </h4>
+<div style="width: 40vw; height: 20vh">
+  <h1>Name:   <%= @user.name %></h1>
+  <h2>Surname:   <%= @user.surname %></h2>
+  <h3>Email:   <%= @user.email %></h3>
+  <h4>List of family members: </h4>
+
+  <%= render 'invitation/invitation_form.html.erb' %>
+
+  <%= render 'invitation/form' %>
+
+  <%#= link_to 'Back', root_path %>
+  <%#= link_to 'Add user to your family', root_path %>
+
+</div>
+<br> <br>
 
 <%= link_to 'Back', root_path %>
-<%= link_to 'Add user to your family', root_path %>
+<%#= link_to 'Add user to your family', root_path %>
 
-<div class="container">
-    <!-- Navbar brand -->
-    <a class="navbar-brand me-2" href="/">
-      <%= image_tag('Bell.png', size: "100x100")  %>
-    </a>
+<!--<div class="container">-->
 
+<!--    <a class="navbar-brand me-2" href="/">-->
+<%#= image_tag('Bell.png', size: "100x100")  %>
+<!--    </a>-->
+<!--</div>-->
 

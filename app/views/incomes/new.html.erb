@@ -1,4 +1,11 @@
-<h1>New Income</h1>
-
-<%= render 'form', income: @income %>
-<%= link_to 'Back', incomes_path %>
+<br/>
+<div class="card">
+  <div class="card-header">
+    <h4>New Income</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', income: @income %>
+    <br/>
+    <%= link_to 'List', incomes_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
