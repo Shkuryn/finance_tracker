@@ -68,20 +68,20 @@ RSpec.describe PlannedExpencesController, type: :controller do
       expect do
         planned_expence.destroy
       end.to change(PlannedExpence, :count).by(-1)
-      expect(response).not_to be_redirect
+      expect(response).to be_redirect_to(planned_expences_path)
     end
   end
 
   describe '#update' do
     context 'with good data' do
       it 'updates planned_expence and redirects' do
-        patch :update, id: @planned_expence.id, planned_expence: { description: 'test_description_updated', amount: 100 }
-        expect(response).to be_redirect
+        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 100 }
+        expect(response).to be_redirect_to(planned_expence_path(planned_expence))
       end
     end
     context 'with bad data' do
       it 'does not change planned_expence, and re-renders the form' do
-        patch :update, id: @planned_expence.id, planned_expence: { description: 'test_description_updated', amount: 'bad_value' }
+        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 'bad_value' }
         expect(response).not_to be_redirect
       end
     end
