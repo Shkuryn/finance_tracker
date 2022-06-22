@@ -14,12 +14,13 @@
   <div class="field">
     <%= form.label :date %>
     <% if not @safari && self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) == "new" %>
-    <%= form.datetime_field :date, :value => Time.now.strftime('%Y-%m-%dT%H:%M:%S') %>
+      <%= form.datetime_field :date, :value => Time.now.strftime('%Y-%m-%dT%H:%M:%S') %>
     <% else %>
-    <%= form.datetime_field :date %>
+      <%= form.datetime_field :date %>
     <% end %>
     <%= form.label :ignore %>
-    <%= form.check_box :marked %>
+    <%= form.check_box :marked, class: "form-check-label",
+                       title: "will not be taken into account when calculating totals if checked", data: { tooltip: true } %>
   </div>
 
   <%= form.label :image %>
