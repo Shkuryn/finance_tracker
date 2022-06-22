@@ -24,22 +24,24 @@
         <%= f.label 'date between:' %>
         <%= f.date_field :date_gteq, 'datepicker' => true %>
         <%= f.date_field :date_lteq, 'datepicker' => true %>
+        <%= f.label 'Author:' %>
+        <%= f.search_field :user_name_cont, size: 12 %>
+        <%= f.label 'amount:' %>
+        <select name="compare" id="compare">
+          <option disabled selected value></option>
+          <option value="="> =</option>
+          <option value=">="> >=</option>
+          <option value="<="> <=</option>
+          <option value=">"> ></option>
+          <option value="<"> <</option>
+        </select>
+
+        <%= f.search_field :operation_details_amount, size: 8, :input_html => { :type => "number" } %>
+        <%= f.submit %>
       </div>
     </div>
-    <%= f.label 'Author:' %>
-    <%= f.search_field :user_name_cont, size: 8 %>
-    <%= f.label 'amount:' %>
-    <select name="compare" id="compare">
-      <option disabled selected value></option>
-      <option value="="> =</option>
-      <option value=">="> >=</option>
-      <option value="<="> <=</option>
-      <option value=">"> ></option>
-      <option value="<"> <</option>
-    </select>
 
-    <%= f.search_field :operation_details_amount, size: 8, :input_html => { :type =>"number"} %>
-    <%= f.submit %>
+
   <% end %>
   <div class="form-group">
 

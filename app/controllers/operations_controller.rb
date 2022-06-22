@@ -20,16 +20,16 @@ class OperationsController < ApplicationController
              Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_gteq(params[:q][:operation_details_amount])
                       .ransack(params[:q])
            when '>'
-             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_gt(params[:q][:operation_details_amount])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_gt(params[:q][:operation_details_amount])
                                                                                                        .ransack(params[:q])
            when '='
-             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_eq(params[:q][:operation_details_amount])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_eq(params[:q][:operation_details_amount])
                                                                                                        .ransack(params[:q])
            when '<='
-             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_lteq(params[:q][:operation_details_amount])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_lteq(params[:q][:operation_details_amount])
                                                                                                        .ransack(params[:q])
            when '<'
-             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id))..with_amount_lt(params[:q][:operation_details_amount])
+             Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_lt(params[:q][:operation_details_amount])
                                                                                                        .ransack(params[:q])
            end
          else
