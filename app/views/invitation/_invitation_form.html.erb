@@ -3,7 +3,7 @@
   <br/>
   <p class="lead"> From <%= author(@invitations.first.user_id)%> </p>
   <hr class="my-4">
-  <p><%= %></p>
+  <p></p>
 
   <%= link_to 'Accept', "/invitations/#{@invitations.first.id}", action: "update", method: "put ", class: "btn btn-outline-success" %>
   <%= link_to 'Decline', "/invitations/#{@invitations.first.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
