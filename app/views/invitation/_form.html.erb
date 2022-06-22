@@ -1,7 +1,9 @@
 <%= simple_form_for @invitation, method: :post do |f| %>
 
-  <%= f.label :email, "Email" %>
+  <%= f.label :email, "Email for invitation" %>
   <%= f.text_field :email %>
 
   <%= f.button :submit, "Send", class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to 'Back', root_path %>
