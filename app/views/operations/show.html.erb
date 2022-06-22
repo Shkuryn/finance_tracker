@@ -7,7 +7,7 @@
 
 <p>
   <strong>Attachment:</strong>
-  <%= image_tag(@operation.image, title: @operation.image.filename) if @operation.image.present? %>
+  <%= image_tag(@operation.image, title: @operation.image.filename, size: "400x400") if @operation.image.present? %>
 </p>
 
 <p>
@@ -27,7 +27,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @operation.user_id %>
+  <%= author(@operation.user_id)%>
 </p>
 
 <%= link_to 'Edit', edit_operation_path(@operation) %> |
