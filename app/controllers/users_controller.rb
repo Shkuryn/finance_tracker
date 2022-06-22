@@ -3,11 +3,12 @@
 class UsersController < ApplicationController
 
   before_action :check_user_signed
+  around_action :user_not_found
 
   def show
     @user = User.find(params[:id])
     if current_user != @user
-      redirect_to root_url, alert: "Sorry, This Profile belongs to someone else !"
+      redirect_to current_user, alert: "Sorry, This Profile belongs to someone else !"
     end
     @invitation = Invitation.new
   end
@@ -18,7 +19,6 @@ class UsersController < ApplicationController
   end
 end
 
-
   private
 
   def check_user_signed
@@ -27,4 +27,10 @@ end
 
   def user_params
     params.require(:user).permit(:id)
+  end
+
+  def user_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to current_user,:flash => { :alert => "User not found." }
   end
