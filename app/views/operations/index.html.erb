@@ -1,24 +1,41 @@
+<style>
+    .calender-span {
+        float: right;
+        margin-right: 6px;
+        margin-top: -20px;
+        position: relative;
+        z-index: 2;
+        color: red;
+    }
+
+</style>
 <p id="notice"><%= notice %></p>
 <div class="container .text-primary">
   <h1 class="text-primary">Operations</h1>
 </div>
 <div class="container">
   <%= search_form_for @q do |f| %>
-    <%= f.label 'Comment:' %>
-    <%= f.search_field :comment_cont, size: 8 %>
-    <%= f.label 'date between:' %>
-    <%= f.search_field :date_gteq, size: 8 %>
-    <%= f.search_field :date_lteq, size: 8 %>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label 'Comment:' %>
+        <%= f.search_field :comment_cont, size: 16 %>
+        <%= f.label 'date between:' %>
+        <%= f.date_field :date_gteq, 'datepicker' => true %>
+        <%= f.date_field :date_lteq, 'datepicker' => true %>
+      </div>
+    </div>
     <%= f.label 'Author:' %>
     <%= f.search_field :user_name_cont, size: 8 %>
     <%= f.label 'amount:' %>
-    <select name="compare" id= "compare">
-      <option disabled selected value>  </option>
-      <option value="="> = </option>
-      <option value=">=" > >= </option>
-      <option value="<="> <= </option>
-      <option value=">"> > </option>
-      <option value="<"> < </option>
+    <select name="compare" id="compare">
+      <option disabled selected value></option>
+      <option value="="> =</option>
+      <option value=">="> >=</option>
+      <option value="<="> <=</option>
+      <option value=">"> ></option>
+      <option value="<"> <</option>
     </select>
 
     <%= f.search_field :operation_details_amount, size: 8, :input_html => { :type =>"number"} %>
@@ -31,50 +48,50 @@
     <div class="col-md-8">
 <table class="table table-bordered table-sm">
   <thead>
-    <tr>
-      <th></th>
-      <th>#</th>
-      <th class="block" style="width:33%"> <%= sort_link(@q, :date) %> </th>
-      <th class="block" style="width:3%"> <%= sort_link(@q, :marked) %> </th>
-      <th class="block" style="width:50%"> <%= sort_link(@q, :comment) %></th>
-      <th class="block" style="width:20%"> <%= sort_link(@q, :user_id) %> </th>
-      <th class="block" style="width:15%"> <%= sort_link(@q, :amount) %></th>
+  <tr>
+    <th></th>
+    <th>#</th>
+    <th class="block" style="width:33%"> <%= sort_link(@q, :date) %> </th>
+    <th class="block" style="width:3%"> <%= sort_link(@q, :marked) %> </th>
+    <th class="block" style="width:50%"> <%= sort_link(@q, :comment) %></th>
+    <th class="block" style="width:20%"> <%= sort_link(@q, :user_id) %> </th>
+    <th class="block" style="width:15%"> <%= sort_link(@q, :amount) %></th>
 
-    </tr>
+  </tr>
   </thead>
 
   <tbody>
-    <% @operations.each do |operation| %>
+  <% @operations.each do |operation| %>
     <% if operation.marked? %>
-     <tr class="strikeout">
+      <tr class="strikeout">
     <% else %>
       <tr>
     <% end %>
-        <% if operation.operation_type == 1 %>
-        <td><%= image_tag('plus.png', size: "24x24")  %></td>
+    <% if operation.operation_type == 1 %>
+      <td><%= image_tag('plus.png', size: "24x24")  %></td>
     <% else %>
       <td><%= image_tag('minus.png', size: "24x24")  %></td>
-       <% end %>
-        <td><%= operation.id %></td>
-        <td><%= operation.date.strftime('%a, %d %b %Y %H:%M:%S') %></td>
-        <% if operation.marked? %>
-          <td class="img-responsive center-block d-block mx-auto">
-          v
-        <% else %>
-          <td>
-        <% end %>
-        <td><%= operation.comment %></td>
-        <td><%= author(operation.user_id) %></td>
-       <% if operation.operation_type == 1 %>
-        <td style="color: green;"><%= operation_sum(operation.id) %></td>
-       <% else %>
-      <td style="color: red;"><%= operation_sum(operation.id) %></td>
-       <% end %>
-        <td><%= link_to 'Show', operation %></td>
-        <td><%= link_to 'Edit', edit_operation_path(operation) %></td>
-        <td><%= link_to 'Destroy', operation, method: :delete, data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%></td>
-      </tr>
     <% end %>
+    <td><%= operation.id %></td>
+    <td><%= operation.date.strftime('%a, %d %b %Y %H:%M:%S') %></td>
+    <% if operation.marked? %>
+      <td class="img-responsive center-block d-block mx-auto">
+        v
+    <% else %>
+      <td>
+    <% end %>
+    <td><%= operation.comment %></td>
+    <td><%= author(operation.user_id) %></td>
+    <% if operation.operation_type == 1 %>
+      <td style="color: green;"><%= operation_sum(operation.id) %></td>
+    <% else %>
+      <td style="color: red;"><%= operation_sum(operation.id) %></td>
+    <% end %>
+    <td><%= link_to 'Show', operation %></td>
+    <td><%= link_to 'Edit', edit_operation_path(operation) %></td>
+    <td><%= link_to 'Destroy', operation, method: :delete, data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
     </div>
