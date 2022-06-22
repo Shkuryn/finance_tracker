@@ -17,6 +17,7 @@ class UsersController < ApplicationController
                   else
                     Invitation.new
                   end
+    @new_invitation = Invitation.new
   end
 
   def index
