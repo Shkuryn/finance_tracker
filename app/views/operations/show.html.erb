@@ -12,7 +12,7 @@
 
 <p>
   <strong>Marked:</strong>
-  <%= @operation.marked %>
+  <%= @operation.marked == false ? "No" : "Yes" %>
 </p>
 
 <p>
@@ -21,13 +21,8 @@
 </p>
 
 <p>
-  <strong>Id:</strong>
-  <%= @operation.id %>
-</p>
-
-<p>
   <strong>User:</strong>
-  <%= author(@operation.user_id)%>
+  <%= author(@operation.user_id) %>
 </p>
 
 <%= link_to 'Edit', edit_operation_path(@operation) %> |
