@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  helper OperationsHelper
 
   before_action :check_user_signed
   around_action :user_not_found
@@ -10,14 +11,20 @@ class UsersController < ApplicationController
     if current_user != @user
       redirect_to current_user, alert: "Sorry, This Profile belongs to someone else !"
     end
-    @invitation = Invitation.new
+    @invitations = Invitation.where(member_id: current_user.id, confirmed: false)
+
+    @invitation = if Invitation.first.present?
+                    Invitation.first
+                  else
+                    Invitation.new
+                  end
   end
 
   def index
     @users = User.all
     @users = @users.emails(params[:email]) if params[:email].present?
   end
-end
+
 
   private
 
@@ -34,3 +41,4 @@ end
   rescue ActiveRecord::RecordNotFound
     redirect_to current_user,:flash => { :alert => "User not found." }
   end
+end
