@@ -27,7 +27,7 @@ class PlannedExpencesController < ApplicationController
 
     respond_to do |format|
       if @planned_expence.save
-        PlannedExpenceMailer.delay(run_at: @planned_expence.date).notification_about_expence(@user)
+        PlannedExpenceMailer.delay(run_at: @planned_expence.date).notification_about_expence(@user, @planned_expence)
         format.html { redirect_to planned_expence_url(@planned_expence), notice: 'Planned Expence was successfully created.' }
         format.json { render :show, status: :created, location: @planned_expence }
       else
