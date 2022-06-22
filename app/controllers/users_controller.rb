@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       redirect_to current_user, alert: "Sorry, This Profile belongs to someone else !"
     end
     @invitations = Invitation.where(member_id: current_user.id, confirmed: false)
-
     @invitation = if Invitation.first.present?
                     Invitation.first
                   else
