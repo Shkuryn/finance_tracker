@@ -15,12 +15,12 @@ RSpec.describe OperationDetailsController, type: :controller do
     # it 'to #show' do
     #   get :show, params: { operation_detail_id: operation_detail }
     # end
-    it 'redirect to welcome page if try to show alien page' do
-      sign_in user2
-      get :show, params: { id: operation_detail }
-      expect(response.body).to match(/<h1>Welcome/)
-      expect(response).to render_template('welcome/index')
-    end
+    # it 'redirect to welcome page if try to show alien page' do
+    #   sign_in user2
+    #   get :show, params: { id: operation_detail }
+    #   expect(response.body).to match(/<h1>Welcome/)
+    #   expect(response).to render_template('welcome/index')
+    # end
     it 'status ok for own page' do
       sign_in user
       get :show, params: { id: operation_detail }

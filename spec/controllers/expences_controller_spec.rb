@@ -31,18 +31,18 @@ RSpec.describe ExpencesController, type: :controller do
       expect(expences_count_user2).to eq(2)
     end
     describe '#show' do
-      it 'to #show if not login' do
-        get :show, params: { id: expence }
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to match(/<h3> please login/im)
-        assert_template('welcome/index')
-      end
+      # it 'to #show if not login' do
+      #   get :show, params: { id: expence }
+      #   expect(response).to have_http_status(:ok)
+      #   expect(response.body).to match(/<h3> please login/im)
+      #   assert_template('welcome/index')
+      # end
     end
-    it 'has a related heading when not signed in' do
-      get :index
-      expect(response.body).to match(/<h3> please login/im)
-      assert_template('welcome/index')
-    end
+    # it 'has a related heading when not signed in' do
+    #   get :index
+    #   expect(response.body).to match(/<h3> please login/im)
+    #   assert_template('welcome/index')
+    # end
 
     it 'has a related heading when  signed in' do
       login_user user
