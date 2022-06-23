@@ -2,8 +2,9 @@
 
 FactoryBot.define do
   factory :invitation do
-    user { nil }
-    member_id { 1 }
+    id { 1 }
+    user_id { nil }
+    member_id { nil }
     confirmed { false }
   end
 end
