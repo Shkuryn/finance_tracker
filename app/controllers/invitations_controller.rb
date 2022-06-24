@@ -2,8 +2,8 @@
 
 class InvitationsController < ApplicationController
   helper OperationsHelper
-  before_action :set_invitation, only: %i[show edit update destroy]
-  before_action :invitation_params, only: %i[show edit update destroy create]
+  before_action :set_invitation, only: %i[show edit destroy]
+  before_action :invitation_params, only: %i[show edit destroy create]
 
   def create
     email = params[:invitation][:email]
@@ -30,14 +30,17 @@ class InvitationsController < ApplicationController
   end
 
   def destroy
-    invitation = Invitation.find(params[:invitation_id])
+    invitation = Invitation.find(params[:id])
     invitation.destroy
     redirect_to current_user
   end
 
   def update
-    invitation = Invitation.find(params[:invitation_id])
+
+    invitation = Invitation.find(params[:id])
     invitation.update(confirmed: true)
+    family = create_family(invitation)
+    update_family_attributes(family, invitation)
     redirect_to current_user
   end
 
@@ -49,5 +52,31 @@ class InvitationsController < ApplicationController
 
   def invitation_params
     params.require(:invitation).permit(:user_id, :member_id, :confirmed, :id, :email)
+  end
+
+  def create_family(invitation)
+    parent = User.find(invitation.user_id)
+    if parent.family_id.blank?
+      family = Family.new
+      family.parent_id = parent.id
+      family.name = "#{parent.surname}'s family"
+      family.save
+    else
+      family = Family.find(parent.family_id)
+    end
+    family
+  end
+
+  def update_family_attributes(family, invitation)
+
+    parent = User.find(invitation.user_id)
+    if parent.family_id.blank?
+      parent.family_id = family.id
+      parent.save
+    end
+
+    member = User.find(invitation.member_id)
+    member.family_id = family.id
+    member.save
   end
 end
