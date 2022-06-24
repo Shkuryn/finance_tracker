@@ -2,4 +2,8 @@
 
 module ApplicationHelper
   include OperationsHelper
+  def username(user_id)
+    user = User.find(user_id)
+    "#{user.name}"
+  end
 end

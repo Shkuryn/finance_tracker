@@ -13,10 +13,7 @@
 </head>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-
 <body>
-
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!-- Container wrapper -->
@@ -68,8 +65,9 @@
 
       <div class="d-flex align-items-center">
         <% if user_signed_in? %>
-        <button type="button" class="btn btn-info me-3" >
-            <%= link_to 'Profile', current_user,  style: 'color:#FFFFFF;', class: "text-decoration-none"%>
+          <span class="navbar-text" style="margin-right: 10px">Hi, <%= username(current_user.id)%>!</span>
+          <button type="button" class="btn btn-info me-3" >
+            <%= link_to  'Profile', current_user,  style: 'color:#FFFFFF;', class: "text-decoration-none"%>
         </button>
 
         <button type="button" class="btn btn-info me-3" >
@@ -94,8 +92,6 @@
   </div>
   <!-- Container wrapper -->
 </nav>
-<!-- Navbar -->
-<%#= button_to 'Exit', destroy_user_session_path, method: :delete %>
 <%= yield %>
 </body>
 </html>
