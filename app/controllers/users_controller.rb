@@ -18,6 +18,7 @@ class UsersController < ApplicationController
                     Invitation.new
                   end
     @new_invitation = Invitation.new
+    @family = User.with_family(current_user.family_id)
   end
 
   def index

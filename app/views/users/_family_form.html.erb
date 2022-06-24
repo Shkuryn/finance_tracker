@@ -1,0 +1,32 @@
+<div class="jumbotron row-cols-md-4">
+  <h5> My family:</h5>
+
+  <table class="table table-bordered table-sm">
+    <thead>
+    <tr>
+
+      <th scope="col">name</th>
+      <th scope="col">surname</th>
+      <th scope="col">email</th>
+      <th scope="col">parent</th>
+
+    </tr>
+    </thead>
+
+    <% @family.each do |f| %>
+      <div class="row-cols-md-4">
+        <tr>
+          <td><%= f.name %></td>
+          <td><%= f.surname %></td>
+          <td><%= f.email %></td>
+          <% if f.family_parent? %>
+            <td><%= image_tag('flag.png', size: "24x24") %></td>
+          <% end %>
+          <td></td>
+    <% end %>
+    </tr>
+
+    </div>
+  </table>
+
+</div>
