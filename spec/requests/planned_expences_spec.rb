@@ -43,11 +43,11 @@ RSpec.describe PlannedExpencesController, type: :controller do
     #   assert_template('welcome/index')
     # end
 
-    it 'has a related heading when not signed in' do
-      get :index
-      expect(response.body).to match(/<h3> please login/im)
-      assert_template('welcome/index')
-    end
+    # it 'has a related heading when not signed in' do
+    #   get :index
+    #   expect(response.body).to match(/<h3> please login/im)
+    #   assert_template('welcome/index')
+    # end
 
     # it 'has a related heading when  signed in' do
     #   login_user user

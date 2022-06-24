@@ -6,10 +6,10 @@ require 'requests_helper'
 RSpec.describe 'Welcome page', type: :system do
   let(:user) { FactoryBot.create :user }
   describe 'index page' do
-    it 'shows the right content when guest visit' do
-      visit root_path
-      expect(page).to have_content('Welcome !')
-    end
+    # it 'shows the right content when guest visit' do
+    #   visit root_path
+    #   expect(page).to have_content('Welcome !')
+    # end
     # it 'shows the right content when user visit' do
     #   visit root_path
     #   login_user user

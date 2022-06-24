@@ -7,12 +7,17 @@ class InvitationsController < ApplicationController
 
   def create
     email = params[:invitation][:email]
-    member = User.with_email(email)
-    if member.blank?
+    members = User.with_email(email)
+    if members.blank?
       redirect_to current_user, alert: 'Email does not exist!'
     elsif email == current_user.email
       redirect_to current_user, alert: 'You can not invite yourself!'
-
+    elsif members.first.family_id.present? && members.first.family_id == current_user.family_id
+      redirect_to current_user, alert: "User #{members.first.email} already in your family"
+    elsif members.first.family_id.present? && members.first.family_id != current_user.family_id
+      redirect_to current_user, alert: "User #{members.first.email} belongs to other family"
+    elsif Invitation.find_invitation(current_user.id, members.first.id).present?
+      redirect_to current_user, alert: "Invitation was created before"
     else
 
       @invitation = Invitation.new(user_id: current_user.id, member_id: member.first.id)
@@ -79,4 +84,5 @@ class InvitationsController < ApplicationController
     member.family_id = family.id
     member.save
   end
+
 end
