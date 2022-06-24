@@ -44,6 +44,7 @@ RSpec.describe InvitationsController, type: :controller do
     params = { :id => 1 }
 
     it 'success set' do
+      # get invitation_path(invitation)
       @invitation = Invitation.find(params[:id])
       expect(@invitation).present?
     end
