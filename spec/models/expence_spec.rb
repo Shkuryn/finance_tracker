@@ -6,6 +6,7 @@ RSpec.describe Expence, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @expence = FactoryBot.build(:expence, user_id: @user.id)
+    @expence_predefined = FactoryBot.build(:expence, user_id: @user.id, predefined: true)
   end
 
   describe '#create' do
@@ -41,6 +42,16 @@ RSpec.describe Expence, type: :model do
         @expence.user_id = '999'
         expect(@expence).not_to be_valid
       end
+    end
+  end
+
+  describe "#check_predefined" do
+    it 'returns false when predefined' do
+      expect(@expence_predefined.check_predefined).to eq(false)
+    end
+
+    it 'returns nil when regular' do
+      expect(@expence.check_predefined).to eq(nil)
     end
   end
   after do
