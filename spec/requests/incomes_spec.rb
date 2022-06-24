@@ -20,12 +20,12 @@ RSpec.describe IncomesController, type: :controller do
     # end
 
     describe '#show' do
-      it 'to #show if not login' do
-        get :show, params: { id: income }
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to match(/<h3> please login/im)
-        assert_template('welcome/index')
-      end
+      # it 'to #show if not login' do
+      #   get :show, params: { id: income }
+      #   expect(response).to have_http_status(:ok)
+      #   expect(response.body).to match(/<h3> please login/im)
+      #   assert_template('welcome/index')
+      # end
     end
     # it 'has a related heading when not signed in' do
     #   get :index
