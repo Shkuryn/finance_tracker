@@ -1,10 +1,22 @@
-<div class="card">
+<br/>
+<div class="container" style="width: 1000px">
+  <div class="card">
   <div class="card-header">
     <h4>Edit Profile <% resource_name.to_s.humanize %></h4>
   </div>
   <div class="card-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field form-group">
+        <%=f.label :name %><br />
+        <%= f.text_field :name, class:"form-control", placeholder: "Name", autofocus: true, autocomplete: "name" %>
+      </div>
+
+      <div class="field form-group">
+        <%=f.label :surname %><br />
+        <%= f.text_field :surname, class:"form-control", placeholder: "Surname", autofocus: true, autocomplete: "surname" %>
+      </div>
 
       <div class="field form-group">
         <%=f.label :email %><br />
@@ -40,6 +52,7 @@
   </div>
 </div>
 
+
 <br/><br/>
 
 <div class="card">
@@ -51,5 +64,7 @@
     <p class="card-text"><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-danger' %></p>
   </div>
 </div>
+
 <br/>
 <%= link_to "Back", :back %>
+</div>
