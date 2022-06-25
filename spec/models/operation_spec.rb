@@ -117,7 +117,5 @@ RSpec.describe Operation, type: :model do
       expect(subject.errors.full_messages.to_s).to include('size 12.99 MB exceeds 1 MB limit')
     end
   end
-  # after d
-  #   @user.destroy
-  # end
+ 
 end
