@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :operation do
-    id { '1' }
+    id { 1 }
     comment { 'comment for operation' }
     marked { false }
     date { 1.days.ago }
