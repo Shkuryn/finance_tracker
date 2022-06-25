@@ -48,7 +48,7 @@ class ChartsController < ApplicationController
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   def members_id
