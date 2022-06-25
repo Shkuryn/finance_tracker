@@ -36,8 +36,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
     it 'has a related heading when not signed in' do
       allow(controller).to receive(:signed_in?).and_return(false)
       get :index
-      expect(response.body).to match(/<h3> please login/im)
-      assert_template('welcome/index')
+      expect(response).to be_redirect
     end
   end
 
