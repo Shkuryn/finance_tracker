@@ -69,7 +69,7 @@ class IncomesController < ApplicationController
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -83,6 +83,6 @@ class IncomesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @income.user_id != current_user.id && !@income.predefined
+    render 'welcome/index' if @income.user_id != current_user.id && !@income.predefined
   end
 end

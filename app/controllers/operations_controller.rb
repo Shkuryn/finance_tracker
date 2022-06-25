@@ -101,7 +101,7 @@ class OperationsController < ApplicationController
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -120,7 +120,7 @@ class OperationsController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @operation.user_id != current_user.id &&
+    render 'welcome/index' if @operation.user_id != current_user.id &&
       User.with_family(current_user.family_id).pluck(:id).include?(@operation.user_id).blank?
   end
 end

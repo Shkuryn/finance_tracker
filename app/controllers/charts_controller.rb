@@ -42,7 +42,7 @@ class ChartsController < ApplicationController
                                    .group(:name).sum(:amount)
                                    .sort_by { |_key, value| value }.reverse.to_h
                   end
-    render template: 'charts/index'
+    render 'charts/index'
   end
 
   private

@@ -85,7 +85,7 @@ class OperationDetailsController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @operation.user_id != current_user.id
+    render 'welcome/index' if @operation.user_id != current_user.id
   end
 
   def check_params
