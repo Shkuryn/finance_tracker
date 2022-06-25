@@ -47,7 +47,6 @@ class PlannedExpencesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @planned_expence.destroy
 
     respond_to do |format|

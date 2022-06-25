@@ -64,23 +64,24 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#destroy' do
-     it 'deletes item' do
-       user = FactoryBot.create(:user)
-       expence = FactoryBot.create(:expence, user_id: user.id)
-       planned_expence = FactoryBot.create(:planned_expence, expence_id: expence.id, user_id: user.id)
-       expect do
-         planned_expence.destroy
-       end.to change(PlannedExpence, :count).by(-1)
-     end
-
+    let(:user) { FactoryBot.create :user }
+    let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
+    let!(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id) }
+    
+    it 'deletes a planned_expence' do
+      expect{
+        planned_expence.destroy
+      }.to change {PlannedExpence.count}.by(-1)
+      expect(response).to have_content('#')
+    end
   end
 
   describe '#update' do
     context 'with good data' do
-      # it 'updates planned_expence and redirects' do
-      #   patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 100 }
-      #   expect(response).to be_redirect_to(planned_expence_path(planned_expence))
-      # end
+      it 'updates planned_expence and redirects' do
+        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 100 }
+        expect(response).to be_redirect_to(planned_expence_path(planned_expence))
+      end
     end
     context 'with bad data' do
       it 'does not change planned_expence, and re-renders the form' do
