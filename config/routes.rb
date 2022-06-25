@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'dashboard#show'
   resources :operations do
-    resources :operation_details, shallow: true
+    resources :operation_details, shallow: true, except: [:index]
   end
   resources :incomes
   resources :expences
