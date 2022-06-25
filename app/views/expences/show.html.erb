@@ -5,7 +5,8 @@
   <p class="lead">  <%= @expence.description %></p>
   <hr class="my-4">
   <p> </p>
-  <br/>
+  <br/><br/>
+  <%= link_to 'Edit', edit_expence_path(@expence), class:"btn btn-outline-info"%>
   <%= link_to 'List',  expences_path, class:"btn btn-outline-dark" %>
 </div>
 </div>
