@@ -45,7 +45,7 @@ RSpec.describe Expence, type: :model do
     end
   end
 
-  describe "#check_predefined" do
+  describe '#check_predefined' do
     it 'returns false when predefined' do
       expect(@expence_predefined.check_predefined).to eq(false)
     end

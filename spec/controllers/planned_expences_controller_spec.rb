@@ -81,7 +81,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
     end
     context 'with bad data' do
       it 'does not change planned_expence, and re-renders the form' do
-        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 'bad_value' }
+        patch :update, params: { id: planned_expence.id, description: 'test_description_updated', amount: 'bad_value' }
         expect(response).not_to be_redirect
       end
     end

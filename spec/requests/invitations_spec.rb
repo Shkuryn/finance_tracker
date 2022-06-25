@@ -41,7 +41,7 @@ RSpec.describe InvitationsController, type: :controller do
 
   describe '#set_invitation' do
     let!(:invitation) { FactoryBot.create :invitation, user_id: user.id, member_id: user2.id }
-    params = { :id => 1 }
+    params = { id: 1 }
 
     it 'success set' do
       # get invitation_path(invitation)
@@ -52,7 +52,7 @@ RSpec.describe InvitationsController, type: :controller do
 
   describe '#destroy' do
     let!(:invitation) { FactoryBot.create :invitation, user_id: user.id, member_id: user2.id }
-    params = { :id => 1 }
+    params = { id: 1 }
 
     it 'success destroy' do
       @invitation = Invitation.find(params[:id])
@@ -76,7 +76,5 @@ RSpec.describe InvitationsController, type: :controller do
       visit user_path(user2)
       expect(response).to have_http_status(:ok)
     end
-
   end
 end
-

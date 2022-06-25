@@ -8,7 +8,6 @@ RSpec.describe User, type: :model do
     @user_member = FactoryBot.create(:user, id: 2, email: 'test@example.com', name: 'Michael', surname: 'Scot', family_id: 1)
     # @invitation = FactoryBot.create(:invitation, user: user, member: user1, confirmed: true)
     @family = FactoryBot.create(:family, id: 1, parent_id: @user_parent.id)
-
   end
 
   describe '#family_member?' do

@@ -90,7 +90,7 @@ RSpec.describe Operation, type: :model do
   describe '#with_family' do
     let(:user) { FactoryBot.create(:user) }
     let(:operation) { FactoryBot.create(:operation, user_id: user.id) }
-    it "should return family operation" do
+    it 'should return family operation' do
       expect(Operation.with_family(user.family_id).to_a.count).to eq(0)
     end
   end

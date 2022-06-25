@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PlannedExpencesHelper, type: :helper do
   let(:user) { FactoryBot.create :user }
-  let(:expence) {FactoryBot.create(:expence, user_id: user.id) }
+  let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
   describe '#planned_expence_name' do
     it 'returns expence_name' do
       expect(helper.planned_expence_name(expence.id)).to eq(expence.name)

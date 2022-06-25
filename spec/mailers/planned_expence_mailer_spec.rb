@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe PlannedExpenceMailer, :type => :mailer do
-  describe "#notification_about_expence" do
+RSpec.describe PlannedExpenceMailer, type: :mailer do
+  describe '#notification_about_expence' do
     let(:user) { FactoryBot.create :user }
     let(:mail) { PlannedExpenceMailer.notification_about_expence(user) }
 
