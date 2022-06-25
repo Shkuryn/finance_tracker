@@ -90,7 +90,7 @@ RSpec.describe Operation, type: :model do
   describe '#with_family' do
     let(:user) { FactoryBot.create(:user) }
     let(:operation) { FactoryBot.create(:operation, user_id: user.id) }
-    it "should return family operation" do
+    it 'should return family operation' do
       expect(Operation.with_family(user.family_id).to_a.count).to eq(0)
     end
   end
@@ -105,6 +105,18 @@ RSpec.describe Operation, type: :model do
   #   end
   #
   # end
+
+  describe '#acceptable_image' do
+    let(:user) { FactoryBot.create(:user) }
+    subject(:operation) { FactoryBot.create(:operation, user_id: user.id) }
+    it 'adds errors if image is too big' do
+      subject.image.attach(
+        io: File.open("#{Rails.root}/spec/fixtures/too_big.png"),
+        filename: 'too_big.png'
+      )
+      expect(subject.errors.full_messages.to_s).to include('size 12.99 MB exceeds 1 MB limit')
+    end
+  end
   # after d
   #   @user.destroy
   # end
