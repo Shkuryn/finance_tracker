@@ -20,7 +20,7 @@ class InvitationsController < ApplicationController
       redirect_to current_user, alert: "Invitation was created before"
     else
 
-      @invitation = Invitation.new(user_id: current_user.id, member_id: member.first.id)
+      @invitation = Invitation.new(user_id: current_user.id, member_id: members.first.id)
 
       respond_to do |format|
         if @invitation.save

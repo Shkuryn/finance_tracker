@@ -61,15 +61,20 @@ RSpec.describe InvitationsController, type: :controller do
       end.to change(Invitation, :count).by(-1)
     end
     it 'destroy by decline click' do
-      # login_user user
-      # visit user_path(user)
-      # fill_in 'invitation[email]', with: user2.email
-      # click_on 'commit'
-      # login_user user2
-      # visit user_path(user2)
-      #
-      # click_link(href: 'http://localhost:3000/invitations/1')
-      # expect(response).to have_http_status(:ok)
+      pending('maybe later...')
+      login_user user
+      visit user_path(user)
+
+      fill_in 'invitation_email', with: user2.email
+      click_on 'commit'
+      visit root_path
+      accept_alert do
+        click_on 'signout'
+      end
+
+      login_user user2
+      visit user_path(user2)
+      expect(response).to have_http_status(:ok)
     end
 
   end

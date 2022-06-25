@@ -8,6 +8,7 @@ RSpec.describe OperationDetail, type: :model do
     @operaton = FactoryBot.create(:operation, user_id: @user.id)
     @expence = FactoryBot.create(:expence, user_id: @user.id)
     @operaton_detail = FactoryBot.build(:operation_detail, expence_id: @expence.id, operation_id: @operaton.id)
+    @operaton_detail_wrong = FactoryBot.build(:operation_detail, operation_id: @operaton.id)
   end
   describe '#create' do
     context 'successfully' do
@@ -36,6 +37,14 @@ RSpec.describe OperationDetail, type: :model do
       end
     end
   end
+
+  describe "#any_present?" do
+    it "when empty both ids" do
+      expect(@operaton_detail_wrong).not_to be_valid
+    end
+
+  end
+
   after do
     @user.destroy
     @operaton_detail.destroy

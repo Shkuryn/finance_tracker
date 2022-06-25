@@ -8,5 +8,6 @@ FactoryBot.define do
     updated_at  { 1.years.ago }
     email { 'Johndoe@example.com' }
     password { 'strong_1234' }
+    id { 1 }
   end
 end
