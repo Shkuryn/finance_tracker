@@ -8,7 +8,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
   let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
   let(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id) }
   let(:user2) { FactoryBot.create(:user, id: 2, name: 'Dmitry', surname: 'Usik', email: 'test@example.com') }
-  let(:planned_expence2) { FactoryBot.create(:planned_expence2, user_id: user2.id, id: 2, amount: 20, expence_id: expence.id) }
+  let(:planned_expence2) { FactoryBot.create(:planned_expence, user_id: user2.id, id: 2, amount: 10, expence_id: expence.id) }
 
   describe '#index' do
     it 'returns status 200 OK' do
@@ -41,7 +41,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#create' do
-    it 'shoud create a new planned expence' do
+    it 'shoud creates a new planned expence' do
       login_user user
       visit new_planned_expence_path
       expect(page).to have_content('New Planned Expence')
@@ -64,15 +64,15 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#destroy' do
-    # it 'deletes item' do
-    #   user = FactoryBot.create(:user)
-    #   expence = FactoryBot.create(:expence, user_id: user.id)
-    #   planned_expence = FactoryBot.create(:planned_expence, expence_id: expence.id, user_id: user.id)
-    #   expect do
-    #     planned_expence.destroy
-    #   end.to change(PlannedExpence, :count).by(-1)
-    #   expect(response).to be_redirect_to(planned_expences_path)
-    # end
+     it 'deletes item' do
+       user = FactoryBot.create(:user)
+       expence = FactoryBot.create(:expence, user_id: user.id)
+       planned_expence = FactoryBot.create(:planned_expence, expence_id: expence.id, user_id: user.id)
+       expect do
+         planned_expence.destroy
+       end.to change(PlannedExpence, :count).by(-1)
+     end
+
   end
 
   describe '#update' do
