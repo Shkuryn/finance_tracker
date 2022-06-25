@@ -123,7 +123,8 @@ RSpec.describe Operation, type: :model do
     subject(:operation) { FactoryBot.create(:operation, user_id: user.id) }
     it 'success exec' do
 
-      expect(subject.subject.image.purge_attached_image).to eq(nil)
+      expect(subject.image.purge_later).to eq(nil)
+      expect(subject.purge_attached_image).to eq(nil)
     end
   end
 
