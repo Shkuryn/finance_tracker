@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<br/>
 <div class="container" style="width: 1000px">
 <div class="jumbotron">
   <h1 class="display-4"><%= @income.name %></h1>
@@ -6,7 +6,7 @@
   <hr class="my-4">
   <p> </p>
   <br/><br/>
-
+  <%= link_to 'Edit', edit_income_path(@income), class:"btn btn-outline-info"%>
   <%= link_to 'List', incomes_path, class:"btn btn-outline-dark" %>
 </div>
 </div>
