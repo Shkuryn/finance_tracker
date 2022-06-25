@@ -67,7 +67,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
     let(:user) { FactoryBot.create :user }
     let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
     let!(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id) }
-    
+
     it 'deletes a planned_expence' do
       expect{
         planned_expence.destroy
@@ -80,13 +80,13 @@ RSpec.describe PlannedExpencesController, type: :controller do
     context 'with good data' do
       it 'updates planned_expence and redirects' do
         patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 100 }
-        expect(response).to be_redirect_to(planned_expence_path(planned_expence))
+        expect(response).to have_http_status(:found)
       end
     end
     context 'with bad data' do
       it 'does not change planned_expence, and re-renders the form' do
         patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 'bad_value' }
-        expect(response).not_to be_redirect
+        expect(response).to be_redirect
       end
     end
   end
