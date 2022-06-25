@@ -117,5 +117,14 @@ RSpec.describe Operation, type: :model do
       expect(subject.errors.full_messages.to_s).to include('size 12.99 MB exceeds 1 MB limit')
     end
   end
- 
+
+  describe '#purge_attached_image' do
+    let(:user) { FactoryBot.create(:user) }
+    subject(:operation) { FactoryBot.create(:operation, user_id: user.id) }
+    it 'success exec' do
+
+      expect(subject.subject.image.purge_attached_image).to eq(nil)
+    end
+  end
+
 end
