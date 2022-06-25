@@ -12,12 +12,15 @@ RSpec.describe PlannedExpencesController, type: :controller do
 
   describe '#index' do
     it 'returns status 200 OK' do
+      allow(controller).to receive(:check_user_signed).and_return(true)
       get :index
       expect(response).to have_http_status(:ok)
     end
     it 'renders the index template' do
+      allow(controller).to receive(:check_user_signed).and_return(true)
+      allow(controller).to receive(:check_user_owner).and_return(false)
       get :index
-      expect(response).to render_template('welcome/index')
+      expect(response).to render_template("planned_expences/index", "layouts/application")
     end
     it 'returns only current user planned expences' do
       login_user user
@@ -30,11 +33,12 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#show' do
-    # it 'has a related heading when not signed in' do
-    #   get :index
-    #   expect(response.body).to match(/<h3> please login/im)
-    #   assert_template('welcome/index')
-    # end
+    it 'has a related heading when not signed in' do
+      allow(controller).to receive(:signed_in?).and_return(false)
+      get :index
+      expect(response.body).to match(/<h3> please login/im)
+      assert_template('welcome/index')
+    end
   end
 
   describe '#create' do
