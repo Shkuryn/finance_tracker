@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   resources :expences
   resources :planned_expences
   devise_for :users
-  resources :charts, only: %i[show index create]
+  resources :charts, only: %i[index create]
   # get 'charts/show'
   get 'dashboard/show'
   resources :users
-  resources :invitations, only: %i[new show index update create destroy]
+  resources :invitations, only: %i[:update, :create, :destroy]
 end
