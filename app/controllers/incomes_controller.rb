@@ -43,7 +43,6 @@ class IncomesController < ApplicationController
 
   # PATCH/PUT /incomes/1
   def update
-    binding.pry
     respond_to do |format|
       if @income.update(income_params)
         format.html { redirect_to income_url(@income), notice: 'Income was successfully updated.' }

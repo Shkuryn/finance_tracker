@@ -93,7 +93,7 @@ RSpec.describe IncomesController, type: :controller do
     it 'update a income' do
       sign_in user
       expect do
-        patch :update, params: { id: income.id }
+        expect { patch :update, income: income, id: id }
       end.to change { Income.count }.by(0)
       expect(response.status).to eq 200
     end

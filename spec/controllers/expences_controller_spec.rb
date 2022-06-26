@@ -113,4 +113,18 @@ RSpec.describe ExpencesController, type: :controller do
       # expect(response).to have_content('#')
     end
   end
+
+  describe '#update' do
+    before do
+      expence
+    end
+
+    it 'update a expence' do
+      sign_in user
+      expect do
+        expect { patch :update, expence: expence, id: id }
+      end.to change { Expence.count }.by(0)
+      expect(response.status).to eq 200
+    end
+  end
 end
