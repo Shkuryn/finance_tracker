@@ -8,9 +8,11 @@ RSpec.describe OperationDetailsController, type: :controller do
   let(:other_user) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
   let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
   let(:operation) { FactoryBot.create(:operation, user_id: user.id) }
-  let(:operation_detail) { FactoryBot.create(:operation_detail, expence_id: expence.id, operation_id: operation.id) }
+  let(:operation_detail) {
+    FactoryBot.create(:operation_detail, expence_id: expence.id,
+                      operation_id: operation.id, amount: 100) }
 
-  describe '#how' do
+  describe '#show' do
     subject(:user2) { FactoryBot.create(:user, id: 2, name: 'Petr', surname: 'Petrov', email: 'aaa@aaddd.com') }
     # it 'to #show' do
     #   get :show, params: { operation_detail_id: operation_detail }
@@ -49,6 +51,17 @@ RSpec.describe OperationDetailsController, type: :controller do
         click_on 'Add'
         expect(response).to have_http_status(:ok)
       end
+    end
+  end
+
+  describe '#destroy' do
+    before { operation_detail }
+    it 'deletes a operation' do
+      sign_in user
+      expect do
+        delete :destroy, params: { id: operation_detail.id }
+      end.to change { OperationDetail.count }.by(-1)
+      # expect(response).to have_content('#')
     end
   end
 end
