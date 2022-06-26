@@ -30,9 +30,6 @@ class PlannedExpencesController < ApplicationController
         PlannedExpenceMailer.delay(run_at: @planned_expence.date).notification_about_expence(@user, @planned_expence)
         format.html { redirect_to planned_expence_url(@planned_expence), notice: 'Planned Expence was successfully created.' }
         format.json { render :show, status: :created, location: @planned_expence }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @planned_expence.errors, status: :unprocessable_entity }
       end
     end
   end
