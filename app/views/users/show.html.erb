@@ -1,21 +1,47 @@
-<div style="width: 40vw; height: 20vh">
-  <h1>Name:   <%= @user.name %></h1>
-  <h2>Surname:   <%= @user.surname %></h2>
-  <h3>Email:   <%= @user.email %></h3>
+<br/>
+<div class="container" style="width: 1000px">
+<div class="card">
 
+  <div class="card-header">
+    Profile
+    <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-outline-info", style:"margin-left: 766px"%>
+  </div>
 
-  <% if @invitations.present? %>
-  <%= render 'invitation/invitation_form.html.erb' %>
-  <% end %>
+  <div class="card-body">
+    <br/>
+    <div class="container" style="width: 900px">
+      <div class="jumbotron">
+        <h4 class="display-6">Name:   <%= @user.name %></h4>
+        <h4 class="display-6">Surname:   <%= @user.surname %></h4>
+        <hr class="my-4">
+        <p class="lead"> Email:   <%= @user.email %></p>
+      </div>
+    </div>
 
-  <% if not @family_member %>
-  <%= render 'invitation/form' %>
-  <% end %>
+    <div class="container" style="width: 900px">
+    <% if @invitations.present? %>
+    <p class="card-text">
+        <%= render 'invitation/invitation_form.html.erb' %>
+    </p>
+    <% end %>
+    </div>
 
+    <div class="container" style="width: 900px">
+    <p class="card-text">
+      Family:
+    <%= render 'users/family_form.html.erb'%>
+    </p>
+    </div>
 
-  <%= render 'users/family_form.html.erb' %>
-
+    <div class="container" style="width: 900px">
+      <% if not @family_member %>
+        <p class="card-text">
+        <br/>
+          <%= render 'invitation/form' %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-
+</div>
 
