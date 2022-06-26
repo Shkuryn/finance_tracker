@@ -1,4 +1,4 @@
-<%= form_for @expence, html: { class: "form-vertical center" } do |form| %>
+<%= form_for expences, html: { class: "form-vertical center" } do |form| %>
   <% if expences.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(expences.errors.count, "error") %> prohibited this expence from being saved:</h2>
@@ -20,7 +20,7 @@
     </div>
     <div class="Action">
       <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) != "new" %>
-        <% if @expence.predefined == false %>
+        <% if expences.predefined == false %>
           <%= form.button "Update ", id: 'update',  type: "submit", :class => "btn btn-outline-info" %>
         <% end %>
       <% else %>
