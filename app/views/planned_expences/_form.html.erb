@@ -1,37 +1,33 @@
-<%= form_with(model: planned_expence) do |form| %>
+<%= form_for @planned_expence, html: { class: "form-vertical center" } do |form| %>
   <% if planned_expence.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(planned_expence.errors.count, "error") %> prohibited this planned_expence from being saved:</h2>
-
+      <h2><%= pluralize(planned_expence.errors.count, "error") %> prohibited this expence from being saved:</h2>
       <ul>
-        <% planned_expence.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% planned_expence.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= select_tag "planned_expence[expence_id]", options_from_collection_for_select(@expence, "id", "name") %>
-  </div>
-
-  <div class="mb-3">
-      <%= form.label :description, { class: "form-label" } %>
-      <%= form.text_field :description, { class: "form-control", placeholder: "Description"} %>
+  <div class="form-floating mb-3 mt-3">
+    <div class="mb-3">
+      <%= form.label :choose_expence_category, { class: "form-label" } %>
+      <%= select_tag "planned_expence[expence_id]", options_from_collection_for_select(@expence, "id", "name"), :class => "form-control" %>
     </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.number_field :amount %>
+    <div class="mb-3">
+      <%= form.label :add_description, { class: "form-label" } %>
+      <%= form.text_field :description, id: 'description', :class => "form-control" %>
+    </div>
+    <div class="mb-3">
+    <%= form.label :amount, { class: "form-label" } %>
+    <%= form.number_field :amount, { class: "form-label" }%>
   </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
+  <div class="mb-3">
+    <%= form.label :date, { class: "form-label" } %>
+    <%= form.datetime_select :date, { class: "form-label" } %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="Action">
+     <%= form.submit %>
+    </div>
   </div>
 <% end %>
