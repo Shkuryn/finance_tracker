@@ -67,6 +67,12 @@
         <% if user_signed_in? %>
           <span class="navbar-text" style="margin-right: 15px">Hi, <%= username(current_user.id)%>!</span>
 
+          <% if get_invitations != 0 %>
+            <a class="navbar-brand me-2" href="/users/current_user.id">
+              <%= image_tag('Bell.png', size: "20x20")  %>
+            </a>
+          <% end %>
+
           <button type="button" class="btn btn-info me-3" >
             <%= link_to  'Profile', current_user,  style: 'color:#FFFFFF;', class: "text-decoration-none"%>
           </button>
