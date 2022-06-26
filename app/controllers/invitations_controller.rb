@@ -17,7 +17,7 @@ class InvitationsController < ApplicationController
     elsif members.first.family_id.present? && members.first.family_id != current_user.family_id
       redirect_to current_user, alert: "User #{members.first.email} belongs to other family"
     elsif Invitation.find_invitation(current_user.id, members.first.id).present?
-      redirect_to current_user, alert: "Invitation was created before"
+      redirect_to current_user, alert: 'Invitation was created before'
     else
 
       @invitation = Invitation.new(user_id: current_user.id, member_id: members.first.id)
@@ -41,7 +41,6 @@ class InvitationsController < ApplicationController
   end
 
   def update
-
     invitation = Invitation.find(params[:id])
     invitation.update(confirmed: true)
     family = create_family(invitation)
@@ -73,7 +72,6 @@ class InvitationsController < ApplicationController
   end
 
   def update_family_attributes(family, invitation)
-
     parent = User.find(invitation.user_id)
     if parent.family_id.blank?
       parent.family_id = family.id
@@ -84,5 +82,4 @@ class InvitationsController < ApplicationController
     member.family_id = family.id
     member.save
   end
-
 end

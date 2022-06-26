@@ -17,12 +17,13 @@ class User < ApplicationRecord
 
   def family_member?
     return false if family_id.blank?
+
     id != Family.find(family_id).parent_id
   end
 
   def family_parent?
     return false if family_id.blank?
+
     id == Family.find(family_id).parent_id
   end
-
 end

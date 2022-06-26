@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'requests_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user) {FactoryBot.create :user}
+  let(:user) { FactoryBot.create :user }
   describe 'GET #show' do
     context 'when a user is logged in' do
       before do
@@ -15,5 +15,5 @@ RSpec.describe UsersController, type: :controller do
         expect(assigns(:user)).to eq user
       end
     end
-  end 
+  end
 end

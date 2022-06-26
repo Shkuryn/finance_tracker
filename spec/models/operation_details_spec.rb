@@ -38,11 +38,10 @@ RSpec.describe OperationDetail, type: :model do
     end
   end
 
-  describe "#any_present?" do
-    it "when empty both ids" do
+  describe '#any_present?' do
+    it 'when empty both ids' do
       expect(@operaton_detail_wrong).not_to be_valid
     end
-
   end
 
   after do
