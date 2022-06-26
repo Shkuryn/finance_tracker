@@ -67,14 +67,15 @@
         <% if user_signed_in? %>
           <span class="navbar-text" style="margin-right: 15px">Hi, <%= username(current_user.id)%>!</span>
 
-          <button type="button" class="btn btn-info me-3" >
-            <%= link_to  'Profile', current_user,  style: 'color:#FFFFFF;', class: "text-decoration-none"%>
-          </button>
           <% if get_invitations != 0 %>
             <a class="navbar-brand me-2" href="/">
               <%= image_tag('Bell.png', size: "20x20")  %>
             </a>
           <% end %>
+
+          <button type="button" class="btn btn-info me-3" >
+            <%= link_to  'Profile', current_user,  style: 'color:#FFFFFF;', class: "text-decoration-none"%>
+          </button>
 
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete,
                     data: { confirm: 'Are you sure?' } , class: "btn btn-outline-danger"%>
