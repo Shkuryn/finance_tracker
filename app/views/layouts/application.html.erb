@@ -70,6 +70,11 @@
           <button type="button" class="btn btn-info me-3" >
             <%= link_to  'Profile', current_user,  style: 'color:#FFFFFF;', class: "text-decoration-none"%>
           </button>
+          <% if get_invitations != 0 %>
+            <a class="navbar-brand me-2" href="/">
+              <%= image_tag('Bell.png', size: "20x20")  %>
+            </a>
+          <% end %>
 
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete,
                     data: { confirm: 'Are you sure?' } , class: "btn btn-outline-danger"%>
