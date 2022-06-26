@@ -76,4 +76,14 @@ RSpec.describe IncomesController, type: :controller do
       expect(have_button('Update'))
     end
   end
+  describe '#destroy' do
+    before { income }
+    it 'deletes a incomes' do
+      sign_in user
+      expect do
+        delete :destroy, params: { id: income.id }
+      end.to change { Income.count }.by(-1)
+      # expect(response).to have_content('#')
+    end
+  end
 end
