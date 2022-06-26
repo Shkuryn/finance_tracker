@@ -3,7 +3,7 @@
 class ExpencesController < ApplicationController
   before_action :set_expence, only: %i[show edit update destroy]
   before_action :check_user_signed, only: %i[show new edit update destroy index]
-  before_action :check_user_owner, only: %i[show edit]
+  before_action :check_user_owner, only: %i[edit update destroy]
 
   # GET /expences or /expences.json
   def index
@@ -68,7 +68,7 @@ class ExpencesController < ApplicationController
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -82,6 +82,6 @@ class ExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
+    render 'welcome/index' unless Expence.user_owner(params[:id], current_user.id)
   end
 end
