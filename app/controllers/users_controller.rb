@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @users = @users.emails(params[:email]) if params[:email].present?
+    redirect_to current_user
   end
 
 
