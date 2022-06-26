@@ -20,11 +20,11 @@
     </div>
     <div class="mb-3">
     <%= form.label :amount, { class: "form-label" } %>
-    <%= form.number_field :amount, { class: "form-label" }%>
+    <%= form.number_field :amount, { class: "form-control" }%>
   </div>
   <div class="mb-3">
-    <%= form.label :date, { class: "form-label" } %>
-    <%= form.datetime_select :date, { class: "form-label" } %>
+    <%= form.label :notification_date, { class: "form-label" } %>
+    <%= form.datetime_field :date, { class: "form-control" } %>
   </div>
     <div class="Action">
      <%= form.submit %>
