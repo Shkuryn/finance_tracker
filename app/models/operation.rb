@@ -23,7 +23,7 @@ class Operation < ApplicationRecord
       errors.add(:image, "size #{image_size} MB exceeds 1 MB limit")
     end
 
-    acceptable_types = ['image/jpeg', 'image/jpg', 'image/png']
+    acceptable_types = %w[image/jpeg image/jpg image/png]
     errors.add(:image, 'must be a JPEG or PNG') unless acceptable_types.include?(image.content_type)
   end
 
@@ -38,10 +38,10 @@ class Operation < ApplicationRecord
 
   scope :with_user, ->(user_id) { where('user_id = ?', user_id) }
   scope :with_amount_gteq, lambda { |sum|
-                             joins('left join operation_details on operations.id = operation_details.operation_id')
-                               .group('id')
-                               .having('sum(operation_details.amount) >= ?', sum)
-                           }
+    joins('left join operation_details on operations.id = operation_details.operation_id')
+      .group('id')
+      .having('sum(operation_details.amount) >= ?', sum)
+  }
   scope :with_amount_gt, lambda { |sum|
     joins('left join operation_details on operations.id = operation_details.operation_id')
       .group('id')
