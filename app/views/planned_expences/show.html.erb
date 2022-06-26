@@ -1,4 +1,26 @@
 <p id="notice"><%= notice %></p>
-
-<%= render 'form', planned_expence: @planned_expence %>
-<%= link_to 'Back', planned_expences_path %>
+<div class="container" style="width: 1000px">
+<div class="jumbotron">
+  <h1 class="display-5">Information about Planned Expence<%=%></h1>
+   <p </p>
+  <hr class="my-3">
+  <p>
+  <p class="lead">Category:  <%= planned_expence_name(@planned_expence.expence_id)%></p>
+  <hr class="my-3">
+  <p>
+  <p class="lead">Desription:  <%= @planned_expence.description %></p>
+  <hr class="my-3">
+  <p>
+  <p class="lead">Notification Status:  <%= @planned_expence.sent == false ? "Waiting to send" : "Already sent" %></p>
+  <hr class="my-3">
+  <p>  
+  <p class="lead">Amount:  <%= @planned_expence.amount %></p>
+  <hr class="my-3">
+  <p> 
+  <p class="lead">Notification Date:  <%= @planned_expence.date %></p>
+  <hr class="my-3">
+  <p> </p>
+  <br/>
+  <%= link_to 'Back to Planned Expences list',  planned_expences_path, class:"btn btn-outline-dark" %>
+</div>
+</div>

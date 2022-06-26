@@ -5,18 +5,19 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <table class="table table-bordered table-sm">
+  <div class="row-link">
+    <div class="col-md-10">
+      <table class="table table-hover ">
         <thead>
         <tr>
           <th class="block" style="width:10%">Category</th>
-          <th class="block" style="width:20%">Description</th>
-          <th class="block" style="width:20%">Date</th>
-          <th class="block" style="width:20%">Status</th>
-          <th class="block" style="width:10%"></th>
-          <th class="block" style="width:10%"></th>
-          <th class="block" style="width:10%"></th>
+          <th class="block" style="width:25%">Description</th>
+          <th class="block" style="width:10%">Amount</th>
+          <th class="block" style="width:20%">Notification Date</th>
+          <th class="block" style="width:20%">Notification Status</th>
+          <th class="block" style="width:5%"></th>
+          <th class="block" style="width:5%"></th>
+          <th class="block" style="width:5%"></th>
           </tr>
         </thead>
 
@@ -27,11 +28,12 @@
          <tr>
             <td><%= planned_expence_name(planned_expence.expence_id) %></td>
             <td><%= planned_expence.description %></td>
+            <td><%= planned_expence.amount %></td>
             <td><%= planned_expence.date %></td>
             <td><%= planned_expence.sent == false ? "Waiting to send" : "Already sent" %></td>
-            <td><%= link_to 'Show', planned_expence %></td>
-            <td><%= link_to 'Edit', edit_planned_expence_path(planned_expence) %></td>
-            <td> <%= link_to 'Delete', planned_expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-decoration-none" %></td>
+            <td><%= link_to 'Show', planned_expence, class: "btn btn-primary btn-sm" %></td>
+            <td><%= link_to 'Edit', edit_planned_expence_path(planned_expence), class: "btn btn-success btn-sm" %></td>
+            <td><%= link_to 'Delete', planned_expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
 
           <%end%>
           </tr>
@@ -42,6 +44,6 @@
   </div>
 
 <div class="btn btn-primary" >
-    <%= link_to 'New Planned expence', new_planned_expence_path, style: 'color:#FFFFFF;' %>
+    <%= link_to 'Create New Planned Expence', new_planned_expence_path, style: 'color:#FFFFFF;' %>
   </div>
 </div>
