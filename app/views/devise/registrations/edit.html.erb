@@ -2,7 +2,8 @@
 <div class="container" style="width: 1000px">
   <div class="card">
   <div class="card-header">
-    <h4>Edit Profile <% resource_name.to_s.humanize %></h4>
+    Edit profile
+    <%= link_to 'Profile', current_user, class:"btn btn-outline-info", style:"margin-left: 766px"%>
   </div>
   <div class="card-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
