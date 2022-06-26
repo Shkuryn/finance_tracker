@@ -1,4 +1,33 @@
-<p id="notice"><%= notice %></p>
+<br/>
+<div class="container" style="width: 1000px">
+<div class="card">
+  <div class="card-header">
+    <h4>Planned Expence</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', planned_expence: @planned_expence %>
+    <%= link_to 'Back to Planned Expences list', planned_expences_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
+</div>
 
-<%= render 'form', planned_expence: @planned_expence %>
-<%= link_to 'Back to Planned Expences list', planned_expences_path %>
+<p id="notice"><%= notice %></p>
+<div class="container" style="width: 1000px">
+<div class="jumbotron">
+  <h1 class="display-4"><%= planned_expence_name(@planned_expence.expence_id) %></h1>
+  <p class="lead">  <%= @planned_expence.description %></p>
+  <hr class="my-4">
+  <p>
+  <p class="lead">  <%= @planned_expence.sent == false ? "Waiting to send" : "Already sent" %></p>
+  <hr class="my-4">
+  <p>  
+  <p class="lead">  <%= @planned_expence.amount %></p>
+  <hr class="my-4">
+  <p> 
+  <p class="lead">  <%= @planned_expence.date %></p>
+  <hr class="my-4">
+  <p> </p>
+  <br/>
+  <%= link_to 'Back to Planned Expences list',  planned_expences_path, class:"btn btn-outline-dark" %>
+</div>
+</div>
