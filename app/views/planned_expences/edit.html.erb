@@ -1,5 +1,13 @@
-<h1>Editing Planned Expence</h1>
-
-<%= render 'form', planned_expence: @planned_expence %>
-
-<%= link_to 'Back to Planned Expences list', planned_expences_path %>
+<br/>
+<div class="container" style="width: 1000px">
+<div class="card">
+  <div class="card-header">
+    <h4>Edit Planned Expence</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', planned_expence: @planned_expence %>
+    <%= link_to 'Delete', @planned_expence, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %>
+    <%= link_to 'Back to Planned Expences list', planned_expences_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
+</div>
