@@ -50,7 +50,7 @@
           <a class="nav-link" href="/incomes">Incomes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/operations">Operation</a>
+          <a class="nav-link" href="/operations">Operations</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/planned_expences">Planned Expences</a>
@@ -69,12 +69,11 @@
 
           <button type="button" class="btn btn-info me-3" >
             <%= link_to  'Profile', current_user,  style: 'color:#FFFFFF;', class: "text-decoration-none"%>
-        </button>
+          </button>
 
-        <button type="button" class="btn btn-danger me-3" >
-        <%= link_to 'Sign out', destroy_user_session_path,  style: 'color:#FFFFFF;', method: :delete,
-                    data: { confirm: 'Are you sure?' } , class: "text-decoration-none"%>
-        </button>
+        <%= link_to 'Sign out', destroy_user_session_path, method: :delete,
+                    data: { confirm: 'Are you sure?' } , class: "btn btn-outline-danger"%>
+
         <% else %>
           <button type="button" class="btn btn-primary me-3">
             <%= link_to 'Sign Up', new_user_registration_path,  style: 'color:#FFFFFF;', class: 'text-decoration-none' %>
