@@ -105,7 +105,7 @@ RSpec.describe ExpencesController, type: :controller do
         expence_predefined.destroy
       end.to change(Expence, :count).by(-1)
     end
-    it 'deletes a planned_expence' do
+    it 'deletes a expence' do
       sign_in user
       expect do
         delete :destroy, params: { id: expence.id }
