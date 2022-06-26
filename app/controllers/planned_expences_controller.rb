@@ -6,7 +6,6 @@ class PlannedExpencesController < ApplicationController
   before_action :set_expence, only: %i[index new edit show]
   before_action :check_user_signed, only: %i[show new edit update destroy index]
   before_action :check_user_owner, only: %i[show edit destroy]
-  
   def index
     @planned_expences = PlannedExpence.with_user(current_user.id) unless current_user.nil?
   end
