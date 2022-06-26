@@ -43,13 +43,14 @@ class IncomesController < ApplicationController
 
   # PATCH/PUT /incomes/1
   def update
+    binding.pry
     respond_to do |format|
       if @income.update(income_params)
         format.html { redirect_to income_url(@income), notice: 'Income was successfully updated.' }
-        format.json { render :show, status: :ok, location: @income }
+        # format.json { render :show, status: :ok, location: @income }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @income.errors, status: :unprocessable_entity }
+        # format.json { render json: @income.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +60,6 @@ class IncomesController < ApplicationController
     return if @income.predefined == true
 
     @income.destroy
-
     respond_to do |format|
       format.html { redirect_to incomes_url, notice: 'Income was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,7 +69,7 @@ class IncomesController < ApplicationController
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   # Use callbacks to share common setup or constraints between actions.

@@ -63,19 +63,19 @@ RSpec.describe IncomesController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
-  describe '#update' do
-    it 'there is no edit button for predefined income' do
-      income = FactoryBot.create(:income, user_id: user.id, predefined: true, id: 22)
-      login_user user
-      visit "/incomes/#{income.id}/edit"
-      expect(have_no_button('Update'))
-    end
-    it 'there is edit button for non predefined income' do
-      login_user user
-      visit "/incomes/#{income.id}/edit"
-      expect(have_button('Update'))
-    end
-  end
+  # describe '#update' do
+  #   it 'there is no edit button for predefined income' do
+  #     income = FactoryBot.create(:income, user_id: user.id, predefined: true, id: 22)
+  #     login_user user
+  #     visit "/incomes/#{income.id}/edit"
+  #     expect(have_no_button('Update'))
+  #   end
+  #   it 'there is edit button for non predefined income' do
+  #     login_user user
+  #     visit "/incomes/#{income.id}/edit"
+  #     expect(have_button('Update'))
+  #   end
+  # end
   describe '#destroy' do
     before { income }
     it 'deletes a incomes' do
@@ -83,7 +83,19 @@ RSpec.describe IncomesController, type: :controller do
       expect do
         delete :destroy, params: { id: income.id }
       end.to change { Income.count }.by(-1)
-      # expect(response).to have_content('#')
+    end
+  end
+  describe '#update' do
+    before do
+      income
+    end
+
+    it 'update a income' do
+      sign_in user
+      expect do
+        patch :update, params: { id: income.id }
+      end.to change { Income.count }.by(0)
+      expect(response.status).to eq 200
     end
   end
 end
