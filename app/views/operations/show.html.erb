@@ -1,29 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @operation.comment %>
-</p>
-
-<p>
-  <strong>Attachment:</strong>
-  <%= image_tag(@operation.image, title: @operation.image.filename, size: "400x400") if @operation.image.present? %>
-</p>
-
-<p>
-  <strong>Marked:</strong>
-  <%= @operation.marked == false ? "No" : "Yes" %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @operation.date %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= author(@operation.user_id) %>
-</p>
-
-<%= link_to 'Edit', edit_operation_path(@operation) %> |
-<%= link_to 'Back', operations_path %>
+<br/>
+<div class="container" style="width: 1000px">
+  <div class="jumbotron">
+    <h4 class="display-6">Comment: <%= @operation.comment %></h4>
+    <p class="lead">User:   <%= author(@operation.user_id) %></p>
+    <p class="lead">Date:     <%= @operation.date %></p>
+    <p class="lead"> Marked:   <%= @operation.marked == false ? "No" : "Yes" %></p>
+    <hr class="my-4">
+    <p style="margin-left: 250px">  <%= image_tag(@operation.image, title: @operation.image.filename, size: "400x400") if @operation.image.present? %></p>
+    <br/><br/>
+    <%= link_to 'Edit', edit_operation_path(@operation), class:"btn btn-outline-info"%>
+    <%= link_to 'List',  operations_path, class:"btn btn-outline-dark" %>
+  </div>
+</div>
