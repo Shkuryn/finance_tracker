@@ -54,7 +54,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
       login_user user
       visit new_planned_expence_path
       select expence3.name, from: 'planned_expence[expence_id]'
-      fill_in 'Description', with: 'test description'
+      fill_in 'planned_expence[description]', with: 'test description'
       fill_in 'planned_expence[amount]', with: 20
       click_on 'commit'
       expect(response).to have_http_status(:ok)
@@ -64,7 +64,8 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#destroy' do
-    before { planned_expence }
+    before {planned_expence}
+
     it 'deletes a planned_expence' do
       sign_in user
       expect do
@@ -75,17 +76,14 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#update' do
-    context 'with good data' do
-      it 'updates planned_expence and redirects' do
-        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 100 }
-        expect(response).to have_http_status(:found)
-      end
+    before {planned_expence}
+
+    it 'updates a planned expence' do
+      sign_in user
+      expect do
+        expect { patch :update, planned_expence: planned_expence, id: id }
+      end.to change { PlannedExpence.count }.by(0)
+      expect(response.status).to eq 200
     end
-    context 'with bad data' do
-      it 'does not change planned_expence, and re-renders the form' do
-        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 'bad_value' }
-        expect(response).to be_redirect
-      end
-    end
-  end
+  end  
 end
