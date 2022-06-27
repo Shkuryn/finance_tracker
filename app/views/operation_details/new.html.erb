@@ -1,5 +1,12 @@
-<h1>New Operation Detail</h1>
-
-<%= render 'form', operation_detail: @operation_detail %>
-
-<%= link_to 'Back', operation_details_path %>
+<div class="container" style="width: 1000px">
+  <br/>
+  <div class="card">
+    <div class="card-header">
+      <h4>New Operation Detail</h4>
+    </div>
+    <div class="card-body">
+      <%= render 'form', operation_detail: @operation_detail %>
+      <%= link_to 'List', operation_details_path, class:"btn btn-outline-dark btn-sm" %>
+    </div>
+  </div>
+</div>
