@@ -64,14 +64,12 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:user) { FactoryBot.create :user }
-    let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
-    let!(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id) }
-
+    before { planned_expence }
     it 'deletes a planned_expence' do
-      expect{
-        planned_expence.destroy
-      }.to change {PlannedExpence.count}.by(-1)
+      sign_in user
+      expect do
+        delete :destroy, params: { id: planned_expence.id }
+      end.to change { PlannedExpence.count }.by(-1)
       expect(response).to have_content('#')
     end
   end

@@ -94,4 +94,28 @@ RSpec.describe OperationsController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe '#destroy' do
+    before { operation }
+    it 'deletes a operation' do
+      sign_in user
+      expect do
+        delete :destroy, params: { id: operation.id }
+      end.to change { Operation.count }.by(-1)
+      # expect(response).to have_content('#')
+    end
+  end
+  describe '#update' do
+    before do
+      operation
+    end
+
+    it 'update a OperationDetail' do
+      sign_in user
+      expect do
+        expect { patch :update, operation: operation, id: id }
+      end.to change { Operation.count }.by(0)
+      expect(response.status).to eq 200
+    end
+  end
 end
