@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container .text-primasry">
   <h1 class="text-primary">Planned Expences</h1>
 </div>
@@ -42,8 +40,5 @@
       </table>
     </div>
   </div>
-
-<div class="btn btn-primary" >
-    <%= link_to 'Create New Planned Expence', new_planned_expence_path, style: 'color:#FFFFFF;' %>
-  </div>
+  <%= link_to 'New Planned Expence', new_planned_expence_path, class:"btn btn-outline-info"%>
 </div>
