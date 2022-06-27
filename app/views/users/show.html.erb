@@ -9,6 +9,15 @@
 
   <div class="card-body">
     <br/>
+
+    <div class="container" style="width: 900px">
+      <% if @invitations.present? %>
+        <p class="card-text">
+          <%= render 'invitation/invitation_form.html.erb' %>
+        </p>
+      <% end %>
+    </div>
+
     <div class="container" style="width: 900px">
       <div class="jumbotron">
         <h4 class="display-6">Name:   <%= @user.name %></h4>
@@ -18,25 +27,18 @@
       </div>
     </div>
 
-    <div class="container" style="width: 900px">
-    <% if @invitations.present? %>
-    <p class="card-text">
-        <%= render 'invitation/invitation_form.html.erb' %>
-    </p>
-    <% end %>
-    </div>
-
+    <% if @family.count > 0 %>
     <div class="container" style="width: 900px">
     <p class="card-text">
       Family:
     <%= render 'users/family_form.html.erb'%>
     </p>
     </div>
+    <% end %>
 
     <div class="container" style="width: 900px">
       <% if not @family_member %>
         <p class="card-text">
-        <br/>
           <%= render 'invitation/form' %>
         </p>
       <% end %>
