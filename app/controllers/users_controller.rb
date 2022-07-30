@@ -40,6 +40,6 @@ class UsersController < ApplicationController
   def user_not_found
     yield
   rescue ActiveRecord::RecordNotFound
-    redirect_to current_user, :flash => { :alert => 'User not found.' }
+    redirect_to current_user, flash: { alert: 'User not found.' }
   end
 end
