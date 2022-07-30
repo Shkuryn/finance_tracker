@@ -2,7 +2,6 @@
 
 class UsersController < ApplicationController
   helper OperationsHelper
-
   before_action :check_user_signed
   around_action :user_not_found
 
@@ -21,14 +20,12 @@ class UsersController < ApplicationController
 
     @family = User.with_family(current_user.family_id)
     @family_member = current_user.family_member?
-
   end
 
   def index
     @users = User.all
     @users = @users.emails(params[:email]) if params[:email].present?
   end
-
 
   private
 
