@@ -66,7 +66,7 @@ class ExpencesController < ApplicationController
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -80,6 +80,6 @@ class ExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
+    render 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
   end
 end

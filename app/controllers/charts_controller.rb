@@ -42,13 +42,13 @@ class ChartsController < ApplicationController
                                    .group(:name).sum(:amount)
                                    .sort_by { |_key, value| value }.reverse.to_h
                   end
-    render template: 'charts/index'
+    render 'charts/index'
   end
 
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   def spent_current_month
