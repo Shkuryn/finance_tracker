@@ -11,4 +11,8 @@ class Income < ApplicationRecord
   scope :with_family, lambda { |family_id|
     where('user_id IN (?)', User.with_family(family_id).pluck(:id))
   }
+
+  def fill_default(user_id)
+    self.user_id = user_id
+  end
 end

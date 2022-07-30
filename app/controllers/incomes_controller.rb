@@ -27,8 +27,7 @@ class IncomesController < ApplicationController
   # POST /incomes
   def create
     @income = Income.new(income_params)
-    @income.user_id = current_user.id
-    @income.predefined = false
+    @income.fill_default current_user.id
 
     respond_to do |format|
       if @income.save
