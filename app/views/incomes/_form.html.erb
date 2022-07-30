@@ -1,4 +1,4 @@
-<%= form_for @income, html: { class: "form-vertical center" } do |form| %>
+<%= form_for income, html: { class: "form-vertical center" } do |form| %>
   <% if income.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(income.errors.count, "error") %> prohibited this income from being saved:</h2>
@@ -20,7 +20,7 @@
     </div>
     <div class="Action">
       <% if self.instance_variable_get(:@_controller).instance_variable_get(:@_action_name) != "new" %>
-        <% if @income.predefined == false %>
+        <% if income.predefined == false %>
           <%= form.button "Update ", type: "submit", :class => "btn btn-outline-info" %>
         <% end %>
       <% else %>

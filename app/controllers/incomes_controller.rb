@@ -12,16 +12,21 @@ class IncomesController < ApplicationController
   end
 
   # GET /incomes/1
-  def show; end
+  def show
+    @income = Income.find_by(id: params[:id])
+    render :show, :income => @income
+  end
 
   # GET /incomes/new
   def new
     @income = Income.new
+    render :new, :income => @income
   end
 
   # GET /incomes/1/edit
   def edit
     @income = Income.find_by(id: params[:id])
+    render :edit, :income => @income
   end
 
   # POST /incomes
