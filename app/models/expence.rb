@@ -18,4 +18,8 @@ class Expence < ApplicationRecord
       false
     end
   end
+
+  def fill_default(user_id)
+    self.user_id = user_id
+  end
 end

@@ -27,9 +27,7 @@ class ExpencesController < ApplicationController
   # POST /expences or /expences.json
   def create
     @expence = Expence.new(expence_params)
-    @expence.user_id = current_user.id
-    @expence.predefined = false
-
+    @expence.fill_default current_user.id
     respond_to do |format|
       if @expence.save
         format.html { redirect_to expence_url(@expence), notice: 'Expence was successfully created.' }
