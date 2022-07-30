@@ -8,7 +8,6 @@ class Expence < ApplicationRecord
   scope :with_family, lambda { |family_id|
     where('user_id IN (?)', User.with_family(family_id).pluck(:id))
   }
-  scope :with_predefined, -> { where(predefined: true) }
   has_many :planned_expences, dependent: :delete_all
   before_destroy :check_predefined
 
