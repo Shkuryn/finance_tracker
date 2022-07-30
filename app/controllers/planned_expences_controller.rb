@@ -64,7 +64,7 @@ class PlannedExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @planned_expence.user_id != current_user.id 
+    render template: 'welcome/index' if @planned_expence.user_id != current_user.id
   end
 
   def check_user_signed

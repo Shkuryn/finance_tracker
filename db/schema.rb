@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_071156) do
+ActiveRecord::Schema.define(version: 2022_07_30_133339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_071156) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.index ["parent_id"], name: "index_families_on_parent_id"
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -123,12 +124,13 @@ ActiveRecord::Schema.define(version: 2022_06_17_071156) do
   create_table "operation_details", force: :cascade do |t|
     t.decimal "amount"
     t.string "comment"
-    t.bigint "expence_id", null: false
+    t.bigint "expence_id"
     t.bigint "operation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "income_id"
     t.index ["expence_id"], name: "index_operation_details_on_expence_id"
+    t.index ["income_id"], name: "index_operation_details_on_income_id"
     t.index ["operation_id"], name: "index_operation_details_on_operation_id"
   end
 
@@ -166,8 +168,9 @@ ActiveRecord::Schema.define(version: 2022_06_17_071156) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "surname"
-    t.integer "family_id"
+    t.bigint "family_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["family_id"], name: "index_users_on_family_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

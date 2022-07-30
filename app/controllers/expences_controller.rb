@@ -17,19 +17,19 @@ class ExpencesController < ApplicationController
   # GET /expences/new
   def new
     @expence = Expence.new
+    render :new, expences: @expence
   end
 
   # GET /expences/1/edit
   def edit
     @expence = Expence.find_by(id: params[:id])
+    render :edit, expences: @expence
   end
 
   # POST /expences or /expences.json
   def create
     @expence = Expence.new(expence_params)
-    @expence.user_id = current_user.id
-    @expence.predefined = false
-
+    @expence.fill_default current_user.id
     respond_to do |format|
       if @expence.save
         format.html { redirect_to expence_url(@expence), notice: 'Expence was successfully created.' }
@@ -68,7 +68,7 @@ class ExpencesController < ApplicationController
   private
 
   def check_user_signed
-    render template: 'welcome/index' unless user_signed_in?
+    render 'welcome/index' unless user_signed_in?
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -82,6 +82,6 @@ class ExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
+    render 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
   end
 end

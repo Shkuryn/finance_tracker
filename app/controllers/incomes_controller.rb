@@ -12,23 +12,27 @@ class IncomesController < ApplicationController
   end
 
   # GET /incomes/1
-  def show; end
+  def show
+    @income = Income.find_by(id: params[:id])
+    render :show, :income => @income
+  end
 
   # GET /incomes/new
   def new
     @income = Income.new
+    render :new, :income => @income
   end
 
   # GET /incomes/1/edit
   def edit
     @income = Income.find_by(id: params[:id])
+    render :edit, :income => @income
   end
 
   # POST /incomes
   def create
     @income = Income.new(income_params)
-    @income.user_id = current_user.id
-    @income.predefined = false
+    @income.fill_default current_user.id
 
     respond_to do |format|
       if @income.save
@@ -82,6 +86,6 @@ class IncomesController < ApplicationController
   end
 
   def check_user_owner
-    render template: 'welcome/index' if @income.user_id != current_user.id && !@income.predefined
+    render 'welcome/index' if @income.user_id != current_user.id && !@income.predefined
   end
 end
