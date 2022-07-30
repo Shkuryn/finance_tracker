@@ -17,11 +17,13 @@ class ExpencesController < ApplicationController
   # GET /expences/new
   def new
     @expence = Expence.new
+    render :new, expences: @expence
   end
 
   # GET /expences/1/edit
   def edit
     @expence = Expence.find_by(id: params[:id])
+    render :edit, expences: @expence
   end
 
   # POST /expences or /expences.json
