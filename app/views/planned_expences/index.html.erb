@@ -22,7 +22,6 @@
 
         <tbody>
         <% if @planned_expences != nil%>
-         
         <% @planned_expences.each do |planned_expence| %>
          <tr>
             <td><%= planned_expence_name(planned_expence.expence_id) %></td>
