@@ -4,14 +4,21 @@ class ChartsController < ApplicationController
   before_action :check_user_signed, only: %i[show new edit update destroy index]
 
   def index
-    # @members = User.with_family(current_user.family_id)
-    #                .to_a.reject { |u| u == current_user }.pluck(:name)
     @members = User.with_family(current_user.family_id).pluck(:name)
     @family = User.with_family(current_user.family_id)
   end
 
   def create
     params_hash = params.to_unsafe_h
+    dates_and_params(params_hash)
+    set_members
+    set_chart_data
+    render 'charts/index'
+  end
+
+  private
+
+  def dates_and_params(params_hash)
     @start_date1 = params_hash['/charts?method=post'].fetch('start_date(1i)')
     @start_date2 = params_hash['/charts?method=post'].fetch('start_date(2i)')
     @start_date3 = params_hash['/charts?method=post'].fetch('start_date(3i)')
@@ -23,8 +30,13 @@ class ChartsController < ApplicationController
     @start_date = Date.civil(@start_date1.to_i, @start_date2.to_i, @start_date3.to_i)
     @end_date = Date.civil(@end_date1.to_i, @end_date2.to_i, @end_date3.to_i)
     @by_members = params_hash['/charts?method=post'].fetch('by_members')
-    @members = User.with_family(current_user.family_id).pluck(:name)
+  end
 
+  def set_members
+    @members = User.with_family(current_user.family_id).pluck(:name)
+  end
+
+  def set_chart_data
     @chart_data = if @object_for_analyze == 'Expences'
                     OperationDetail.joins('INNER JOIN expences on expences.id =operation_details.expence_id')
                                    .joins(:operation)
@@ -42,10 +54,7 @@ class ChartsController < ApplicationController
                                    .group(:name).sum(:amount)
                                    .sort_by { |_key, value| value }.reverse.to_h
                   end
-    render 'charts/index'
   end
-
-  private
 
   def check_user_signed
     render 'welcome/index' unless user_signed_in?

@@ -89,9 +89,6 @@ class OperationDetailsController < ApplicationController
   end
 
   def check_params
-    if @operation_detail.nil? && params[:amount].blank?
-      redirect_to edit_operation_path(params[:operation_id]),
-                  notice: 'Amount must be filled!'
-    end
+    return redirect_to(edit_operation_path(params[:operation_id]), notice: 'Amount must be filled!') if @operation_detail.nil? && params[:amount].blank?
   end
 end

@@ -24,10 +24,7 @@ gem 'google-cloud-storage', '~> 1.11', require: false
 
 gem 'chartkick'
 gem 'devise'
-gem 'dropbox_api'
 gem 'groupdate'
-gem 'image_magick'
-gem 'image_processing', '>= 1.2'
 gem 'simple-form-datepicker'
 
 # Use SCSS for stylesheets

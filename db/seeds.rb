@@ -9,7 +9,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(email: 'user@example.com', password: '12345678', password_confirmation: '12345678')
 p "Created #{User.count} users"
-expencesList = [
+expenses_list = [
   'food',
   'transport',
   'closes',
@@ -20,7 +20,7 @@ expencesList = [
   'public services'
 ]
 Expence.destroy_all
-expencesList.each do |name|
+expenses_list.each do |name|
   Expence.create(name: name,
                  description: name,
                  user_id: 1,
