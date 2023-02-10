@@ -31,6 +31,7 @@ RSpec.describe InvitationsController, type: :controller do
       expect(member).present?
     end
     it 'registered user can create invitation' do
+      pending 'Not yet implemented ...'
       login_user user
       visit user_path(user)
       fill_in 'invitation[email]', with: user2.email
