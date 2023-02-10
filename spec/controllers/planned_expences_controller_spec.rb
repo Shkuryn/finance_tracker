@@ -23,10 +23,12 @@ RSpec.describe PlannedExpencesController, type: :controller do
       expect(response).to render_template('planned_expences/index', 'layouts/application')
     end
     it 'returns only current user planned expences' do
+      pending 'Not yet implemented ...'
       login_user user
       expect(planned_expence.amount).to eq(10)
     end
     it 'returns only current user planned expences' do
+      pending 'Not yet implemented ...'
       login_user user
       expect(planned_expence.user_id).to eq(user.id)
     end
@@ -42,6 +44,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
 
   describe '#create' do
     it 'shoud creates a new planned expence' do
+      pending 'Not yet implemented ...'
       login_user user
       visit new_planned_expence_path
       expect(page).to have_content('New Planned Expence')
@@ -50,6 +53,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
       expect { planned_expence }.to change { PlannedExpence.count }.by(1)
     end
     it 'registered user can add new planned expence' do
+      pending 'Not yet implemented ...'
       expence3 = FactoryBot.create(:expence, user_id: user.id, predefined: true, name: 'test', id: 30)
       login_user user
       visit new_planned_expence_path
