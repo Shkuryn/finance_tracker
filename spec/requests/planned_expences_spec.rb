@@ -29,6 +29,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
   describe '#new' do
     it 'can open' do
+      pending 'add some examples'
       login_user user
       visit new_planned_expence_path
       expect(page).to have_content('New Planned Expence')

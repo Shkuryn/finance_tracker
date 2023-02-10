@@ -24,7 +24,6 @@ class ExpencesController < ApplicationController
   def edit
     @expence = Expence.find_by(id: params[:id])
     render locals: { expence: @expence }
-
   end
 
   # POST /expences or /expences.json
