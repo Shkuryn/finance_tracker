@@ -3,7 +3,7 @@
 class ExpencesController < ApplicationController
   before_action :set_expence, only: %i[show edit update destroy]
   before_action :check_user_signed, only: %i[show new edit update destroy index]
-  before_action :check_user_owner, only: %i[show edit]
+  before_action :check_user_owner, only: %i[edit update destroy]
 
   # GET /expences or /expences.json
   def index
@@ -17,13 +17,13 @@ class ExpencesController < ApplicationController
   # GET /expences/new
   def new
     @expence = Expence.new
-    render :new, expences: @expence
+render locals: { expence: @expence }
   end
 
   # GET /expences/1/edit
   def edit
     @expence = Expence.find_by(id: params[:id])
-    render :edit, expences: @expence
+render locals: { expence: @expence }
   end
 
   # POST /expences or /expences.json
@@ -82,6 +82,6 @@ class ExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render 'welcome/index' if @expence.user_id != current_user.id && !@expence.predefined
+   render 'welcome/index' unless Expence.user_owner(params[:id], current_user.id)
   end
 end

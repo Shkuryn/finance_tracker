@@ -95,26 +95,27 @@
     </tr>
     </thead>
 
-<% if @operation_details.present? %>
-    <tbody>
-    <% idx = 1 %>
-    <% @operation_details.each do |operation_detail| %>
+    <% if @operation_details.present? %>
+      <tbody>
+      <% idx = 1 %>
+      <% @operation_details.each do |operation_detail| %>
 
-      <tr>
-        <td><%= idx  %></td>
-        <% if @operation_type == 1 %>
-          <td><%= Income.find(operation_detail.income_id).name  %></td>
+        <tr>
+          <td><%= idx %></td>
+          <% if @operation_type == 1 %>
+            <td><%= income_name(operation_detail) %></td>
           <% else %>
-        <td><%= Expence.find(operation_detail.expence_id).name  %></td>
+            <td><%= expence_name(operation_detail) %></td>
           <% end %>
-        <td><%=operation_detail.amount  %></td>
-        <td><%=operation_detail.comment  %></td>
-        <td><%= link_to 'Edit', edit_operation_detail_path(operation_detail, operation_type: @operation_type), class: "btn btn-success btn-sm" %></td>
-        <td><%= link_to 'Delete', operation_detail, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
-        <% idx += 1 %>
+       <td><%= operation_detail.amount %></td>
+          <td><%= operation_detail.comment %></td>
+          <td><%= link_to 'Edit', edit_operation_detail_path(operation_detail, operation_type: @operation_type) %></td>
+          <td><%= link_to 'Destroy', operation_detail, method: :delete, data: { confirm: 'Are you sure?' },
+                          class: "text-decoration-none" %></td>
+          <% idx += 1 %>
 
-      </tr>
-    <% end %>
+        </tr>
+      <% end %>
 
     </tbody>
     <% end %>

@@ -45,13 +45,26 @@ RSpec.describe Expence, type: :model do
     end
   end
 
-  describe "#check_predefined" do
+  describe '#check_predefined' do
     it 'returns false when predefined' do
       expect(@expence_predefined.check_predefined).to eq(false)
     end
 
     it 'returns nil when regular' do
       expect(@expence.check_predefined).to eq(nil)
+    end
+  end
+
+  describe '#check_user_owner' do
+    let(:user) { FactoryBot.create(:user, id: 100, email: 'eee@dd.com') }
+    let(:expence) { FactoryBot.create(:expence, id: 100, user_id: user.id) }
+    let(:expence_predefined) { FactoryBot.create(:expence, id: 101, user_id: user.id, predefined: true) }
+
+    it 'should returns true if user owner' do
+      expect(Expence.user_owner(expence.id, user.id)).to eq(true)
+    end
+    it 'should returns true if user owner' do
+      expect(Expence.user_owner(expence_predefined.id, user.id)).to eq(false)
     end
   end
   after do

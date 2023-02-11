@@ -21,16 +21,16 @@ class OperationsController < ApplicationController
                       .ransack(params[:q])
            when '>'
              Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_gt(params[:q][:operation_details_amount])
-                                                                                                       .ransack(params[:q])
+                      .ransack(params[:q])
            when '='
              Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_eq(params[:q][:operation_details_amount])
-                                                                                                       .ransack(params[:q])
+                      .ransack(params[:q])
            when '<='
              Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_lteq(params[:q][:operation_details_amount])
-                                                                                                       .ransack(params[:q])
+                      .ransack(params[:q])
            when '<'
              Operation.with_family(current_user.family_id).or(Operation.with_user(current_user.id)).with_amount_lt(params[:q][:operation_details_amount])
-                                                                                                       .ransack(params[:q])
+                      .ransack(params[:q])
            end
          else
 
@@ -121,6 +121,6 @@ class OperationsController < ApplicationController
 
   def check_user_owner
     render 'welcome/index' if @operation.user_id != current_user.id &&
-      User.with_family(current_user.family_id).pluck(:id).include?(@operation.user_id).blank?
+User.with_family(current_user.family_id).pluck(:id).include?(@operation.user_id).blank?
   end
 end
