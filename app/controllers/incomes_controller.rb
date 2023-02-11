@@ -12,23 +12,27 @@ class IncomesController < ApplicationController
   end
 
   # GET /incomes/1
-  def show; end
+  def show
+    @income = Income.find_by(id: params[:id])
+    render :show, :income => @income
+  end
 
   # GET /incomes/new
   def new
     @income = Income.new
+    render :new, :income => @income
   end
 
   # GET /incomes/1/edit
   def edit
     @income = Income.find_by(id: params[:id])
+    render :edit, :income => @income
   end
 
   # POST /incomes
   def create
     @income = Income.new(income_params)
-    @income.user_id = current_user.id
-    @income.predefined = false
+    @income.fill_default current_user.id
 
     respond_to do |format|
       if @income.save
@@ -46,10 +50,10 @@ class IncomesController < ApplicationController
     respond_to do |format|
       if @income.update(income_params)
         format.html { redirect_to income_url(@income), notice: 'Income was successfully updated.' }
-        format.json { render :show, status: :ok, location: @income }
+        # format.json { render :show, status: :ok, location: @income }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @income.errors, status: :unprocessable_entity }
+        # format.json { render json: @income.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +63,6 @@ class IncomesController < ApplicationController
     return if @income.predefined == true
 
     @income.destroy
-
     respond_to do |format|
       format.html { redirect_to incomes_url, notice: 'Income was successfully destroyed.' }
       format.json { head :no_content }

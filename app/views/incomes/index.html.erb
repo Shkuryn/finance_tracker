@@ -20,6 +20,7 @@
         <tbody>
         <% @incomes.each do |income| %>
           <% if income.predefined? %>
+            <tr class="text-success fw-bold">
               <td><%= income.name %></td>
               <td></td>
           <% else %>

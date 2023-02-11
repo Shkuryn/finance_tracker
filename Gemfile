@@ -14,14 +14,10 @@ gem 'puma', '~> 5.0'
 
 gem 'activeadmin'
 gem 'activestorage'
-gem 'activestorage-dropbox'
 gem 'delayed_job_active_record'
-gem 'dropbox_api'
 gem 'image_magick'
 gem 'image_processing', '>= 1.2'
-
 gem 'google-cloud-storage', '~> 1.11', require: false
-
 gem 'chartkick'
 gem 'devise'
 gem 'groupdate'
@@ -38,6 +34,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
+gem 'rack-attack'
 gem 'ransack'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

@@ -6,4 +6,8 @@ module ApplicationHelper
     user = User.find(user_id)
     user.name.to_s
   end
+
+  def get_invitations
+    Invitation.where(member_id: current_user.id, confirmed: false).count
+  end
 end

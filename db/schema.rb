@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20_220_617_071_156) do
     t.index ['user_id'], name: 'index_invitations_on_user_id'
   end
 
-  create_table 'operation_details', force: :cascade do |t|
+ create_table 'operation_details', force: :cascade do |t|
     t.decimal 'amount'
     t.string 'comment'
     t.bigint 'expence_id', null: false
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 20_220_617_071_156) do
     t.index ['user_id'], name: 'index_planned_expences_on_user_id'
   end
 
-  create_table 'users', force: :cascade do |t|
+create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
     t.string 'reset_password_token'

@@ -54,10 +54,44 @@ class ChartsController < ApplicationController
                                    .group(:name).sum(:amount)
                                    .sort_by { |_key, value| value }.reverse.to_h
                   end
+
+    render 'charts/index'
+
   end
 
   def check_user_signed
     render 'welcome/index' unless user_signed_in?
+
+  end
+
+  def spent_current_month
+    OperationDetail.joins(:operation).where(operation: { user_id: current_user.id })
+                   .where(operation: { operation_type: 0 })
+                   .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
+                   .sum(:amount)
+  end
+
+  def incomes_current_month
+    OperationDetail.joins(:operation).where(operation: { user_id: current_user.id })
+                   .where(operation: { operation_type: 1 })
+                   .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month)
+                   .sum(:amount)
+  end
+
+  def planned_current_month
+    PlannedExpence.with_user(current_user.id)
+                  .where('date BETWEEN ? AND ?', Date.current.beginning_of_month, Date.current.end_of_month).sum(:amount)
+  end
+
+  def balance
+    OperationDetail.joins(:operation).where(operation: { user_id: current_user.id })
+                   .where(operation: { operation_type: 1 })
+                   .where('date  <= ?', Date.current.end_of_day)
+                   .sum(:amount) -
+      OperationDetail.joins(:operation).where(operation: { user_id: current_user.id })
+                     .where(operation: { operation_type: 0 })
+                     .where('date  <= ?', Date.current.end_of_day)
+                     .sum(:amount)
   end
 
   def members_id

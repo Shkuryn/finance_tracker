@@ -1,6 +1,13 @@
-<h1>Editing Operation Detail</h1>
-
-<%= render 'form', operation_detail: @operation_detail %>
-
-<%= link_to 'Show', @operation_detail %> |
-<%= link_to 'Back', operation_detail_path%>
+<br/>
+<div class="container" style="width: 1000px">
+  <div class="card">
+    <div class="card-header">
+      <h4>Edit Operation Details</h4>
+    </div>
+    <div class="card-body">
+      <%= render 'form', operation_detail: @operation_detail %>
+      <%= link_to 'Delete', @operation_detail, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %>
+      <%= link_to 'List', operation_detail_path, class:"btn btn-outline-dark btn-sm" %>
+    </div>
+  </div>
+</div>

@@ -66,6 +66,28 @@ RSpec.describe IncomesController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
+  # describe '#update' do
+  #   it 'there is no edit button for predefined income' do
+  #     income = FactoryBot.create(:income, user_id: user.id, predefined: true, id: 22)
+  #     login_user user
+  #     visit "/incomes/#{income.id}/edit"
+  #     expect(have_no_button('Update'))
+  #   end
+  #   it 'there is edit button for non predefined income' do
+  #     login_user user
+  #     visit "/incomes/#{income.id}/edit"
+  #     expect(have_button('Update'))
+  #   end
+  # end
+  describe '#destroy' do
+    before { income }
+    it 'deletes a incomes' do
+      sign_in user
+      expect do
+        delete :destroy, params: { id: income.id }
+      end.to change { Income.count }.by(-1)
+    end
+  end
   describe '#update' do
     it 'there is no edit button for predefined income' do
       pending 'Not yet implemented ...'

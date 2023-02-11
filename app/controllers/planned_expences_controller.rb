@@ -47,7 +47,6 @@ class PlannedExpencesController < ApplicationController
 
   def destroy
     @planned_expence.destroy
-
     respond_to do |format|
       format.html { redirect_to planned_expences_url, notice: 'Planned Expence was successfully destroyed.' }
       format.json { head :no_content }
@@ -65,7 +64,7 @@ class PlannedExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render 'welcome/index' if user_owner
+render 'welcome/index' if user_owner
   end
 
   def check_user_signed

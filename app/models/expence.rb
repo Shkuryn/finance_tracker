@@ -8,7 +8,6 @@ class Expence < ApplicationRecord
   scope :with_family, lambda { |family_id|
     where('user_id IN (?)', User.with_family(family_id).pluck(:id))
   }
-  # scope :user_owner, ->(id, user_id) { where(id: id, predefined: false, user_id: user_id).present? }
   scope :with_predefined, -> { where(predefined: true) }
   has_many :planned_expences, dependent: :delete_all
   before_destroy :check_predefined
@@ -21,5 +20,9 @@ class Expence < ApplicationRecord
     return false if predefined
 
     errors[:base] << 'cannot be deleted'
+  end
+
+  def fill_default(user_id)
+    self.user_id = user_id
   end
 end

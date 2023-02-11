@@ -17,21 +17,19 @@ class ExpencesController < ApplicationController
   # GET /expences/new
   def new
     @expence = Expence.new
-    render locals: { expence: @expence }
+render locals: { expence: @expence }
   end
 
   # GET /expences/1/edit
   def edit
     @expence = Expence.find_by(id: params[:id])
-    render locals: { expence: @expence }
+render locals: { expence: @expence }
   end
 
   # POST /expences or /expences.json
   def create
     @expence = Expence.new(expence_params)
-    @expence.user_id = current_user.id
-    @expence.predefined = false
-
+    @expence.fill_default current_user.id
     respond_to do |format|
       if @expence.save
         format.html { redirect_to expence_url(@expence), notice: 'Expence was successfully created.' }
@@ -84,6 +82,6 @@ class ExpencesController < ApplicationController
   end
 
   def check_user_owner
-    render 'welcome/index' unless Expence.user_owner(params[:id], current_user.id)
+   render 'welcome/index' unless Expence.user_owner(params[:id], current_user.id)
   end
 end

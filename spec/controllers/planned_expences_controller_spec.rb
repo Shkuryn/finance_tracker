@@ -58,7 +58,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
       login_user user
       visit new_planned_expence_path
       select expence3.name, from: 'planned_expence[expence_id]'
-      fill_in 'Description', with: 'test description'
+      fill_in 'planned_expence[description]', with: 'test description'
       fill_in 'planned_expence[amount]', with: 20
       click_on 'commit'
       expect(response).to have_http_status(:ok)
@@ -68,12 +68,10 @@ RSpec.describe PlannedExpencesController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:user) { FactoryBot.create :user }
-    let(:expence) { FactoryBot.create(:expence, user_id: user.id) }
-    let!(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id) }
+    before {planned_expence}
 
     it 'deletes a planned_expence' do
-      expect do
+   expect do
         planned_expence.destroy
       end.to change { PlannedExpence.count }.by(-1)
       expect(response).to have_content('#')
@@ -93,5 +91,5 @@ RSpec.describe PlannedExpencesController, type: :controller do
         expect(response).to be_redirect
       end
     end
-  end
+  end  
 end

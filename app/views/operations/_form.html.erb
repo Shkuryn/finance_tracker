@@ -20,7 +20,7 @@
     <% end %>
     <%= form.label :ignore %>
     <%= form.check_box :marked, class: "form-check-label",
-                       title: "will not be taken into account when calculating totals if checked", data: { tooltip: true } %>
+                       title: "Will not be taken into account when calculating totals if checked", data: { tooltip: true } %>
   </div>
 
   <%= form.label :image %>
@@ -55,8 +55,9 @@
   </div>
 
   <button class="btn btn-primary" id ='save' name ='save' type="submit">Save</button>
-<% end %>
 
+<% end %>
+</br>
 <%= form_tag("/operations/#{@operation.id}/operation_details", action: "create", method: "post") do %>
   <% if @operation_type == 1 %>
     <%=select_tag "income_id", options_from_collection_for_select(@incomes, "id", "name") %>
@@ -80,7 +81,9 @@
     <%= button_to 'Add', {}, disabled: @operation.id.nil? %>
   <% end %>
 
+  <br/>
   <table class="table table-sm">
+    <br/>
     <thead>
     <tr>
       <th scope="col">#</th>
@@ -104,7 +107,7 @@
           <% else %>
             <td><%= expence_name(operation_detail) %></td>
           <% end %>
-          <td><%= operation_detail.amount %></td>
+       <td><%= operation_detail.amount %></td>
           <td><%= operation_detail.comment %></td>
           <td><%= link_to 'Edit', edit_operation_detail_path(operation_detail, operation_type: @operation_type) %></td>
           <td><%= link_to 'Destroy', operation_detail, method: :delete, data: { confirm: 'Are you sure?' },

@@ -3,7 +3,7 @@
 class InvitationsController < ApplicationController
   helper OperationsHelper
   before_action :set_invitation, only: %i[show edit destroy]
-  before_action :invitation_params, only: %i[show edit destroy create]
+  before_action :invitation_params, only: %i[show edit create]
 
   def create
     members = User.with_email(params[:invitation][:email])
