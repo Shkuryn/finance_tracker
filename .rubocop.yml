@@ -10,10 +10,13 @@ Style/Documentation:
 
 Metrics/MethodLength:
   Max: 30
+  Exclude:
 
 AllCops:
   Exclude:
-    - config/initializers/secret_token.rb
+    - 'spec/**/*'
+    - config/initializers/*
+    - db/schema.rb
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -26,12 +29,11 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Max: 40
+  Exclude:
+    - config/initializers/secret_token.rb
 
 Style/IfUnlessModifier:
   Enabled: false
-
-AllCops:
-  NewCops: enable
 
 
 

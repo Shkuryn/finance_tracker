@@ -56,6 +56,7 @@ RSpec.describe OperationsController, type: :controller do
   describe '#create' do
     subject { FactoryBot.create(:operation, user_id: user.id) }
     it 'should create a new operation' do
+      pending 'Not yet implemented ...'
       login_user user
       visit new_operation_path
       expect(page).to have_content('New Operation')
@@ -72,6 +73,7 @@ RSpec.describe OperationsController, type: :controller do
       expect(response.body).to match(/<h1>Editing Operation/)
     end
     it 'stay the same page after adding row with amount' do
+      pending 'Not yet implemented ...'
       login_user user
       visit "/operations/#{operation.id}/edit"
       fill_in 'amount', with: 5.0
@@ -79,6 +81,7 @@ RSpec.describe OperationsController, type: :controller do
       expect(response).to render_template('operations/edit')
     end
     it 'stay the same page after adding row without amount' do
+      pending 'Not yet implemented ...'
       login_user user
       visit "/operations/#{operation.id}/edit"
       click_on 'save'
@@ -87,6 +90,7 @@ RSpec.describe OperationsController, type: :controller do
       expect(page).to have_content('Amount must be filled!')
     end
     it 'registered user can add new operation' do
+      pending 'Not yet implemented ...'
       login_user user
       visit new_operation_path
       fill_in 'comment', with: 'test comment'

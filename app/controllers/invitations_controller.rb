@@ -6,30 +6,22 @@ class InvitationsController < ApplicationController
   before_action :invitation_params, only: %i[show edit destroy create]
 
   def create
-    email = params[:invitation][:email]
-    members = User.with_email(email)
-    if members.blank?
-      redirect_to current_user, alert: 'Email does not exist!'
-    elsif email == current_user.email
-      redirect_to current_user, alert: 'You can not invite yourself!'
-    elsif members.first.family_id.present? && members.first.family_id == current_user.family_id
-      redirect_to current_user, alert: "User #{members.first.email} already in your family"
-    elsif members.first.family_id.present? && members.first.family_id != current_user.family_id
-      redirect_to current_user, alert: "User #{members.first.email} belongs to other family"
-    elsif Invitation.find_invitation(current_user.id, members.first.id).present?
-      redirect_to current_user, alert: "Invitation was created before"
-    else
+    members = User.with_email(params[:invitation][:email])
+    return redirect_to current_user, alert: 'Email does not exist!' if members.blank?
+    return redirect_to current_user, alert: 'You can not invite yourself!' if members.first.email == current_user.email
+    return redirect_to current_user, alert: "User #{members.first.email} already in your family" if members.first.family_id == current_user.family_id
+    return redirect_to current_user, alert: "User #{members.first.email} belongs to other family" if members.first.family_id.present? && members.first.family_id != current_user.family_id
+    return redirect_to current_user, alert: 'Invitation was created before' if Invitation.find_invitation(current_user.id, members.first.id).present?
 
-      @invitation = Invitation.new(user_id: current_user.id, member_id: members.first.id)
+    @invitation = Invitation.new(user_id: current_user.id, member_id: members.first.id)
 
-      respond_to do |format|
-        if @invitation.save
-          format.html { redirect_to current_user, notice: 'Invitation was successfully created.' }
-          format.json { render :show, status: :created, location: @invitation }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @invitation.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @invitation.save
+        format.html { redirect_to current_user, notice: 'Invitation was successfully created.' }
+        format.json { render :show, status: :created, location: @invitation }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @invitation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,7 +33,6 @@ class InvitationsController < ApplicationController
   end
 
   def update
-
     invitation = Invitation.find(params[:id])
     invitation.update(confirmed: true)
     family = create_family(invitation)
@@ -73,7 +64,6 @@ class InvitationsController < ApplicationController
   end
 
   def update_family_attributes(family, invitation)
-
     parent = User.find(invitation.user_id)
     if parent.family_id.blank?
       parent.family_id = family.id
@@ -84,5 +74,4 @@ class InvitationsController < ApplicationController
     member.family_id = family.id
     member.save
   end
-
 end

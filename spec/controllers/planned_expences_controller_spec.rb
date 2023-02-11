@@ -20,7 +20,7 @@ RSpec.describe PlannedExpencesController, type: :controller do
       allow(controller).to receive(:check_user_signed).and_return(true)
       allow(controller).to receive(:check_user_owner).and_return(false)
       get :index
-      expect(response).to render_template("planned_expences/index", "layouts/application")
+      expect(response).to render_template('planned_expences/index', 'layouts/application')
     end
     it 'returns only current user planned expences' do
       login_user user
@@ -69,9 +69,9 @@ RSpec.describe PlannedExpencesController, type: :controller do
     let!(:planned_expence) { FactoryBot.create(:planned_expence, user_id: user.id, amount: 10, expence_id: expence.id) }
 
     it 'deletes a planned_expence' do
-      expect{
+      expect do
         planned_expence.destroy
-      }.to change {PlannedExpence.count}.by(-1)
+      end.to change { PlannedExpence.count }.by(-1)
       expect(response).to have_content('#')
     end
   end
@@ -79,13 +79,13 @@ RSpec.describe PlannedExpencesController, type: :controller do
   describe '#update' do
     context 'with good data' do
       it 'updates planned_expence and redirects' do
-        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 100 }
+        patch :update, params: { id: planned_expence.id, description: 'test_description_updated', amount: 100 }
         expect(response).to have_http_status(:found)
       end
     end
     context 'with bad data' do
       it 'does not change planned_expence, and re-renders the form' do
-        patch :update, :params => {:id => planned_expence.id, description: 'test_description_updated', amount: 'bad_value' }
+        patch :update, params: { id: planned_expence.id, description: 'test_description_updated', amount: 'bad_value' }
         expect(response).to be_redirect
       end
     end

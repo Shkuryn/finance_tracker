@@ -13,9 +13,8 @@ class Expence < ApplicationRecord
   before_destroy :check_predefined
 
   def check_predefined
-    if predefined
-      errors[:base] << 'cannot be deleted'
-      false
-    end
+    return unless predefined
+
+    errors[:base] << 'cannot be deleted'
   end
 end

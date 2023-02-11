@@ -4,6 +4,6 @@ module ApplicationHelper
   include OperationsHelper
   def username(user_id)
     user = User.find(user_id)
-    "#{user.name}"
+    user.name.to_s
   end
 end
